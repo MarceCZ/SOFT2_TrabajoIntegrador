@@ -10,10 +10,16 @@ const ProductoCardList = (props) => {
         props.list.map((e) => {
             return (
                 <ProductoCard 
-                    id={e.id}
-                    nombre={e.nombre}
-                    marca={e.marca}
-                    descripcion={e.descripcion}
+                  id={e.id}
+                  nombre={e.nombre}
+                  marca={e.marca}
+                  presentacion={e.presentacion}
+                  descripcion={e.descripcion}
+                  contraindicaciones= {e.contraindicaciones}
+                  advertencias={e.advertencias}
+                  imagen= {e.imagen}
+                  botica= {e.botica}
+                  precio={e.precio}
                     />
             )
         })

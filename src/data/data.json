@@ -1,0 +1,114 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Paracetamol 500mg",
+      "marca": "Genfar",
+      "precio": 5.50,
+      "descripcion": "Analgésico y antipirético",
+      "contraindicaciones": "No usar en pacientes con insuficiencia hepática grave",
+      "advertencias": "No exceder la dosis recomendada",
+      "imagen": "https://farmaciauniversalpe.vtexassets.com/arquivos/ids/156423-800-auto?v=638417260707800000&width=800&height=auto&aspect=true",
+      "presentacion": "Caja de 10 tabletas",
+      "stock": 100,
+      "requiere_receta": false,
+      "id_botica": 1,
+      "botica": "Botica Mi Salud"
+    },
+    {
+      "id": 2,
+      "nombre": "Ibuprofeno 400mg",
+      "marca": "MK",
+      "precio": 8.00,
+      "descripcion": "Antiinflamatorio y analgésico",
+      "contraindicaciones": "No usar en pacientes con úlceras gastrointestinales",
+      "advertencias": "Puede causar molestias estomacales",
+      "imagen": "https://farmaciauniversalpe.vtexassets.com/arquivos/ids/159167/00890_1.jpg?v=638590981889170000",
+      "presentacion": "Caja de 20 tabletas",
+      "stock": 200,
+      "requiere_receta": false,
+      "id_botica": 1,
+      "botica": "Botica Mi Salud"
+    },
+    {
+      "id": 3,
+      "nombre": "Amoxicilina 500mg",
+      "marca": "Bayer",
+      "precio": 15.00,
+      "descripcion": "Antibiótico para infecciones bacterianas",
+      "contraindicaciones": "Alergia a la penicilina",
+      "advertencias": "Usar bajo prescripción médica",
+      "imagen": "https://www.hogarysalud.com.pe/wp-content/uploads/2021/03/00202295-C2.jpg",
+      "presentacion": "Caja de 14 cápsulas",
+      "stock": 50,
+      "requiere_receta": true,
+      "id_botica": 2,
+      "botica": "Farmacia Peruana"
+    },
+    {
+      "id": 4,
+      "nombre": "Clorfenamina 4mg",
+      "marca": "Sanofi",
+      "precio": 3.00,
+      "descripcion": "Antihistamínico para alergias",
+      "contraindicaciones": "No usar en personas con glaucoma",
+      "advertencias": "Puede causar somnolencia",
+      "imagen": "https://www.hogarysalud.com.pe/wp-content/uploads/2021/03/78272-C1.jpg",
+      "presentacion": "Caja de 12 tabletas",
+      "stock": 80,
+      "requiere_receta": false,
+      "id_botica": 2,
+      "botica": "Farmacia Peruana"
+    },
+    {
+      "id": 5,
+      "nombre": "Losartán 50mg",
+      "marca": "Teva",
+      "precio": 20.00,
+      "descripcion": "Antihipertensivo para la presión arterial alta",
+      "contraindicaciones": "No usar durante el embarazo",
+      "advertencias": "Usar bajo prescripción médica",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNB3IYwS9TH3RnjzyBb8Wc3Ic-t6QkbyPhtg&s",
+      "presentacion": "Caja de 30 tabletas",
+      "stock": 30,
+      "requiere_receta": true,
+      "id_botica": 3,
+      "botica": "Botica del Pueblo"
+    },
+    {
+      "id": 6,
+      "nombre": "Omeprazol 20mg",
+      "marca": "Sandoz",
+      "precio": 10.50,
+      "descripcion": "Inhibidor de la bomba de protones para el tratamiento de la acidez",
+      "contraindicaciones": "No usar en pacientes con insuficiencia hepática",
+      "advertencias": "Usar solo durante períodos cortos",
+      "imagen": "https://www.hogarysalud.com.pe/wp-content/uploads/2021/06/00204198-C2.jpg",
+      "presentacion": "Caja de 14 cápsulas",
+      "stock": 120,
+      "requiere_receta": false,
+      "id_botica": 3,
+      "botica": "Botica del Pueblo"
+    }
+  ],
+  "boticas": [
+    {
+      "id": 1,
+      "nombre": "Botica Mi Salud",
+      "logo": "logo_misalud.png",
+      "cantidad_productos": 2
+    },
+    {
+      "id": 2,
+      "nombre": "Farmacia Peruana",
+      "logo": "logo_farmacia_peruana.png",
+      "cantidad_productos": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Botica del Pueblo",
+      "logo": "logo_pueblo.png",
+      "cantidad_productos": 2
+    }
+  ]
+}

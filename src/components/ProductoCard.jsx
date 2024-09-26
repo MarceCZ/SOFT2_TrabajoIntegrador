@@ -1,28 +1,34 @@
-import { Card, CardActions, CardMedia, CardContent, Button, Typography } from '@mui/material'
+import { Card, CardActions, CardMedia, CardContent, Button, Typography, Chip, Container } from '@mui/material'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-const ProductoCard=()=> {
-    return (
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          alt="green iguana"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+const ProductoCard = (props) => {
+  return (
+    <Card item xs={4} sx={{ mr: "15px", ml: "15px", marginBottom: "30px", width: "250px", height: "320px", borderRadius: "10px", boxShadow: 2 }}>
+      <CardMedia
+        component="img"
+        alt="green iguana"
+        height="150"
+        image={props.imagen}
+        sx={{objectFit: 'contain', padding: '2px'}}
+      />
+      <CardContent>
+        <Typography gutterBottom component="div" sx={{ fontSize: '12px' }}>
+          {props.presentacion}
+        </Typography>
+        <Typography gutterBottom component="div" sx={{ fontSize: '16px', fontWeight: 'bold', lineHeight: "1.2" }} >
+          {props.nombre} | {props.marca}
+        </Typography>
+        <Chip label={props.botica} sx={{ fontSize: '10px', backgroundColor: 'lightgray' }} />
+        <Container sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 0, padding: 0, margin: 0, marginTop: '10px', paddingLeft: '0 !important', paddingRight: '0 !important' }}>
+          <Typography sx={{ lineHeight: "1.2", fontSize: '20px', fontWeight: 'bold' }}>
+            S/ {props.precio}
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-    );
-  }
-  export default ProductoCard;
+          <Button size="medium" sx={{ color: 'green', padding: 0, minWidth: 'unset' }}>
+            <AddCircleOutlineIcon fontSize="large" />
+          </Button>
+        </Container>
+      </CardContent>
+    </Card>
+  );
+}
+export default ProductoCard;
