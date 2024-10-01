@@ -14,11 +14,7 @@ import Paper from '@mui/material/Paper';
 
 const BusinessMainPage = () => {
 
-  function createData(
-    name: string,
-    stock: number,
-    descripcion: string
-  ) {
+  function createData(name,stock,descripcion) {
     return { name, stock, descripcion };
   }
 
