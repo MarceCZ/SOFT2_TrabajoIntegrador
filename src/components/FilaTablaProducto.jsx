@@ -20,7 +20,7 @@ const Fila = ({ data }) => {
       <TableCell align="right">{data.stock}</TableCell>
       <TableCell align="right"><Checkbox checked={data.requiere_receta} disabled /></TableCell>
       <TableCell align="right">
-        <IconButton onClick={handleEdit}>
+        <IconButton>
           <EditIcon />
         </IconButton>
       </TableCell>
