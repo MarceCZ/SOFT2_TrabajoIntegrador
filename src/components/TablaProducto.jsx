@@ -23,6 +23,8 @@ const TablaProductos = ({ productos }) => {
             <TableCell align="right">Presentación</TableCell>
             <TableCell align="right">Stock</TableCell>
             <TableCell align="right">Receta</TableCell>
+            <TableCell align="right"></TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
