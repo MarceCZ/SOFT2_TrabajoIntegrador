@@ -17,6 +17,12 @@ const TablaProductos = ({ productos }) => {
             <TableCell>Producto</TableCell>
             <TableCell align="right">Marca</TableCell>
             <TableCell align="right">Precio</TableCell>
+            <TableCell align="right">Descripción</TableCell>
+            <TableCell align="right">Contraindicaciones</TableCell>
+            <TableCell align="right">Advertencias</TableCell>
+            <TableCell align="right">Presentación</TableCell>
+            <TableCell align="right">Stock</TableCell>
+            <TableCell align="right">Receta</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
