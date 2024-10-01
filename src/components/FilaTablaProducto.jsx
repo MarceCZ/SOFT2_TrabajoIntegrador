@@ -11,7 +11,7 @@ const Fila = ({ data }) => {
       <TableCell align="right">{data.marca}</TableCell>
       <TableCell align="right">{data.precio}</TableCell>
       <TableCell align="right">{data.descripcion}</TableCell>
-      <TableCell align="right">{data.contraindiciones}</TableCell>
+      <TableCell align="right">{data.contraindicaciones}</TableCell>
       <TableCell align="right">{data.advertencias}</TableCell>
       <TableCell align="right">{data.presentacion}</TableCell>
       <TableCell align="right">{data.stock}</TableCell>
