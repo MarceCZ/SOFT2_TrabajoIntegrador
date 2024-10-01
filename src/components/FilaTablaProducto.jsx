@@ -1,6 +1,7 @@
 import React from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Checkbox from '@mui/material/Checkbox';
 
 const Fila = ({ data }) => {
   return (
