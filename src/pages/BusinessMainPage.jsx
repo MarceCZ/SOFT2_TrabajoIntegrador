@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import productosData from '../data/data.json'; // Este es el JSON que contiene los datos
-import { Container, Box } from '@mui/material';
+import { Container, Box, ButtonGroup } from '@mui/material';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
