@@ -1,15 +1,36 @@
 import Header from '../components/Header';
-import productosData from '../data/data.json'; // Este es el JSON que contiene los datos
+//import productosData from '../data/data.json'; // Este es el JSON que contiene los datos
 import { Container, Box, ButtonGroup } from '@mui/material';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import FormDialog from '../components/FormDialog';
 
+import productoApi from '../api/producto';
+
+
+
+
 const BusinessMainPage = () => {
   const [open, setOpen] = useState(false);
+    
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    handleOnLoad();
+  }, []);
+
+  const handleOnLoad = async () => {
+    try {
+      const productosData = await productoApi.findAll();
+      setProductos(productosData);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  }
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,7 +40,6 @@ const BusinessMainPage = () => {
     setOpen(false);
   };
 
-  const productos = productosData.productos;
 
   return (
     <div>
