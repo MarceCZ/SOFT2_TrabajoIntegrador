@@ -1,5 +1,6 @@
 import { Card, CardActions, CardMedia, CardContent, Button, Typography, Chip, Container } from '@mui/material'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { Link } from 'react-router-dom'; // Importar el componente Link para navegar entre rutas
 
 const ProductoCard = (props) => {
   return (
@@ -27,6 +28,9 @@ const ProductoCard = (props) => {
             <AddCircleOutlineIcon fontSize="large" />
           </Button>
         </Container>
+        <Button component={Link} to={`/productinfo/${props.id}`} variant="contained" color="primary" fullWidth sx={{ marginTop: '10px', textTransform: 'none', fontSize: '14px' }}>
+          Ver detalles
+        </Button>
       </CardContent>
     </Card>
   );
