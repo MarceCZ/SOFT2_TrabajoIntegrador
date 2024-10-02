@@ -4,9 +4,21 @@ import { Container, Box, ButtonGroup } from '@mui/material';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
+import { useState } from 'react';
+
+import FormDialog from '../components/FormDialog';
 
 const BusinessMainPage = () => {
-  
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const productos = productosData.productos;
 
   return (
@@ -16,8 +28,9 @@ const BusinessMainPage = () => {
         <h1 style={{ textAlign: 'center' }}>Mifarma</h1>
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: '20px' }}>
           <ButtonGroup variant="outlined" aria-label="Basic button group">
-            <Button>Agregar Producto</Button>
+            <Button  onClick={handleClickOpen}>Agregar Producto</Button>
           </ButtonGroup>
+          <FormDialog open={open} handleClose={handleClose} />
         </Box>
         <TablaProductos productos={productos} /> {/* Se pasa la variable de estado al componente TablaProductos */}
       </Container>
