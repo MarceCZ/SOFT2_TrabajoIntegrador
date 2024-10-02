@@ -18,7 +18,7 @@ const FormDialog = ({ open, handleClose }) => {
     imagen: '',
     nombre: '',
     marca: '',
-    categoria: '',
+    presentacion: '',
     descripcion: '',
     precio: '',
     stock: '',
@@ -90,7 +90,7 @@ const FormDialog = ({ open, handleClose }) => {
               />
               <TextField
                 margin="dense"
-                name="categoria"
+                name="presentacion"
                 label="Categoría"
                 fullWidth
                 variant="outlined"
