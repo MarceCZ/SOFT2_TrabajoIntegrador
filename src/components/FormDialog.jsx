@@ -11,14 +11,16 @@ import {
     Grid,
 } from '@mui/material';
 
+import productoApi from '../api/producto';
+
 const FormDialog = ({ open, handleClose }) => {
-  const [formData, setFormData] = useState({
-    imageUrl: '',
-    name: '',
-    brand: '',
-    category: '',
-    description: '',
-    price: '',
+  const [producto, setProducto] = useState({
+    imagen: '',
+    nombre: '',
+    marca: '',
+    categoria: '',
+    descripcion: '',
+    precio: '',
     stock: '',
     contraindicaciones: '',
     advertencias: '',
@@ -27,13 +29,25 @@ const FormDialog = ({ open, handleClose }) => {
 
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
-    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+    setProducto({ ...producto, [name]: type === 'checkbox' ? checked : value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    handleClose();
+    
+    console.log(producto);
+    try {
+      const payload = {
+          ...producto
+      };
+
+      
+      await productoApi.create(payload);
+      
+      handleClose();
+    } catch (error) {
+        console.error('Error al guardar el producto:', error);
+    }
   };
 
   return (
@@ -46,21 +60,21 @@ const FormDialog = ({ open, handleClose }) => {
             <Grid item xs={12} sm={4}>
               <TextField
                 margin="dense"
-                name="imageUrl"
+                name="imagen"
                 label="URL de imagen"
                 fullWidth
                 variant="outlined"
                 onChange={handleChange}
               />
-              {formData.imageUrl && (
-                <img src={formData.imageUrl} alt="Preview" style={{ width: '100%', marginTop: '10px' }} />
+              {producto.imagen && (
+                <img src={producto.imagen} alt="Preview" style={{ width: '100%', marginTop: '10px' }} />
               )}
             </Grid>
             {/* Segunda columna */}
             <Grid item xs={12} sm={4}>
               <TextField
                 margin="dense"
-                name="name"
+                name="nombre"
                 label="Nombre"
                 fullWidth
                 variant="outlined"
@@ -68,7 +82,7 @@ const FormDialog = ({ open, handleClose }) => {
               />
               <TextField
                 margin="dense"
-                name="brand"
+                name="marca"
                 label="Marca"
                 fullWidth
                 variant="outlined"
@@ -76,7 +90,7 @@ const FormDialog = ({ open, handleClose }) => {
               />
               <TextField
                 margin="dense"
-                name="category"
+                name="categoria"
                 label="Categoría"
                 fullWidth
                 variant="outlined"
@@ -87,7 +101,7 @@ const FormDialog = ({ open, handleClose }) => {
             <Grid item xs={12} sm={4}>
               <TextField
                 margin="dense"
-                name="description"
+                name="descripcion"
                 label="Descripción"
                 fullWidth
                 variant="outlined"
@@ -95,7 +109,7 @@ const FormDialog = ({ open, handleClose }) => {
               />
               <TextField
                 margin="dense"
-                name="price"
+                name="precio"
                 label="Precio"
                 type="number"
                 fullWidth
@@ -136,7 +150,7 @@ const FormDialog = ({ open, handleClose }) => {
             control={
               <Checkbox
                 name="receta"
-                checked={formData.receta}
+                checked={producto.receta}
                 onChange={handleChange}
               />
             }
