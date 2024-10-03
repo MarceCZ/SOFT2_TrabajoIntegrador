@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'; // Importar el componente Link para nav
 
 const ProductoCard = (props) => {
   return (
-    <Card item xs={4} sx={{ mr: "15px", ml: "15px", marginBottom: "30px", width: "250px", height: "320px", borderRadius: "10px", boxShadow: 2 }}>
+    <Card item xs={4} sx={{ mr: "15px", ml: "15px", marginBottom: "30px", width: "250px", minHeight: "320px", borderRadius: "10px", boxShadow: 2 }}>
       <CardMedia
         component="img"
         alt="green iguana"
