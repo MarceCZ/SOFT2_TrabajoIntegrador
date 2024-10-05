@@ -3,18 +3,20 @@ import {Route, Routes} from "react-router-dom"
 import ClientMainPage from './pages/ClientMainPage'
 import BusinessMainPage from './pages/BusinessMainPage'
 import ProductInfoPage from './pages/ProductInfoPage'
-import ProductoCardList from './components/ProductoCardList'
+import {CartProvider} from './components/CartContext'
 
 
 function App() {
   return (
-    <Routes>
+    <CartProvider>
+      <Routes>
       {/*<Route path="/" element={<Home />} /> */}
-      <Route path="/" element={<ClientMainPage/>}/>
-      <Route path='/mainbusiness' element={<BusinessMainPage/>}/>
-      <Route path='/productinfo/:id' element={<ProductInfoPage/>}/>
-      <Route path="/" element={<ProductoCardList/>}/>
-    </Routes>
+        <Route path="/" element={<ClientMainPage/>}/>
+        <Route path='/mainbusiness' element={<BusinessMainPage/>}/>
+        <Route path='/productinfo/:id' element={<ProductInfoPage/>}/>
+      </Routes>
+    </CartProvider>
+    
   )
 }
 
