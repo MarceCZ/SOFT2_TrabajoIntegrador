@@ -4,9 +4,11 @@ import { CartContext } from './CartContext'
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from '@mui/material/Button'
 import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded'
+import { useNavigate } from 'react-router-dom'
 
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const { cartItems, removeFromCart, totalCartPrice } = useContext(CartContext);
+  const navigate = useNavigate();
 
   
   const handleRemove = (product) => {
@@ -73,7 +75,13 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
               </Box>
 
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2, gap: 0, marginLeft: '15px', marginRight: '15px' }}>
-                <Button color="primary" variant="outlined" sx={{borderRadius: '25px', border: 'none'}}>Ir a mi kit</Button>
+                <Button 
+                  color="primary" 
+                  variant="outlined" 
+                  onClick={() => navigate('/cart')}
+                  sx={{
+                    borderRadius: '25px', 
+                    border: 'none'}}>Ir a mi kit</Button>
                 <Button color="success" variant="contained" sx={{borderRadius: '25px'}}>Subscribirse a mi kit</Button>
               </Box>
             </Box>

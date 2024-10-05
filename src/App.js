@@ -4,7 +4,7 @@ import ClientMainPage from './pages/ClientMainPage'
 import BusinessMainPage from './pages/BusinessMainPage'
 import ProductInfoPage from './pages/ProductInfoPage'
 import {CartProvider} from './components/CartContext'
-
+import CartPage from './pages/CartPage'
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element={<ClientMainPage/>}/>
         <Route path='/mainbusiness' element={<BusinessMainPage/>}/>
         <Route path='/productinfo/:id' element={<ProductInfoPage/>}/>
+        <Route path='/cart' element={<CartPage/>}/>
       </Routes>
     </CartProvider>
     
