@@ -36,8 +36,9 @@ const BusinessMainPage = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
     setOpen(false);
+    handleOnLoad();
   };
 
 

@@ -2,7 +2,7 @@ import { Card, CardActions, CardMedia, CardContent, Button, Typography, Chip, Co
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Link } from 'react-router-dom'; // Importar el componente Link para navegar entre rutas
 
-const ProductoCard = (props) => {
+const ProductoCard = (props) => { 
   return (
     <Card item xs={4} sx={{ mr: "15px", ml: "15px", marginBottom: "30px", width: "250px", minHeight: "320px", borderRadius: "10px", boxShadow: 2 }}>
       <CardMedia
