@@ -1,0 +1,98 @@
+GET https://prograweb-dpchavez-20241-as-back.azurewebsites.net/orden
+
+
+###
+GET http://localhost:3001/orden/findallcomplete
+
+
+###
+POST http://localhost:3001/orden
+Content-Type: application/json
+
+{
+    "idCliente": 1,
+    "fechaOrden": "2024-07-01",
+    "envios": "Enviado",
+    "direccion": "123 Calle Principal",
+    "distrito": "Centro",
+    "departamento": "Lima",
+    "pais": "Perú",
+    "tipoPago": "Tarjeta de Crédito",
+    "tipoEnvio": "Express",
+    "subTotal": 150.00,
+    "impuestos": 18.00,
+    "total": 168.00
+}
+
+
+###
+POST http://localhost:3001/orden
+Content-Type: application/json
+
+{
+    "idCliente": 2,
+    "fechaOrden": "2024-07-02",
+    "envios": "En proceso",
+    "direccion": "456 Avenida Secundaria",
+    "distrito": "Miraflores",
+    "departamento": "Lima",
+    "pais": "Perú",
+    "tipoPago": "PayPal",
+    "tipoEnvio": "Estándar",
+    "subTotal": 250.00,
+    "impuestos": 30.00,
+    "total": 280.00
+}
+
+###
+POST http://localhost:3001/orden
+Content-Type: application/json
+
+{
+    "idCliente": 3,
+    "fechaOrden": "2024-07-03",
+    "envios": "Enviado",
+    "direccion": "789 Calle Tercera",
+    "distrito": "San Isidro",
+    "departamento": "Lima",
+    "pais": "Perú",
+    "tipoPago": "Transferencia Bancaria",
+    "tipoEnvio": "Express",
+    "subTotal": 300.00,
+    "impuestos": 36.00,
+    "total": 336.00
+}
+
+
+
+###
+POST http://localhost:3001/orden
+Content-Type: application/json
+
+{
+    "idCliente": 4,
+    "fechaOrden": "2024-07-04",
+    "envios": "Pendiente",
+    "direccion": "321 Calle Cuarta",
+    "distrito": "Barranco",
+    "departamento": "Lima",
+    "pais": "Perú",
+    "tipoPago": "Efectivo",
+    "tipoEnvio": "Estándar",
+    "subTotal": 400.00,
+    "impuestos": 48.00,
+    "total": 448.00
+}
+
+
+###
+DELETE https://prograweb-dpchavez-20241-as-back.azurewebsites.net/orden/1
+
+###
+PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/orden
+Content-Type: application/json
+
+{
+    "id": 1,
+    "envios": "En proceso"
+}

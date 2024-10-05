@@ -1,0 +1,70 @@
+GET http://localhost:3001/detalleOrden
+
+
+###
+POST http://localhost:3001/detalleOrden
+Content-Type: application/json
+
+{
+    "idOrden": 1,
+    "idProducto": 1,
+    "cantidad": 2,
+    "subTotal": 300.00
+}
+
+
+###
+POST http://localhost:3001/detalleOrden
+Content-Type: application/json
+
+{
+    "idOrden": 1,
+    "idProducto": 3,
+    "cantidad": 1,
+    "subTotal": 150.00
+}
+
+
+###
+POST http://localhost:3001/detalleOrden
+Content-Type: application/json
+
+{
+    "idOrden": 2,
+    "idProducto": 2,
+    "cantidad": 4,
+    "subTotal": 600.00
+}
+
+
+
+
+###
+POST http://localhost:3001/detalleOrden
+Content-Type: application/json
+
+{
+    "idOrden": 1,
+    "idProducto": 2,
+    "cantidad": 3,
+    "subTotal": 450.00
+}
+
+
+###
+DELETE https://prograweb-dpchavez-20241-as-back.azurewebsites.net/detalleOrden/1
+
+###
+PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/detalleOrden/
+Content-Type: application/json
+
+{
+    "id": 2,
+    "idOrden": 1,
+    "idProducto": 3,
+    "cantidad": 1
+}
+
+
+###
+GET https://prograweb-dpchavez-20241-as-back.azurewebsites.net/detalleOrden/2

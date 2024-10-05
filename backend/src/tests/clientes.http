@@ -1,0 +1,47 @@
+GET http://localhost:3001/cliente/1
+###
+GET http://localhost:3001/cliente/findallcomplete
+
+###
+POST http://localhost:3001/cliente
+Content-Type: application/json
+
+{
+    "nombre":"clie1",
+    "apellido":"1234",
+    "idUsuario":1,
+    "fechaRegistro": "2024-07-04"
+}
+
+###
+POST http://localhost:3001/cliente
+Content-Type: application/json
+
+{
+    "nombre":"clie2",
+    "apellido":"1234",
+    "idUsuario":2,
+    "fechaRegistro": "2024-07-04"
+}
+
+###
+POST http://localhost:3001/cliente
+Content-Type: application/json
+
+{
+    "nombre":"clie3",
+    "apellido":"1234",
+    "idUsuario":3,
+    "fechaRegistro": "2024-07-04"
+}
+
+###
+POST http://localhost:3001/cliente
+Content-Type: application/json
+
+{
+    "nombre":"clie4",
+    "apellido":"1234",
+    "idUsuario":4,
+    "fechaRegistro": "2024-07-04"
+}

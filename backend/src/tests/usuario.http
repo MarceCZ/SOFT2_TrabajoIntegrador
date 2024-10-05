@@ -1,0 +1,70 @@
+GET http://localhost:3001/usuario
+
+
+###
+POST http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "rol":"cliente",
+    "password":"1234",
+    "email":"user1@mail.com",
+    "estado": "Activo"
+}
+
+###
+POST http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "rol":"cliente",
+    "password":"1234",
+    "email":"user2@mail.com",
+    "estado": "Activo"
+}
+###
+POST http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "rol":"cliente",
+    "password":"1234",
+    "email":"user3@mail.com",
+    "estado": "Activo"
+}
+
+
+###
+POST http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "rol":"cliente",
+    "password":"1234",
+    "email":"user4@mail.com",
+    "estado": "Activo"
+}
+
+###
+POST http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "rol":"admin",
+    "password":"1234",
+    "email":"admin1@mail.com",
+    "estado": "Activo"
+}
+
+
+###
+
+POST  https://prograweb-dpchavez-20241-as-back.azurewebsites.net/usuario
+Content-Type: application/json
+
+{
+    "rol":"cliente",
+    "password":"1234",
+    "email":"prueba@mail.com",
+    "estado": "Activo"
+}

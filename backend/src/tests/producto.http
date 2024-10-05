@@ -1,0 +1,102 @@
+GET http://localhost:3001/producto
+
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image1.jpg",
+    "nombre": "Nombre del Producto",
+    "marca": "Marca del Producto",
+    "categoria": "Categoría del Producto",
+    "descripcion": "Descripción detallada del producto.",
+    "precio": 29.99,
+    "stock": 100,
+    "contraindicaciones": "No usar en caso de alergias.",
+    "advertencias": "Mantener fuera del alcance de los niños.",
+    "receta": false
+}
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image2.jpg",
+    "nombre": "Producto B",
+    "procesador": "AMD Ryzen 5",
+    "marca": "Marca B",
+    "grafica": "NVIDIA RTX 2060",
+    "RAM": "8GB",
+    "precio": 999.99,
+    "stock": 15,
+    "fecha": "2024-07-02",
+    "vendido": 5,
+    "oferta": "15% de descuento",
+    "idSerie": 2
+}
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image3.jpg",
+    "nombre": "Producto C",
+    "procesador": "Intel Core i5",
+    "marca": "Marca C",
+    "grafica": "AMD Radeon RX 580",
+    "RAM": "12GB",
+    "precio": 799.99,
+    "stock": 20,
+    "fecha": "2024-07-03",
+    "vendido": 7,
+    "oferta": "5% de descuento",
+    "idSerie": 3
+}
+
+
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image4.jpg",
+    "nombre": "Producto D",
+    "procesador": "AMD Ryzen 7",
+    "marca": "Marca D",
+    "grafica": "NVIDIA RTX 3070",
+    "RAM": "32GB",
+    "precio": 1599.99,
+    "stock": 5,
+    "fecha": "2024-07-04",
+    "vendido": 1,
+    "oferta": "20% de descuento",
+    "idSerie": 4
+}
+
+
+
+###
+PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/producto
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "nombre":"LAPTOP GAMER ASUS ROG STRIX G513QM-WS96 GAMING | RYZEN 9 5900HX | NVIDIA RTX 3060 6GB | 1TB SSD | 16GB RAM | 15.6″ (1920×1080) | 144Hz | WIN10"
+}
+
+
+###
+PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/producto
+Content-Type: application/json
+
+{
+    "id" : 5,
+    "idSerie": null
+}
+
+###
+GET http://localhost:3001/producto/2
