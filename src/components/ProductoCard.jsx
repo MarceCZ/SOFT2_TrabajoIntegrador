@@ -21,29 +21,29 @@ const ProductoCard = (props) => {
   const handleAddClick = (event) => {
     event.stopPropagation(); 
     setCantidad(1); 
-    addToCart(props, 1);  // Añadir al carrito
+    addToCart(props, 1);  
   }
 
   // Incrementar la cantidad
   const plusOne = (event) => {
-    event.stopPropagation();
-    setCantidad(cantidad + 1);
-    addToCart(props, 1);  // Aumentar en el carrito
+    event.stopPropagation()
+    setCantidad(cantidad + 1)
+    addToCart(props, 1)
   }
 
   // Decrementar la cantidad
   const minusOne = (event) => {
-    event.stopPropagation();
+    event.stopPropagation()
     if (cantidad > 1) {
-      setCantidad(cantidad - 1);
-      addToCart(props, -1);  // Reducir en el carrito
+      setCantidad(cantidad - 1)
+      addToCart(props, -1)
     } else {
-      setCantidad(0);  // Si la cantidad llega a 0, eliminar del carrito
-      removeFromCart(props);
+      setCantidad(0);  
+      removeFromCart(props)
     }
   };
 
-  // UseEffect para actualizar el estado de cantidad cuando el carrito cambia
+
   useEffect(() => {
     const existingItem = cartItems.find(item => item.id === props.id);
     if (existingItem) {
