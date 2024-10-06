@@ -6,13 +6,13 @@ import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRound
 import { useLocation, useNavigate } from 'react-router-dom'; 
 
 const Header = () => {
-  const { totalUniqueItems } = useContext(CartContext);
+  const { totalProducts } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
   const navigate = useNavigate()
 
   const toggleDrawer = (open) => (event) => {
     setCartOpen(open)
-  };
+  }
 
   const location = useLocation(); 
   const isCartPage = location.pathname === '/cart'
@@ -25,15 +25,24 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={handleTitleClick}>
+          <Typography 
+            variant="h6" 
+            onClick={handleTitleClick}
+            sx={{ 
+              flexGrow: 1, 
+              cursor: 'pointer' }} >
             MediPlan
           </Typography>
 
           {!isCartPage && (
-            <IconButton color="inherit" onClick={toggleDrawer(true)}>
+            <IconButton 
+              color="inherit" 
+              onClick={toggleDrawer(true)}>
               <MedicalServicesRoundedIcon />
-              <Typography variant="body2" sx={{ marginLeft: '8px' }}>
-                {totalUniqueItems} 
+              <Typography 
+                variant="body2" 
+                sx={{ marginLeft: '8px' }}>
+                {totalProducts} 
               </Typography>
             </IconButton>
           )}
@@ -41,7 +50,7 @@ const Header = () => {
       </AppBar>
       <CartDrawer isOpen={isCartOpen} toggleDrawer={toggleDrawer} />
     </Box>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
