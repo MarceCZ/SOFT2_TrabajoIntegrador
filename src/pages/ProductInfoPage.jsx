@@ -50,7 +50,7 @@ const ProductInfoPage = () => {
         <div>
             <Header></Header>
             <Box sx={{ padding: 4, maxWidth: '100%', margin: 'auto' }}>
-                <Button component={Link} to="/" sx={{ marginBottom: 2, top: 16, left: 16 }}>← Volver</Button>
+                <Button component={Link} to="/" sx={{ marginBottom: 2, top: 16, left: 16, color:'#1b986e' }}>← Volver</Button>
 
                 <Grid container spacing={4}>
                     {/* Sección izquierda: Imagen y detalles del producto */}
@@ -65,7 +65,7 @@ const ProductInfoPage = () => {
                         <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
                             {producto.nombre} | {producto.marca}
                         </Typography>
-                        <Chip label={producto.botica} color="primary" variant="outlined" sx={{ marginBottom: 2, fontSize: '16px' }} />
+                        <Chip label={producto.botica} sx={{ marginBottom: 2, fontSize: '16px' }} />
                         <Typography variant="h4" color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '30px' }}>
                             S/ {producto.precio.toFixed(2)}
                         </Typography>

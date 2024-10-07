@@ -23,14 +23,15 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#1b986e' }}>
         <Toolbar>
           <Typography 
-            variant="h6" 
+            variant="h5" 
             onClick={handleTitleClick}
             sx={{ 
               flexGrow: 1, 
-              cursor: 'pointer' }} >
+              cursor: 'pointer',
+              fontWeight: 'bold'}} >
             MediPlan
           </Typography>
 
