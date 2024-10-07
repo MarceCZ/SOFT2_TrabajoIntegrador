@@ -4,7 +4,7 @@ import {Box} from "@mui/material"
 const ProductoBody = (props) => {
     return (
         <Box>
-            <ProductoCardList list={props.productoData}/>
+            <ProductoCardList list={props.productosData}/>
         </Box>
     )
 }
