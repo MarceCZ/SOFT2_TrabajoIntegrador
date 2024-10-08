@@ -1,46 +1,60 @@
-import React, { createContext, useState } from 'react';
-import '../App.css';
+import React, { createContext, useState, useEffect } from 'react';
 
-// Crear el contexto del carrito
 export const CartContext = createContext();
 
-// Proveedor del contexto
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);  // Estado del carrito
+  // Estado inicial: kit vacío
+  const [cartProducts, setCartProducts] = useState(() => {
+    const savedCart = localStorage.getItem("cart")
+    return savedCart ? JSON.parse(savedCart) : []
+  })
 
-  // Función para agregar un producto al carrito
+  // guardar LocalStorage productos del kit para que no desaparezcan con f5
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
+  }, [cartProducts])
+
+  // Función para agregar productos al kit
   const addToCart = (product, cantidad) => {
-    setCartItems((prevItems) => {
+    setCartProducts((prevItems) => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
-        // Si el producto ya está en el carrito, actualiza la cantidad
         return prevItems.map(item => 
           item.id === product.id ? { ...item, cantidad: item.cantidad + cantidad } : item
         );
       } else {
-        // Si es un nuevo producto, lo añade al carrito
         return [...prevItems, { ...product, cantidad }];
       }
     })
   }
 
-  // Función para eliminar un producto del carrito
+  // Función para eliminar productos del kit
   const removeFromCart = (product) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.id !== product.id));
-  };
+    setCartProducts((prevItems) => prevItems.filter(item => item.id !== product.id));
+  }
 
-  // Calcular el número de productos únicos en el carrito
-  const totalUniqueItems = cartItems.length;  // Aquí se cuentan los productos únicos
+  // Función para vaciar el kit
+  const clearCart = () => {
+    setCartProducts([])
+  }
 
-  // Calcular el número total de unidades en el carrito
-  const totalItemsInCart = cartItems.reduce((acc, item) => acc + item.cantidad, 0);  // Total de unidades
-
-  // Calcular el precio total del carrito
-  const totalCartPrice = cartItems.reduce((acc, item) => acc + item.precio * item.cantidad, 0);  // Precio total
+  // Total de productos y precios
+  const totalProducts = cartProducts.length
+  const totalItemsInCart = cartProducts.reduce((acc, item) => acc + item.cantidad, 0)
+  const totalCartPrice = cartProducts.reduce((acc, item) => acc + item.precio * item.cantidad, 0) 
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, totalUniqueItems, totalItemsInCart, totalCartPrice }}>
+    <CartContext.Provider 
+      value={{ 
+        cartProducts, 
+        addToCart, 
+        removeFromCart, 
+        clearCart, 
+        totalProducts, 
+        totalItemsInCart, 
+        totalCartPrice 
+      }}>
       {children}
     </CartContext.Provider>
-  );
-};
+  )
+}

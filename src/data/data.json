@@ -13,7 +13,8 @@
       "stock": 100,
       "requiere_receta": false,
       "id_botica": 1,
-      "botica": "Botica Mi Salud"
+      "botica": "Botica Mi Salud",
+      "path": "/boticas/1/productos/paracetamol-500mg-genfar"
     },
     {
       "id": 2,
@@ -28,7 +29,8 @@
       "stock": 200,
       "requiere_receta": false,
       "id_botica": 1,
-      "botica": "Botica Mi Salud"
+      "botica": "Botica Mi Salud",
+      "path": "/boticas/1/productos/ibuprofeno-400mg-mk"
     },
     {
       "id": 3,
@@ -43,7 +45,8 @@
       "stock": 50,
       "requiere_receta": true,
       "id_botica": 2,
-      "botica": "Farmacia Peruana"
+      "botica": "Farmacia Peruana",
+      "path": "/boticas/2/productos/amoxicilina-500mg-bayer"
     },
     {
       "id": 4,
@@ -58,7 +61,8 @@
       "stock": 80,
       "requiere_receta": false,
       "id_botica": 2,
-      "botica": "Farmacia Peruana"
+      "botica": "Farmacia Peruana",
+      "path": "/boticas/2/productos/clorfenamina-4mg-sanofi"
     },
     {
       "id": 5,
@@ -73,7 +77,8 @@
       "stock": 30,
       "requiere_receta": true,
       "id_botica": 3,
-      "botica": "Botica del Pueblo"
+      "botica": "Botica del Pueblo",
+      "path": "/boticas/3/productos/losartan-50mg-teva"
     },
     {
       "id": 6,
@@ -88,27 +93,31 @@
       "stock": 120,
       "requiere_receta": false,
       "id_botica": 3,
-      "botica": "Botica del Pueblo"
+      "botica": "Botica del Pueblo",
+      "path": "/boticas/3/productos/omeprazol-20mg-sandoz"
     }
   ],
   "boticas": [
     {
       "id": 1,
-      "nombre": "Botica Mi Salud",
-      "logo": "logo_misalud.png",
-      "cantidad_productos": 2
+      "nombre": "Mifarma",
+      "logo": "https://seeklogo.com/images/M/mi-farma-logo-0A7730E821-seeklogo.com.png",
+      "cantidad_productos": 2,
+      "path": "/boticas/mifarma"
     },
     {
       "id": 2,
-      "nombre": "Farmacia Peruana",
-      "logo": "logo_farmacia_peruana.png",
-      "cantidad_productos": 2
+      "nombre": "Inkafarma",
+      "logo": "https://uma.edu.pe/wp-content/uploads/2023/05/logo-inkafarma.jpg",
+      "cantidad_productos": 2,
+      "path": "/boticas/inkafarma"
     },
     {
       "id": 3,
-      "nombre": "Botica del Pueblo",
-      "logo": "logo_pueblo.png",
-      "cantidad_productos": 2
+      "nombre": "Farmacia Universal",
+      "logo": "https://media.licdn.com/dms/image/v2/C4E0BAQEE8vKi-t96wQ/company-logo_200_200/company-logo_200_200/0/1630577962946/farmacia_universal_logo?e=2147483647&v=beta&t=XO81-gCEXqYPvuu8jDaEhQN8hQpZm2nNf-NrUeG_1hw",
+      "cantidad_productos": 2,
+      "path": "/boticas/farmacia-universal"
     }
   ]
 }

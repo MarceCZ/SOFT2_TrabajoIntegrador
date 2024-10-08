@@ -5,6 +5,7 @@ import BusinessMainPage from './pages/BusinessMainPage'
 import ProductInfoPage from './pages/ProductInfoPage'
 import {CartProvider} from './components/CartContext'
 import CartPage from './pages/CartPage'
+import CheckoutPage from './pages/CheckOutPage'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/mainbusiness' element={<BusinessMainPage/>}/>
         <Route path='/productinfo/:id' element={<ProductInfoPage/>}/>
         <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/checkout' element={<CheckoutPage/>}/>
       </Routes>
     </CartProvider>
     

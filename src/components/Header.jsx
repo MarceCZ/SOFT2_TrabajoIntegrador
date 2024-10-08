@@ -1,21 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Box } from '@mui/material';
 import { CartContext } from './CartContext';
-import CartDrawer from './CartDrawer';
+import CartDrawer from './CartDrawer/CartDrawer';
 import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded';
 import { useLocation, useNavigate } from 'react-router-dom'; 
 
 const Header = () => {
-  const { totalUniqueItems } = useContext(CartContext);
-  const [isCartOpen, setCartOpen] = useState(false);
+  const { totalProducts } = useContext(CartContext);
+  const [hideCart, setHideCart] = useState(false);
   const navigate = useNavigate()
 
   const toggleDrawer = (open) => (event) => {
-    setCartOpen(open)
-  };
+    setHideCart(open)
+  }
 
   const location = useLocation(); 
-  const isCartPage = location.pathname === '/cart'
+  const isCartPage = location.pathname === '/cart' || location.pathname === '/checkout'
 
   const handleTitleClick = () => {
     navigate('/')
@@ -23,25 +23,35 @@ const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: '#1b986e' }}>
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={handleTitleClick}>
+          <Typography 
+            variant="h5" 
+            onClick={handleTitleClick}
+            sx={{ 
+              flexGrow: 1, 
+              cursor: 'pointer',
+              fontWeight: 'bold'}} >
             MediPlan
           </Typography>
 
           {!isCartPage && (
-            <IconButton color="inherit" onClick={toggleDrawer(true)}>
+            <IconButton 
+              color="inherit" 
+              onClick={toggleDrawer(true)}>
               <MedicalServicesRoundedIcon />
-              <Typography variant="body2" sx={{ marginLeft: '8px' }}>
-                {totalUniqueItems} 
+              <Typography 
+                variant="body2" 
+                sx={{ marginLeft: '8px' }}>
+                {totalProducts} 
               </Typography>
             </IconButton>
           )}
         </Toolbar>
       </AppBar>
-      <CartDrawer isOpen={isCartOpen} toggleDrawer={toggleDrawer} />
+      <CartDrawer isOpen={hideCart} toggleDrawer={toggleDrawer} />
     </Box>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

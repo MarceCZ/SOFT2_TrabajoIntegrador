@@ -5,6 +5,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
 import { useState, useEffect } from 'react';
+import productosData from '../data/data.json';
 
 import FormDialog from '../components/FormDialog';
 
@@ -17,6 +18,7 @@ const BusinessMainPage = () => {
   const [open, setOpen] = useState(false);
     
   const [productos, setProductos] = useState([]);
+  const nombreBotica = productosData.boticas[0];
 
   useEffect(() => {
     handleOnLoad();
@@ -46,7 +48,7 @@ const BusinessMainPage = () => {
     <div>
       <Header />
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>
-        <h1 style={{ textAlign: 'center' }}>Mifarma</h1>
+        <h1 style={{ textAlign: 'center' }}>{nombreBotica}</h1>
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: '20px' }}>
           <ButtonGroup variant="outlined" aria-label="Basic button group">
             <Button  onClick={handleClickOpen}>Agregar Producto</Button>
