@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentClick }) => {
   const navigate = useNavigate();
-  const { nombre, apellidos, direccion, distrito, celular, tipoDocumento, numeroDocumento, email } = formData;
+  const { nombre, apellidos, direccion, departamentoMzReferencia, distrito, celular, tipoDocumento, numeroDocumento, email } = formData;
 
   // Estilos comunes para los campos
   const commonInputProps = {
@@ -13,17 +13,17 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
     InputLabelProps: { sx: { pl: 1 } },
     variant: "outlined",
     fullWidth: true,
-    required: true,
-    onChange: handleInputChange
+    onChange: handleInputChange // Quitamos 'required' para los campos opcionales
   }
 
   const formFields = [
-    { label: 'Nombre', name: 'nombre', value: nombre, xs: 6 },
-    { label: 'Apellidos', name: 'apellidos', value: apellidos, xs: 6 },
-    { label: 'Dirección', name: 'direccion', value: direccion, xs: 12 },
-    { label: 'Distrito', name: 'distrito', value: distrito, xs: 6 },
-    { label: 'Celular', name: 'celular', value: celular, xs: 6 },
-    { label: 'Correo electrónico', name: 'email', value: email, xs: 12 }
+    { label: 'Nombre', name: 'nombre', value: nombre, xs: 6, required: true },
+    { label: 'Apellidos', name: 'apellidos', value: apellidos, xs: 6, required: true },
+    { label: 'Dirección', name: 'direccion', value: direccion, xs: 12, required: true },
+    { label: 'Nro. departamento, Mz., referencias, etc (opcional)', name: 'departamentoMzReferencia', value: departamentoMzReferencia, xs: 12 },
+    { label: 'Distrito', name: 'distrito', value: distrito, xs: 6, required: true },
+    { label: 'Celular', name: 'celular', value: celular, xs: 6, required: true },
+    { label: 'Correo electrónico', name: 'email', value: email, xs: 12, required: true }
   ];
 
   return (
@@ -39,7 +39,13 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
         <Grid container spacing={2} sx={{ mt: 0.5 }}>
           {formFields.map((field, index) => (
             <Grid item xs={field.xs} key={index} sx={{ mt: 0.5 }}> 
-              <TextField label={field.label} name={field.name} value={field.value} {...commonInputProps} />
+              <TextField 
+                label={field.label} 
+                name={field.name} 
+                value={field.value} 
+                {...commonInputProps} 
+                required={field.required ?? false} 
+              />
             </Grid>
           ))}
 
@@ -66,6 +72,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
               name="numeroDocumento"
               value={numeroDocumento}
               {...commonInputProps}
+              required
             />
           </Grid>
         </Grid>

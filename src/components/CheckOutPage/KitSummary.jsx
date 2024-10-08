@@ -8,7 +8,7 @@ const KitSummary = ({ cartProducts, totalCartPrice }) => {
         padding: 2, 
         backgroundColor: '#f0f0f0', 
         borderLeft: '1px solid #afafaf', 
-        height: '86vh',
+        height: '96vh',
         }}>
         <Box sx={{ marginRight: '30vh', mt: 7 }}>
           <Typography variant="h6">
