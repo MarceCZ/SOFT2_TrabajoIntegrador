@@ -58,7 +58,7 @@ const ClientMainPage = () => {
         }
       </Container>
     </div>
-  );
+  )
 }
 
 export default ClientMainPage 

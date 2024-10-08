@@ -1,21 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Box } from '@mui/material';
 import { CartContext } from './CartContext';
-import CartDrawer from './CartDrawer';
+import CartDrawer from './CartDrawer/CartDrawer';
 import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded';
 import { useLocation, useNavigate } from 'react-router-dom'; 
 
 const Header = () => {
   const { totalProducts } = useContext(CartContext);
-  const [isCartOpen, setCartOpen] = useState(false);
+  const [hideCart, setHideCart] = useState(false);
   const navigate = useNavigate()
 
   const toggleDrawer = (open) => (event) => {
-    setCartOpen(open)
+    setHideCart(open)
   }
 
   const location = useLocation(); 
-  const isCartPage = location.pathname === '/cart'
+  const isCartPage = location.pathname === '/cart' || location.pathname === '/checkout'
 
   const handleTitleClick = () => {
     navigate('/')
@@ -49,7 +49,7 @@ const Header = () => {
           )}
         </Toolbar>
       </AppBar>
-      <CartDrawer isOpen={isCartOpen} toggleDrawer={toggleDrawer} />
+      <CartDrawer isOpen={hideCart} toggleDrawer={toggleDrawer} />
     </Box>
   )
 }

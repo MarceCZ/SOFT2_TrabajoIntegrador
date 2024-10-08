@@ -13,19 +13,19 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const ProductInfoPage = () => {
     const { id } = useParams();  // Obtener el id del producto desde la URL
     const producto = data.productos.find((prod) => prod.id === parseInt(id));  // Buscar el producto por ID
-    const { cartItems, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
+    const { cartProducts, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
 
     const [cantidad, setCantidad] = useState(0);  // Estado local para la cantidad
 
     // Buscar si el producto ya está en el carrito
     useEffect(() => {
-        const productoEnCarrito = cartItems.find(item => item.id === parseInt(id));
+        const productoEnCarrito = cartProducts.find(item => item.id === parseInt(id));
         if (productoEnCarrito) {
             setCantidad(productoEnCarrito.cantidad);  // Actualizar la cantidad desde el carrito
         } else {
             setCantidad(0);  // Si no está en el carrito, la cantidad es 0
         }
-    }, [cartItems, id]);
+    }, [cartProducts, id]);
 
     if (!producto) {
         return <Typography variant="h5">Producto no encontrado</Typography>;

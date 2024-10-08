@@ -2,7 +2,7 @@ import { Card, CardMedia, CardContent, Typography, Box, CardActionArea, } from '
 import { useNavigate } from 'react-router-dom';
 
 const BoticaCard = (props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <Card   
@@ -46,7 +46,7 @@ const BoticaCard = (props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-  );
+  )
 }
 
-export default BoticaCard;
+export default BoticaCard

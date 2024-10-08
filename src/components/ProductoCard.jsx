@@ -9,7 +9,7 @@ import { CartContext } from './CartContext';
 
 const ProductoCard = (props) => {
   const navigate = useNavigate();
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
+  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
   const [cantidad, setCantidad] = useState(0);
 
   // Manejar el click en el card para redirigir a la página de detalles
@@ -45,13 +45,13 @@ const ProductoCard = (props) => {
 
 
   useEffect(() => {
-    const existingItem = cartItems.find(item => item.id === props.id);
+    const existingItem = cartProducts.find(item => item.id === props.id);
     if (existingItem) {
       setCantidad(existingItem.cantidad); 
     } else {
       setCantidad(0);  
     }
-  }, [cartItems, props.id]);  
+  }, [cartProducts, props.id]);  
   return (
     <Card   
       item xs={4} 
