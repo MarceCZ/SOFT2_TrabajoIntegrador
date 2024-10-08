@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentClick }) => {
   const navigate = useNavigate();
-  const { nombre, apellidos, direccion, departamentoMzReferencia, distrito, celular, tipoDocumento, numeroDocumento, email } = formData;
+  const { nombre, apellidoPaterno, apellidoMaterno, direccion, departamentoMzReferencia, distrito, celular, tipoDocumento, numeroDocumento, email } = formData;
 
   // Estilos comunes para los campos
   const commonInputProps = {
@@ -17,8 +17,6 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
   }
 
   const formFields = [
-    { label: 'Nombre', name: 'nombre', value: nombre, xs: 6, required: true },
-    { label: 'Apellidos', name: 'apellidos', value: apellidos, xs: 6, required: true },
     { label: 'Dirección', name: 'direccion', value: direccion, xs: 12, required: true },
     { label: 'Nro. departamento, Mz., referencias, etc (opcional)', name: 'departamentoMzReferencia', value: departamentoMzReferencia, xs: 12 },
     { label: 'Distrito', name: 'distrito', value: distrito, xs: 6, required: true },
@@ -37,20 +35,52 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
         </Box>
 
         <Grid container spacing={2} sx={{ mt: 0.5 }}>
+          {/* Campo Nombre completo */}
+          <Grid item xs={12} sx={{ mt: 0.5 }}>
+            <TextField
+              label="Nombre"
+              name="nombre"
+              value={nombre}
+              {...commonInputProps}
+              required
+            />
+          </Grid>
+
+          {/* Apellido Paterno y Apellido Materno */}
+          <Grid item xs={6} sx={{ mt: 0.5 }}>
+            <TextField
+              label="Apellido Paterno"
+              name="apellidoPaterno"
+              value={apellidoPaterno}
+              {...commonInputProps}
+              required
+            />
+          </Grid>
+
+          <Grid item xs={6} sx={{ mt: 0.5 }}>
+            <TextField
+              label="Apellido Materno"
+              name="apellidoMaterno"
+              value={apellidoMaterno}
+              {...commonInputProps}
+              required
+            />
+          </Grid>
+
           {formFields.map((field, index) => (
-            <Grid item xs={field.xs} key={index} sx={{ mt: 0.5 }}> 
-              <TextField 
-                label={field.label} 
-                name={field.name} 
-                value={field.value} 
-                {...commonInputProps} 
-                required={field.required ?? false} 
+            <Grid item xs={field.xs} key={index} sx={{ mt: 0.5 }}>
+              <TextField
+                label={field.label}
+                name={field.name}
+                value={field.value}
+                {...commonInputProps}
+                required={field.required ?? false}
               />
             </Grid>
           ))}
 
           {/* Tipo de documento y Número de documento */}
-          <Grid item xs={6} sx={{ mt: 0.5 }}> 
+          <Grid item xs={6} sx={{ mt: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel sx={{ pl: 1 }}>Tipo de documento</InputLabel>
               <Select
