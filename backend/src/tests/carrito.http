@@ -1,0 +1,17 @@
+GET https://prograweb-dpchavez-20241-as-back.azurewebsites.net/carrito
+
+###
+GET https://prograweb-dpchavez-20241-as-back.azurewebsites.net/carrito/findallcomplete
+
+
+###
+POST https://prograweb-dpchavez-20241-as-back.azurewebsites.net/carrito
+Content-Type: application/json
+
+{
+    "idCliente": 1,
+    "idProducto": 2,
+    "paraDespues": true,
+    "cantidad": 3
+}
+

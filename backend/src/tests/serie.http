@@ -1,0 +1,58 @@
+GET  https://prograweb-dpchavez-20241-as-back.azurewebsites.net/serie/
+
+
+###
+POST http://localhost:3001/serie
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image1.jpg",
+    "nombre": "Serie A",
+    "descrip": "Descripción de Serie A",
+    "fechaRegistro": "2024-07-01"
+}
+###
+POST http://localhost:3001/serie
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image2.jpg",
+    "nombre": "Serie B",
+    "descrip": "Descripción de Serie B",
+    "fechaRegistro": "2024-07-02"
+}
+###
+POST http://localhost:3001/serie
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image3.jpg",
+    "nombre": "Serie C",
+    "descrip": "Descripción de Serie C",
+    "fechaRegistro": "2024-07-03"
+}
+
+
+
+###
+POST http://localhost:3001/serie
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image4.jpg",
+    "nombre": "Serie D",
+    "descrip": "Descripción de Serie D",
+    "fechaRegistro": "2024-07-04"
+}
+
+
+###
+PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/serie/
+Content-Type: application/json
+
+{
+    "id" : 1,
+    "nombre": "Coleccion 1: Componentes de PC"
+}
+
+

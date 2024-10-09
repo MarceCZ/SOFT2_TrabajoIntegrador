@@ -1,0 +1,12 @@
+GET http://localhost:3001/botica
+
+
+###
+POST http://localhost:3001/botica
+Content-Type: application/json
+
+{
+  "nombre": "Mifarma",
+  "imagen": "https://example.com/imagen-botica.jpg",
+  "idUsuario": 1
+}

@@ -5,30 +5,41 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
 import { useState, useEffect } from 'react';
-import productosData from '../data/data.json';
+import data from '../data/data.json';
 
 import FormDialog from '../components/FormDialog';
 
-import productoApi from '../api/producto';
+//import productoApi from '../api/producto';
+import boticaApi from '../api/botica';
 
 const BusinessMainPage = () => {
   const [open, setOpen] = useState(false);
     
   const [productos, setProductos] = useState([]);
-  const nombreBotica = productosData.boticas[0];
+  const [nombreBotica, setNombreBotica] = useState('');
+  const [idBotica, setIdBotica] = useState(1);
 
   useEffect(() => {
     handleOnLoad();
   }, []);
 
-  const handleOnLoad = async () => {
+  /*const handleOnLoad = async () => {
     try {
       const productosData = await productoApi.findAll();
       setProductos(productosData);
     } catch (error) {
       console.error('Error fetching data: ', error);
     }
-  }
+  }*/
+    const handleOnLoad = async () => {
+      try {
+        const botica = await boticaApi.findOneComplete(idBotica);
+        setNombreBotica(botica.nombre);
+        setProductos(botica.productos);
+      } catch (error) {
+        console.error('Error fetching data: ', error);
+      }
+    }
 
 
   const handleClickOpen = () => {

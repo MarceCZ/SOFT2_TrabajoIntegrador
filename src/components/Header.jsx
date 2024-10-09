@@ -35,6 +35,7 @@ const Header = () => {
             MediPlan
           </Typography>
 
+          {/* Mostrar ícono de carrito con cantidad de productos únicos */}
           {!isCartPage && (
             <IconButton 
               color="inherit" 
