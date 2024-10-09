@@ -3,13 +3,18 @@ import bodyParser from 'body-parser';
 import cors from 'cors'
 
 import productoRouter from './src/routes/producto.js';
-/*
-import clienteRouter from './src/routes/cliente.js';
 import usuarioRouter from './src/routes/usuario.js';
-import carritoRouter from './src/routes/carritocompras.js';
-import ordenRouter from './src/routes/orden.js';
-import ordenDetalleRouter from './src/routes/detalleOrden.js';
-import serieRouter from './src/routes/serie.js';*/
+import boticaRouter from './src/routes/botica.js';
+import kit_productoRouter from './src/routes/kit_producto.js';
+import kitRouter from './src/routes/kit.js';
+import clienteRouter from './src/routes/cliente.js';
+import administradorRouter from './src/routes/administrador.js';
+import recetaRouter from './src/routes/receta.js';
+import tarjetaRouter from './src/routes/tarjeta.js';
+import suscripcionRouter from './src/routes/suscripcion.js'; 
+
+
+
 
 
 const app = express();
@@ -21,13 +26,15 @@ app.get('/', (req, res) => {
 })
 
 app.use('/producto', productoRouter);
-/*
-app.use('/cliente', clienteRouter);
 app.use('/usuario', usuarioRouter);
-app.use('/carrito', carritoRouter);
-app.use('/orden', ordenRouter);
-app.use('/detalleOrden', ordenDetalleRouter);
-app.use('/serie', serieRouter);
-*/
+app.use('/botica', boticaRouter);
+app.use('/kit_producto', kit_productoRouter);
+app.use('/kit', kitRouter);
+app.use('/cliente', clienteRouter);
+app.use('/administrador', administradorRouter);
+app.use('/receta', recetaRouter);
+app.use('/tarjeta', tarjetaRouter);
+app.use('/suscripcion', suscripcionRouter);
+
 
 export default app;

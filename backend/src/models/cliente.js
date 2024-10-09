@@ -1,17 +1,15 @@
 import sequelize from '../config/database.js'
 import { DataTypes } from 'sequelize'
-import Botica from './botica.js'
+import Usuario from './usuario.js'
 
-//import Serie from './serie.js';
-
-const Producto = sequelize.define('producto', {
+const Cliente = sequelize.define('cliente', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    imagen: {
+    dni: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -19,46 +17,38 @@ const Producto = sequelize.define('producto', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    marca: {
+    apellido1: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    presentacion: {
+    apellido2: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    descripcion: {
+    direccion: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    precio: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-    },
-    stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    contraindicaciones: {
+    distrito: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    advertencias: {
+    referencias: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    celular: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    receta: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
-    idBotica: {
+    idUsuario: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
 })
 
-Producto.belongsTo(Botica, { foreignKey: 'idBotica', targetId: 'id' })
+Cliente.belongsTo(Usuario, { foreignKey: 'idUsuario', targetId: 'id' })
 
-Botica.hasMany(Producto, { foreignKey: 'idBotica'});
 
-export default Producto;
+
+export default Cliente;
