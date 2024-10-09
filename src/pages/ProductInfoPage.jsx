@@ -11,21 +11,30 @@ import { CartContext } from '../components/CartContext';  // Importar el context
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const ProductInfoPage = () => {
-    const { id } = useParams();  // Obtener el id del producto desde la URL
-    const producto = data.productos.find((prod) => prod.id === parseInt(id));  // Buscar el producto por ID
+    const { nombre, botica } = useParams();  // Obtener nombre y botica desde la URL
+
+    const decodedNombre = decodeURIComponent(nombre.replace(/-/g, ' '));
+    const decodedBotica = decodeURIComponent(botica.replace(/-/g, ' '));
+
+    // Obtener el producto basado en el nombre y botica
+    const producto = data.productos.find((prod) => 
+        prod.nombre.toLowerCase() === decodedNombre.toLowerCase() && 
+        prod.botica.toLowerCase() === decodedBotica.toLowerCase()
+    );
+
     const { cartProducts, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
 
     const [cantidad, setCantidad] = useState(0);  // Estado local para la cantidad
 
     // Buscar si el producto ya está en el carrito
     useEffect(() => {
-        const productoEnCarrito = cartProducts.find(item => item.id === parseInt(id));
+        const productoEnCarrito = cartProducts.find(item => item.id === producto?.id); // Usar el id del producto
         if (productoEnCarrito) {
-            setCantidad(productoEnCarrito.cantidad);  // Actualizar la cantidad desde el carrito
+            setCantidad(productoEnCarrito.cantidad);
         } else {
-            setCantidad(0);  // Si no está en el carrito, la cantidad es 0
+            setCantidad(0);
         }
-    }, [cartProducts, id]);
+    }, [cartProducts, producto]);
 
     if (!producto) {
         return <Typography variant="h5">Producto no encontrado</Typography>;
@@ -50,7 +59,7 @@ const ProductInfoPage = () => {
         <div>
             <Header></Header>
             <Box sx={{ padding: 4, maxWidth: '100%', margin: 'auto' }}>
-                <Button component={Link} to="/" sx={{ marginBottom: 2, top: 16, left: 16, color:'#1b986e' }}>← Volver</Button>
+                <Button component={Link} to="/" sx={{ marginBottom: 2, top: 16, left: 16, color: '#1b986e' }}>← Volver</Button>
 
                 <Grid container spacing={4}>
                     {/* Sección izquierda: Imagen y detalles del producto */}
@@ -73,9 +82,9 @@ const ProductInfoPage = () => {
                         {/* Sección de cantidad y botón de agregar */}
                         <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
                             {cantidad === 0 ? (
-                                <Button 
+                                <Button
                                     onClick={plusOne}
-                                    size="medium" 
+                                    size="medium"
                                     sx={{ color: 'green', padding: 0, minWidth: 'unset' }}>
                                     <AddCircleOutlineIcon fontSize="large" />
                                 </Button>
@@ -133,4 +142,4 @@ const ProductInfoPage = () => {
     )
 }
 
-export default ProductInfoPage
+export default ProductInfoPage;

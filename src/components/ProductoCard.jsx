@@ -14,14 +14,16 @@ const ProductoCard = (props) => {
 
   // Manejar el click en el card para redirigir a la página de detalles
   const CardOnClick = () => {
-    navigate(`/productinfo/${props.id}`);
+    const formattedNombre = props.nombre.replace(/\s+/g, '-').toLowerCase();
+    const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
+    navigate(`/productinfo/${encodeURIComponent(formattedNombre)}/${encodeURIComponent(formattedBotica)}`, { state: { product: props } });  
   }
 
   // Manejar el click en el botón de agregar
   const handleAddClick = (event) => {
-    event.stopPropagation(); 
-    setCantidad(1); 
-    addToCart(props, 1);  
+    event.stopPropagation();
+    setCantidad(1);
+    addToCart(props, 1);
   }
 
   // Incrementar la cantidad
@@ -38,7 +40,7 @@ const ProductoCard = (props) => {
       setCantidad(cantidad - 1)
       addToCart(props, -1)
     } else {
-      setCantidad(0);  
+      setCantidad(0);
       removeFromCart(props)
     }
   };
@@ -47,22 +49,23 @@ const ProductoCard = (props) => {
   useEffect(() => {
     const existingItem = cartProducts.find(item => item.id === props.id);
     if (existingItem) {
-      setCantidad(existingItem.cantidad); 
+      setCantidad(existingItem.cantidad);
     } else {
-      setCantidad(0);  
+      setCantidad(0);
     }
-  }, [cartProducts, props.id]);  
+  }, [cartProducts, props.id]);
   return (
-    <Card   
-      item xs={4} 
-      sx={{ 
-        mr: "15px", 
-        ml: "15px", 
-        marginBottom: "30px", 
-        width: "250px", 
-        minHeight: "320px", 
-        borderRadius: "10px", 
-        boxShadow: 2 }}>
+    <Card
+      item xs={4}
+      sx={{
+        mr: "15px",
+        ml: "15px",
+        marginBottom: "30px",
+        width: "250px",
+        minHeight: "320px",
+        borderRadius: "10px",
+        boxShadow: 2
+      }}>
       <CardActionArea disableRipple onClick={CardOnClick}>
         <CardMedia
           component="img"
@@ -75,42 +78,44 @@ const ProductoCard = (props) => {
           <Typography gutterBottom component="div" sx={{ fontSize: '12px' }}>
             {props.presentacion}
           </Typography>
-          <Box sx={{ minHeight: '50px'}}>
-            <Typography 
-              gutterBottom 
-              component="div" 
-              sx={{ 
-                fontSize: '16px', 
-                fontWeight: 'bold', 
-                lineHeight: "1.2", 
-                display: '-webkit-box',   
-                WebkitBoxOrient: 'vertical',    
-                WebkitLineClamp: 2,             
+          <Box sx={{ minHeight: '50px' }}>
+            <Typography
+              gutterBottom
+              component="div"
+              sx={{
+                fontSize: '16px',
+                fontWeight: 'bold',
+                lineHeight: "1.2",
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 2,
                 overflow: 'hidden',
-                textOverflow: 'ellipsis'}} >
+                textOverflow: 'ellipsis'
+              }} >
               {props.nombre} | {props.marca}
             </Typography>
           </Box>
-          <Chip label={props.botica} 
+          <Chip label={props.botica}
             sx={{ fontSize: '10px', backgroundColor: 'lightgray' }} />
-          <Container sx={{ 
-              width: '100%', 
-              display: 'flex', 
-              justifyContent: 'space-between', 
-              alignItems: 'center', 
-              padding: 0, 
-              margin: 0, 
-              marginTop: '10px', 
-              paddingLeft: '0 !important', 
-              paddingRight: '0 !important' }}>
+          <Container sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 0,
+            margin: 0,
+            marginTop: '10px',
+            paddingLeft: '0 !important',
+            paddingRight: '0 !important'
+          }}>
             <Typography sx={{ lineHeight: "1.2", fontSize: '20px', fontWeight: 'bold' }}>
               S/ {props.precio}
             </Typography>
 
             {cantidad === 0 ? (
-              <Button 
+              <Button
                 onClick={handleAddClick}
-                size="medium" 
+                size="medium"
                 sx={{ color: 'green', padding: 0, minWidth: 'unset' }}>
                 <AddCircleOutlineIcon fontSize="large" />
               </Button>
@@ -118,11 +123,11 @@ const ProductoCard = (props) => {
               // Control de incremento/decremento cuando la cantidad es mayor a 0
               <Paper elevation={3} sx={{ display: 'flex', alignItems: 'center', borderRadius: '20px', padding: '5px 15px' }}>
                 <IconButton onClick={minusOne}>
-                  {cantidad > 1 ? <RemoveIcon/> : <DeleteIcon />}  {/* Cambiar al ícono de eliminar si cantidad es 1 */}
+                  {cantidad > 1 ? <RemoveIcon /> : <DeleteIcon />}  {/* Cambiar al ícono de eliminar si cantidad es 1 */}
                 </IconButton>
                 <Typography variant="h6" sx={{ margin: '0 15px' }}>{cantidad}</Typography>
                 <IconButton onClick={plusOne}>
-                  <AddIcon/>
+                  <AddIcon />
                 </IconButton>
               </Paper>
             )}

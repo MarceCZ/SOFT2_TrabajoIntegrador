@@ -5,7 +5,10 @@ import BoticaBody from '../components/BoticaBody';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import data from '../data/data.json';
-import { Container } from '@mui/material';
+import { Box, Container, IconButton } from '@mui/material';
+import FilterDrawer from '../components/FilterDrawer';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
 
 const ClientMainPage = () => {
 
@@ -13,13 +16,25 @@ const ClientMainPage = () => {
   const productosData = data.productos;
   const boticasData = data.boticas;
 
+  const [isFilterOpen, setFilterOpen] = useState(false);
+
+  const toggleFilterDrawer = (open) => (event) => {
+    setFilterOpen(open);
+  };
+
   return (
     <div>
-      <Header></Header>
-      <Container sx={{display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px'}}>
-      <h1 style={{ textAlign: "center" }}>Comienza a armar tu kit</h1>
-        <ButtonGroup variant="outlined" aria-label="Basic button group" sx={{ justifyContent: "center" }}>
-          <Button
+      <Header />
+      <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px', alignItems: 'center' }}>
+        <h1 style={{ textAlign: "center" }}>Comienza a armar tu kit</h1>
+
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ flexGrow: 1 }} />
+          <IconButton color="inherit" onClick={toggleFilterDrawer(true)} >
+            <FilterListIcon />
+          </IconButton>
+          <ButtonGroup variant="outlined" aria-label="Basic button group" sx={{ justifyContent: "center", paddingX: 5 }}>
+            <Button
             onClick={() => setView('productos')} 
             variant={view === 'productos' ? 'contained' : 'outlined'}
             sx={{
@@ -33,7 +48,7 @@ const ClientMainPage = () => {
             }}
             >
               Ver productos</Button>
-          <Button
+            <Button
             onClick={() => setView('tiendas')} 
             variant={view === 'tiendas' ? 'contained' : 'outlined'}
             
@@ -47,7 +62,10 @@ const ClientMainPage = () => {
               }
             }}>
               Ver tiendas</Button>
-        </ButtonGroup>
+          </ButtonGroup>
+          <Box sx={{ width: '40px' }} /> 
+        </Box>
+
       </Container>
       <Container>
         {view === 'productos' ? (
@@ -57,8 +75,11 @@ const ClientMainPage = () => {
           )
         }
       </Container>
+      <FilterDrawer isOpen={isFilterOpen} toggleDrawer={toggleFilterDrawer} />
     </div>
   )
-}
+
+};
+
 
 export default ClientMainPage 
