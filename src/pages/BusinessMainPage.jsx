@@ -11,9 +11,6 @@ import FormDialog from '../components/FormDialog';
 
 import productoApi from '../api/producto';
 
-
-
-
 const BusinessMainPage = () => {
   const [open, setOpen] = useState(false);
     
