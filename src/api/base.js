@@ -1,4 +1,5 @@
-const URI = 'http://localhost:3001/';//dirección de la API local. Se va a cambiar cuando este en la nube
+//const URI = 'http://localhost:3001/';//dirección de la API local. Se va a cambiar cuando este en la nube
+const URI = 'https://soft2-2024-2-backend-azdtbqdqd4acajas.eastus2-01.azurewebsites.net/';
 
 const get = async (endpoint) => {
   return await fetch(URI + endpoint)

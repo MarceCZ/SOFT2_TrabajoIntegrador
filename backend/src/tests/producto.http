@@ -7,16 +7,18 @@ Content-Type: application/json
 
 {
     "imagen": "https://example.com/image1.jpg",
-    "nombre": "Nombre del Producto",
-    "marca": "Marca del Producto",
-    "categoria": "Categoría del Producto",
-    "descripcion": "Descripción detallada del producto.",
-    "precio": 29.99,
-    "stock": 100,
-    "contraindicaciones": "No usar en caso de alergias.",
-    "advertencias": "Mantener fuera del alcance de los niños.",
-    "receta": false
+    "nombre": "Ibuprofeno",
+    "marca": "Advil",
+    "presentacion": "Caja con 20 tabletas",
+    "descripcion": "Uso para el tratamiento del dolor y fiebre.",
+    "precio": 15.99,
+    "stock": 200,
+    "contraindicaciones": "No usar en caso de úlceras gástricas.",
+    "advertencias": "Consultar al médico si la fiebre persiste por más de 3 días.",
+    "receta": false,
+    "idBotica": 1
 }
+
 
 ###
 POST http://localhost:3001/producto
@@ -24,17 +26,16 @@ Content-Type: application/json
 
 {
     "imagen": "https://example.com/image2.jpg",
-    "nombre": "Producto B",
-    "procesador": "AMD Ryzen 5",
-    "marca": "Marca B",
-    "grafica": "NVIDIA RTX 2060",
-    "RAM": "8GB",
-    "precio": 999.99,
-    "stock": 15,
-    "fecha": "2024-07-02",
-    "vendido": 5,
-    "oferta": "15% de descuento",
-    "idSerie": 2
+    "nombre": "Amoxicilina",
+    "marca": "Amoxil",
+    "presentacion": "Frasco con 250 mg x 14 cápsulas",
+    "descripcion": "Tratamiento de infecciones bacterianas.",
+    "precio": 22.50,
+    "stock": 150,
+    "contraindicaciones": "No usar si es alérgico a la penicilina.",
+    "advertencias": "Puede causar diarrea; si persiste, consulte a su médico.",
+    "receta": true,
+    "idBotica": 1
 }
 
 ###
@@ -43,20 +44,17 @@ Content-Type: application/json
 
 {
     "imagen": "https://example.com/image3.jpg",
-    "nombre": "Producto C",
-    "procesador": "Intel Core i5",
-    "marca": "Marca C",
-    "grafica": "AMD Radeon RX 580",
-    "RAM": "12GB",
-    "precio": 799.99,
-    "stock": 20,
-    "fecha": "2024-07-03",
-    "vendido": 7,
-    "oferta": "5% de descuento",
-    "idSerie": 3
+    "nombre": "Paracetamol",
+    "marca": "Tylenol",
+    "presentacion": "Caja con 30 tabletas",
+    "descripcion": "Alivio de fiebre y dolor leve a moderado.",
+    "precio": 10.50,
+    "stock": 300,
+    "contraindicaciones": "Evitar en caso de enfermedad hepática severa.",
+    "advertencias": "No exceder la dosis recomendada.",
+    "receta": false,
+    "idBotica": 1
 }
-
-
 
 ###
 POST http://localhost:3001/producto
@@ -64,39 +62,134 @@ Content-Type: application/json
 
 {
     "imagen": "https://example.com/image4.jpg",
-    "nombre": "Producto D",
-    "procesador": "AMD Ryzen 7",
-    "marca": "Marca D",
-    "grafica": "NVIDIA RTX 3070",
-    "RAM": "32GB",
-    "precio": 1599.99,
-    "stock": 5,
-    "fecha": "2024-07-04",
-    "vendido": 1,
-    "oferta": "20% de descuento",
-    "idSerie": 4
+    "nombre": "Omeprazol",
+    "marca": "Prilosec",
+    "presentacion": "Caja con 20 cápsulas",
+    "descripcion": "Uso para tratar problemas gástricos como el reflujo.",
+    "precio": 18.75,
+    "stock": 80,
+    "contraindicaciones": "No recomendado en caso de alergias a benzimidazoles.",
+    "advertencias": "Consultar al médico si los síntomas persisten.",
+    "receta": true,
+    "idBotica": 1
 }
 
-
-
 ###
-PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/producto
+POST http://localhost:3001/producto
 Content-Type: application/json
 
 {
-    "id" : 1,
-    "nombre":"LAPTOP GAMER ASUS ROG STRIX G513QM-WS96 GAMING | RYZEN 9 5900HX | NVIDIA RTX 3060 6GB | 1TB SSD | 16GB RAM | 15.6″ (1920×1080) | 144Hz | WIN10"
+    "imagen": "https://example.com/image5.jpg",
+    "nombre": "Loratadina",
+    "marca": "Claritin",
+    "presentacion": "Caja con 10 tabletas",
+    "descripcion": "Alivio de los síntomas de alergias estacionales.",
+    "precio": 14.00,
+    "stock": 120,
+    "contraindicaciones": "No usar en caso de alergia a loratadina.",
+    "advertencias": "Puede causar somnolencia en algunas personas.",
+    "receta": false,
+    "idBotica": 1
 }
 
-
 ###
-PUT https://prograweb-dpchavez-20241-as-back.azurewebsites.net/producto
+POST http://localhost:3001/producto
 Content-Type: application/json
 
 {
-    "id" : 5,
-    "idSerie": null
+    "imagen": "https://example.com/image6.jpg",
+    "nombre": "Cetirizina",
+    "marca": "Zyrtec",
+    "presentacion": "Caja con 10 tabletas",
+    "descripcion": "Alivio de los síntomas de rinitis alérgica.",
+    "precio": 12.99,
+    "stock": 90,
+    "contraindicaciones": "Evitar en caso de alergias a cetirizina.",
+    "advertencias": "Puede causar somnolencia.",
+    "receta": false,
+    "idBotica": 1
 }
 
 ###
-GET http://localhost:3001/producto/2
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image7.jpg",
+    "nombre": "Metformina",
+    "marca": "Glucophage",
+    "presentacion": "Caja con 30 tabletas",
+    "descripcion": "Uso para el tratamiento de la diabetes tipo 2.",
+    "precio": 25.00,
+    "stock": 70,
+    "contraindicaciones": "No usar en caso de insuficiencia renal severa.",
+    "advertencias": "Consultar al médico regularmente.",
+    "receta": true,
+    "idBotica": 1
+}
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image8.jpg",
+    "nombre": "Simvastatina",
+    "marca": "Zocor",
+    "presentacion": "Caja con 30 tabletas",
+    "descripcion": "Uso para reducir el colesterol y triglicéridos.",
+    "precio": 23.50,
+    "stock": 65,
+    "contraindicaciones": "No usar en caso de enfermedad hepática activa.",
+    "advertencias": "Consultar al médico antes de iniciar el tratamiento.",
+    "receta": true,
+    "idBotica": 1
+}
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image9.jpg",
+    "nombre": "Aspirina",
+    "marca": "Bayer",
+    "presentacion": "Caja con 40 tabletas",
+    "descripcion": "Uso para el alivio del dolor y prevención de infartos.",
+    "precio": 8.99,
+    "stock": 250,
+    "contraindicaciones": "No usar en caso de úlceras estomacales.",
+    "advertencias": "Puede causar sangrado gastrointestinal.",
+    "receta": false,
+    "idBotica": 1
+}
+
+###
+POST http://localhost:3001/producto
+Content-Type: application/json
+
+{
+    "imagen": "https://example.com/image10.jpg",
+    "nombre": "Lisinopril",
+    "marca": "Prinivil",
+    "presentacion": "Caja con 20 tabletas",
+    "descripcion": "Uso para el tratamiento de la hipertensión arterial.",
+    "precio": 20.00,
+    "stock": 110,
+    "contraindicaciones": "No usar en caso de angioedema previo.",
+    "advertencias": "Consultar al médico regularmente.",
+    "receta": true,
+    "idBotica": 1
+}
+
+###
+
+###
+
+###
+
+###
+
+###
+
+###

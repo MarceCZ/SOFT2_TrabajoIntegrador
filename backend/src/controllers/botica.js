@@ -1,11 +1,19 @@
 import model from '../models/botica.js'
 import RepositoryBase from '../repositories/base.js';
+import service from '../services/botica.js';
 
 const repository = new RepositoryBase(model);
 
 const findAll = async (req, res) => {
 
     const result = await repository.findAll();
+
+    return sendResult(result, res);
+}
+
+const findAllComplete = async (req, res) => {
+
+    const result = await service.findAllComplete();
 
     return sendResult(result, res);
 }
@@ -23,6 +31,15 @@ const findOne = async (req, res) => {
     const id = req.params.id;
 
     const result = await repository.findOne(id);
+
+    return sendResult(result, res);
+}
+
+const findOneComplete = async (req, res) => {
+
+    const id = req.params.id;
+
+    const result = await service.findOneComplete(id);
 
     return sendResult(result, res);
 }
@@ -50,6 +67,6 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'No encontrado.'});
 }
 
-const controller = { findAll, create, findOne, remove, update }
+const controller = { findAll, create, findOne, remove, update, findAllComplete, findOneComplete }
 
 export default controller;

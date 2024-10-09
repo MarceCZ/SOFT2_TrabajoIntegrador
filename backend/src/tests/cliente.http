@@ -1,0 +1,18 @@
+GET http://localhost:3001/cliente
+
+
+###
+POST http://localhost:3001/cliente
+Content-Type: application/json
+
+{
+    "dni": "12345678",
+    "nombre": "Juan",
+    "apellido1": "Pérez",
+    "apellido2": "Gómez",
+    "direccion": "Av. Siempre Viva 123",
+    "distrito": "Miraflores",
+    "referencias": "Cerca de la plaza",
+    "celular": "987654321",
+    "idUsuario": 2
+}
