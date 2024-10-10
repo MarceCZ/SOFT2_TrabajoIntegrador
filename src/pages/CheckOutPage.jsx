@@ -1,72 +1,18 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@mui/material';
 import Header from '../components/Header';
 import { CartContext } from '../components/CartContext';
-import CheckoutForm from '../components/CheckOutPage/CheckoutForm';
-import KitSummary from '../components/CheckOutPage/KitSummary';
-import PaymentDialog from '../components/CheckOutPage/PaymentDialog';
+import CheckoutForm from '../components/CheckOutPage/CheckoutForm/CheckoutForm';
+import KitSummary from '../components/CheckOutPage/KitSummary/KitSummary';
+import PaymentDialog from '../components/CheckOutPage/PaymentDialog/PaymentDialog';
+import useCheckoutForm from '../components/CheckOutPage/CheckoutForm/ValidateCheckoutForm';
+import usePaymentDialog from '../components/CheckOutPage/PaymentDialog/ValidatePaymentDialog';
 
+//Parte visual de la página de checkout
 const CheckOutPage = () => {
   const { cartProducts, totalCartPrice } = useContext(CartContext);
-
-  const [formData, setFormData] = useState({
-    nombre: '',
-    apellidoPaterno: '',
-    apellidoMaterno: '',
-    direccion: '',
-    departamentoMzReferencia: '',
-    distrito: '',
-    celular: '',
-    tipoDocumento: 'dni',
-    numeroDocumento: '',
-    email: '',
-  });
-
-  const [isFormValid, setIsFormValid] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  useEffect(() => {
-    const {
-      nombre,
-      apellidoPaterno,
-      apellidoMaterno,
-      direccion,
-      distrito,
-      celular,
-      numeroDocumento,
-      email,
-    } = formData;
-
-    const isValid =
-      nombre &&
-      apellidoPaterno &&
-      apellidoMaterno &&
-      direccion &&
-      distrito &&
-      celular &&
-      numeroDocumento &&
-      email;
-
-    setIsFormValid(isValid);
-  }, [formData]);
-
-  const handlePaymentClick = () => {
-    if (isFormValid) {
-      setIsDialogOpen(true);
-    }
-  }
-
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false);
-  }
+  const { formData, isFormValid, handleInputChange } = useCheckoutForm();
+  const { isDialogOpen, handlePaymentClick, handleCloseDialog } = usePaymentDialog();
 
   return (
     <div>
@@ -77,7 +23,7 @@ const CheckOutPage = () => {
           formData={formData}
           handleInputChange={handleInputChange}
           isFormValid={isFormValid}
-          handlePaymentClick={handlePaymentClick}
+          handlePaymentClick={() => handlePaymentClick(isFormValid)}
         />
         {/* Resumen de compra */}
         <KitSummary cartProducts={cartProducts} totalCartPrice={totalCartPrice} />

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button } from '@mui/material';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button } from '@mui/material'
+import PersonPinIcon from '@mui/icons-material/PersonPin'
+import { useNavigate } from 'react-router-dom'
 
 const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentClick }) => {
   const navigate = useNavigate();

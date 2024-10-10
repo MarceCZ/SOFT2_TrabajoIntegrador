@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../CartContext';
+import React, { useContext } from 'react'
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { CartContext } from '../CartContext'
 
 const ConfirmationDialog = ({ isOpen, handleClose }) => {
   const navigate = useNavigate()
@@ -10,7 +10,7 @@ const ConfirmationDialog = ({ isOpen, handleClose }) => {
   const handleBackToHome = () => {
     clearCart()
     navigate('/')
-  };
+  }
 
   return (
     <Dialog
