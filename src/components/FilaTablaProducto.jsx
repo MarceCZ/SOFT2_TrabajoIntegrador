@@ -4,8 +4,9 @@ import TableCell from '@mui/material/TableCell';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-const Fila = ({ data }) => {
+const Fila = ({ data, onDeleteClick }) => {
   return (
     <TableRow>
       <TableCell component="th" scope="row">
@@ -22,6 +23,11 @@ const Fila = ({ data }) => {
       <TableCell align="right">
         <IconButton>
           <EditIcon />
+        </IconButton>
+      </TableCell>
+      <TableCell align="right">
+        <IconButton>
+          <DeleteIcon onClick={() => onDeleteClick(data.id)}/>
         </IconButton>
       </TableCell>
     </TableRow>

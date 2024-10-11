@@ -5,6 +5,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
 import { useState, useEffect } from 'react';
+import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
 import data from '../data/data.json';
 
 import FormDialog from '../components/FormDialog';
@@ -18,6 +19,7 @@ const BusinessMainPage = () => {
   const [productos, setProductos] = useState([]);
   const [nombreBotica, setNombreBotica] = useState('');
   const [idBotica, setIdBotica] = useState(1);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   useEffect(() => {
     handleOnLoad();
@@ -41,6 +43,23 @@ const BusinessMainPage = () => {
       }
     }
 
+    const handleDeleteClick = (productId) => {
+      setDeleteDialogOpen(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+      try {
+        // Lógica para eliminar el producto usando su ID
+        setDeleteDialogOpen(false);
+      } catch (error) {
+        console.error('Error deleting product: ', error);
+      }
+    };
+
+    const handleDeleteCancel = () => {
+      setDeleteDialogOpen(false);
+    };
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -63,7 +82,12 @@ const BusinessMainPage = () => {
           </ButtonGroup>
           <FormDialog open={open} handleClose={handleClose} />
         </Box>
-        <TablaProductos productos={productos} /> {/* Se pasa la variable de estado al componente TablaProductos */}
+        <TablaProductos productos={productos} onDeleteClick={handleDeleteClick}/> {/* Se pasa la variable de estado al componente TablaProductos */}
+        <DeleteConfirmationDialog
+          open={deleteDialogOpen}
+          onConfirm={handleDeleteConfirm}
+          onCancel={handleDeleteCancel}
+        />
       </Container>
     </div>
   );
