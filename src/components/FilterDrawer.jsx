@@ -5,7 +5,15 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import CloseIcon from '@mui/icons-material/Close';
 
 const FilterDrawer = ({ isOpen, toggleDrawer }) => {
-    const { priceRange, updatePriceRange, boticaName, updateBoticaName, resetFilters } = useContext(FilterContext);
+    const { 
+        priceRange, 
+        updatePriceRange, 
+        boticaName, 
+        updateBoticaName, 
+        marcaName, 
+        updateMarcaName, 
+        resetFilters 
+    } = useContext(FilterContext);
 
     const handleSliderChange = (event, newValue) => {
         updatePriceRange(newValue[0], newValue[1]);
@@ -42,10 +50,10 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
                             step={0.1}
                             sx={{
                                 width: '80%',
-                                color: '#1b986e', // Set slider color
+                                color: '#1b986e',
                                 '& .MuiSlider-thumb': {
-                                    backgroundColor: '#fff', // Thumb color
-                                    border: '2px solid #1b986e', // Border color
+                                    backgroundColor: '#fff',
+                                    border: '2px solid #1b986e',
                                 },
                             }}
                         />
@@ -74,6 +82,7 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
                         </Grid>
                     </Grid>
 
+                    {/* Filtro por nombre de la botica */}
                     <Typography variant="body1" sx={{ mt: 2 }}>Nombre de la Botica</Typography>
                     <TextField
                         variant="outlined"
@@ -83,6 +92,17 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
                         sx={{ mt: 1 }}
                     />
 
+                    {/* Filtro por nombre de la marca */}
+                    <Typography variant="body1" sx={{ mt: 2 }}>Nombre de la Marca</Typography>
+                    <TextField
+                        variant="outlined"
+                        value={marcaName}
+                        onChange={(e) => updateMarcaName(e.target.value)}
+                        fullWidth
+                        sx={{ mt: 1 }}
+                    />
+
+                    {/* Botón para resetear los filtros */}
                     <Button 
                         variant="outlined" 
                         color="secondary" 

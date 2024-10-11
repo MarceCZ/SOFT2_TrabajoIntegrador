@@ -4,22 +4,24 @@ import { Box, TextField, Button } from '@mui/material';
 
 const ProductFilter = () => {
   const { filters, updateFilters } = useContext(FilterContext);
-  
+
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
-    updateFilters({ [name]: value });
+    updateFilters({ [name]: value }); // Actualiza los filtros en función del campo
   };
 
   const handleResetFilters = () => {
     updateFilters({
       precioMinimo: 0,
       precioMaximo: Infinity,
-      botica: ''
+      botica: '',
+      marca: ''
     });
   };
 
   return (
     <Box sx={{ marginBottom: '20px' }}>
+      {/* Campo para filtrar por precio */}
       <TextField
         label="Precio Mínimo"
         type="number"
@@ -36,6 +38,7 @@ const ProductFilter = () => {
         onChange={handleFilterChange}
         sx={{ marginRight: '10px' }}
       />
+      {/* Campo para filtrar por botica */}
       <TextField
         label="Botica"
         type="text"
@@ -44,7 +47,18 @@ const ProductFilter = () => {
         onChange={handleFilterChange}
         sx={{ marginRight: '10px' }}
       />
-      <Button variant="outlined" onClick={handleResetFilters}>Resetear Filtros</Button>
+      {/* Campo para filtrar por marca */}
+      <TextField
+        label="Marca"
+        type="text"
+        name="marca"
+        value={filters.marca}
+        onChange={handleFilterChange}
+        sx={{ marginRight: '10px' }}
+      />
+      <Button variant="outlined" onClick={handleResetFilters}>
+        Resetear Filtros
+      </Button>
     </Box>
   );
 };
