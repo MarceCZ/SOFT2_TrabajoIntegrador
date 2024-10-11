@@ -6,25 +6,28 @@ export const FilterContext = createContext();
 // Proveedor del contexto
 export const FilterProvider = ({ children }) => {
   const [priceRange, setPriceRange] = useState([0, 100]); // Rango de precio inicial
-  const [boticaName, setBoticaName] = useState(''); // Nombre de la botica
-  const [marcaName, setMarcaName] = useState(''); // Nombre de la marca
+  const [boticaName, setBoticaName] = useState([]); // Lista de nombres de boticas
+  const [marcaName, setMarcaName] = useState([]); // Lista de nombres de marcas
 
-  // Cargar filtros desde localStorage al iniciar
   useEffect(() => {
-    const savedPriceRange = JSON.parse(localStorage.getItem('priceRange'));
-    const savedBoticaName = localStorage.getItem('boticaName');
-    const savedMarcaName = localStorage.getItem('marcaName');
+    try {
+      const savedPriceRange = JSON.parse(localStorage.getItem('priceRange'));
+      const savedBoticaName = JSON.parse(localStorage.getItem('boticaName')) || [];
+      const savedMarcaName = JSON.parse(localStorage.getItem('marcaName')) || [];
 
-    if (savedPriceRange) {
-      setPriceRange(savedPriceRange);
+      if (savedPriceRange && Array.isArray(savedPriceRange)) {
+        setPriceRange(savedPriceRange);
+      }
+      if (Array.isArray(savedBoticaName)) {
+        setBoticaName(savedBoticaName);
+      }
+      if (Array.isArray(savedMarcaName)) {
+        setMarcaName(savedMarcaName);
+      }
+    } catch (error) {
+      console.error("Error parsing localStorage data: ", error);
     }
-    if (savedBoticaName) {
-      setBoticaName(savedBoticaName);
-    }
-    if (savedMarcaName) {
-      setMarcaName(savedMarcaName);
-    }
-  }, []); // Solo se ejecuta al montar el componente
+  }, []);
 
   // Función para actualizar el rango de precios
   const updatePriceRange = (min, max) => {
@@ -32,13 +35,17 @@ export const FilterProvider = ({ children }) => {
   };
 
   // Función para actualizar el nombre de la botica
-  const updateBoticaName = (name) => {
-    setBoticaName(name);
+  const updateBoticaName = (name, isChecked) => {
+    setBoticaName(prevState => 
+      isChecked ? [...prevState, name] : prevState.filter(item => item !== name)
+    );
   };
 
   // Función para actualizar el nombre de la marca
-  const updateMarcaName = (name) => {
-    setMarcaName(name);
+  const updateMarcaName = (name, isChecked) => {
+    setMarcaName(prevState => 
+      isChecked ? [...prevState, name] : prevState.filter(item => item !== name)
+    );
   };
 
   // Función para filtrar productos
@@ -46,23 +53,23 @@ export const FilterProvider = ({ children }) => {
     return products.filter(product => 
       product.precio >= priceRange[0] && 
       product.precio <= priceRange[1] && 
-      product.botica.toLowerCase().includes(boticaName.toLowerCase()) &&
-      product.marca.toLowerCase().includes(marcaName.toLowerCase()) 
+      (boticaName.length === 0 || boticaName.includes(product.botica)) &&
+      (marcaName.length === 0 || marcaName.includes(product.marca))
     );
   };
 
   // Función para resetear los filtros
   const resetFilters = () => {
     setPriceRange([0, 100]);
-    setBoticaName('');
-    setMarcaName(''); 
+    setBoticaName([]);
+    setMarcaName([]);
   };
 
   // Guardar filtros en localStorage al cambiar
   useEffect(() => {
     localStorage.setItem('priceRange', JSON.stringify(priceRange));
-    localStorage.setItem('boticaName', boticaName);
-    localStorage.setItem('marcaName', marcaName);
+    localStorage.setItem('boticaName', JSON.stringify(boticaName));
+    localStorage.setItem('marcaName', JSON.stringify(marcaName));
   }, [priceRange, boticaName, marcaName]); // Se ejecuta cuando priceRange, boticaName o marcaName cambian
 
   return (

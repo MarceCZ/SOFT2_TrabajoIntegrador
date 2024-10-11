@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from 'react';
-import { Dialog, Box, Typography, TextField, IconButton, Slider, Grid, Button } from '@mui/material';
+import React, { useContext } from 'react';
+import { Box, Typography, Slider, FormGroup, FormControlLabel, Checkbox, Button, Grid } from '@mui/material';
 import { FilterContext } from './FilterContext';
-import FilterListIcon from '@mui/icons-material/FilterList';
-import CloseIcon from '@mui/icons-material/Close';
 
-const FilterDrawer = ({ isOpen, toggleDrawer }) => {
+const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
     const { 
         priceRange, 
         updatePriceRange, 
@@ -19,28 +17,37 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
         updatePriceRange(newValue[0], newValue[1]);
     };
 
-    // Sincronizar los valores del rango con los valores del texto
-    useEffect(() => {
-        updatePriceRange(priceRange[0], priceRange[1]);
-    }, [priceRange, updatePriceRange]);
+    const handleBoticaChange = (event) => {
+        const { value, checked } = event.target;
+        updateBoticaName(value, checked);
+    };
+
+    const handleMarcaChange = (event) => {
+        const { value, checked } = event.target;
+        updateMarcaName(value, checked);
+    };
 
     return (
-        <Dialog open={isOpen} onClose={toggleDrawer(false)} maxWidth="sm" fullWidth>
-            <Box sx={{ padding: 2, display: 'flex', flexDirection: 'column' }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <FilterListIcon sx={{ mr: 1 }} />
-                        <Typography variant="h6">Filtros</Typography>
-                    </Box>
-                    <IconButton onClick={toggleDrawer(false)}>
-                        <CloseIcon />
-                    </IconButton>
-                </Box>
+        <Grid container justifyContent="flex-start">
+            <Grid>
+                <Box 
+                    sx={{ 
+                        padding: 2, 
+                        width: '100%',
+                        overflowY: 'auto', 
+                        maxWidth: '450px',
+                    }}
+                >
+                    <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold', textAlign: 'left' }}>Filtros</Typography>
 
-                <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1">Rango de Precio: {priceRange[0]} - {priceRange[1]}</Typography>
-
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                    <Typography variant="body1" sx={{ textAlign: 'left' }}>Rango de Precio:</Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            mt: 2,
+                        }}
+                    >
                         <Slider
                             value={priceRange}
                             onChange={handleSliderChange}
@@ -49,7 +56,6 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
                             max={100}
                             step={0.1}
                             sx={{
-                                width: '80%',
                                 color: '#1b986e',
                                 '& .MuiSlider-thumb': {
                                     backgroundColor: '#fff',
@@ -59,61 +65,65 @@ const FilterDrawer = ({ isOpen, toggleDrawer }) => {
                         />
                     </Box>
 
-                    <Grid container spacing={2} sx={{ mt: 2 }}>
-                        <Grid item xs={6}>
-                            <TextField
-                                type="number"
-                                label="Mínimo"
-                                variant="outlined"
-                                value={priceRange[0]}
-                                onChange={(e) => updatePriceRange(Number(e.target.value), priceRange[1])}
-                                fullWidth
+                    <Typography variant="body1" sx={{ mt: 2, textAlign: 'left' }}>Botica:</Typography>
+                    <FormGroup>
+                        {boticasDisponibles.map((botica, index) => (
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        checked={boticaName.includes(botica)}
+                                        onChange={handleBoticaChange}
+                                        value={botica}
+                                        sx={{
+                                            color: '#1b986e',
+                                            '&.Mui-checked': {
+                                                color: '#1b986e',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label={botica}
+                                sx={{ typography: 'body2', textAlign: 'left' }}
                             />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                type="number"
-                                label="Máximo"
-                                variant="outlined"
-                                value={priceRange[1]}
-                                onChange={(e) => updatePriceRange(priceRange[0], Number(e.target.value))}
-                                fullWidth
+                        ))}
+                    </FormGroup>
+
+                    <Typography variant="body1" sx={{ mt: 2, textAlign: 'left' }}>Marca:</Typography>
+                    <FormGroup>
+                        {marcasDisponibles.map((marca, index) => (
+                            <FormControlLabel
+                                key={index}
+                                control={
+                                    <Checkbox
+                                        checked={marcaName.includes(marca)}
+                                        onChange={handleMarcaChange}
+                                        value={marca}
+                                        sx={{
+                                            color: '#1b986e',
+                                            '&.Mui-checked': {
+                                                color: '#1b986e',
+                                            },
+                                        }}
+                                    />
+                                }
+                                label={marca}
+                                sx={{ typography: 'body2', textAlign: 'left' }}
                             />
-                        </Grid>
-                    </Grid>
+                        ))}
+                    </FormGroup>
 
-                    {/* Filtro por nombre de la botica */}
-                    <Typography variant="body1" sx={{ mt: 2 }}>Nombre de la Botica</Typography>
-                    <TextField
-                        variant="outlined"
-                        value={boticaName}
-                        onChange={(e) => updateBoticaName(e.target.value)}
-                        fullWidth
-                        sx={{ mt: 1 }}
-                    />
-
-                    {/* Filtro por nombre de la marca */}
-                    <Typography variant="body1" sx={{ mt: 2 }}>Nombre de la Marca</Typography>
-                    <TextField
-                        variant="outlined"
-                        value={marcaName}
-                        onChange={(e) => updateMarcaName(e.target.value)}
-                        fullWidth
-                        sx={{ mt: 1 }}
-                    />
-
-                    {/* Botón para resetear los filtros */}
                     <Button 
                         variant="outlined" 
                         color="secondary" 
                         onClick={resetFilters} 
-                        sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e' }} // Set button border and text color
+                        sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e', width: '100%' }}
                     >
                         Resetear Filtros
                     </Button>
                 </Box>
-            </Box>
-        </Dialog>
+            </Grid>
+        </Grid>
     );
 };
 

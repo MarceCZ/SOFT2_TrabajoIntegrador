@@ -1,83 +1,121 @@
-import Header from '../components/Header';
 import React, { useState } from 'react';
+import { Box, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from '@mui/material';
+import Header from '../components/Header';
 import ProductoBody from '../components/ProductoBody';
 import BoticaBody from '../components/BoticaBody';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import data from '../data/data.json';
-import { Box, Container, IconButton, Typography } from '@mui/material';
 import FilterDrawer from '../components/FilterDrawer';
+import FilterDrawerMini from '../components/FilterDrawerMini';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import data from '../data/data.json';
 
 const ArmaTuKitPage = () => {
     const [view, setView] = useState('productos');
+    const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
     const productosData = data.productos;
     const boticasData = data.boticas;
 
-    const [isFilterOpen, setFilterOpen] = useState(false);
+    const boticasDisponibles = [...new Set(productosData.map(product => product.botica))];
+    const marcasDisponibles = [...new Set(productosData.map(product => product.marca))];
 
-    const toggleFilterDrawer = (open) => (event) => {
-        setFilterOpen(open);
+    const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
+
+    const toggleFilterDrawer = () => {
+        setFilterDrawerOpen((prev) => !prev);
     };
-
+    
     return (
         <div style={{ margin: '100px auto 0' }}>
             <Header />
-            <Container sx={{ display: 'flex', flexDirection: 'column', mt: '40px', mb: '60px', alignItems: 'center' }}>
-                <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '12px' }}>
-                    Comienza a armar tu kit
-                </Typography>
-
-                <Box sx={{ display: 'flex' }}>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <IconButton color="inherit" onClick={toggleFilterDrawer(true)} >
-                        <FilterListIcon />
-                    </IconButton>
-                    <ButtonGroup variant="outlined" aria-label="Basic button group" sx={{ justifyContent: "center", paddingX: 5 }}>
-                        <Button
-                            onClick={() => setView('productos')}
-                            variant={view === 'productos' ? 'contained' : 'outlined'}
-                            sx={{
-                                backgroundColor: view === 'productos' ? '#1b986e' : 'transparent',
-                                color: view === 'productos' ? '#fff' : '#1b986e',
-                                borderColor: '#1b986e',
-                                '&:hover': {
-                                    backgroundColor: view === 'productos' ? '#157f59' : '#e6f7f1',
-                                    borderColor: '#157f59',
-                                }
-                            }}
-                        >
-                            Ver productos</Button>
-                        <Button
-                            onClick={() => setView('tiendas')}
-                            variant={view === 'tiendas' ? 'contained' : 'outlined'}
-
-                            sx={{
-                                backgroundColor: view === 'tiendas' ? '#1b986e' : 'transparent',
-                                color: view === 'tiendas' ? '#fff' : '#1b986e',
-                                borderColor: '#1b986e',
-                                '&:hover': {
-                                    backgroundColor: view === 'tiendas' ? '#157f59' : '#e6f7f1',
-                                    borderColor: '#157f59',
-                                }
-                            }}>
-                            Ver tiendas</Button>
-                    </ButtonGroup>
-                    <Box sx={{ width: '40px' }} />
+            <Box sx={{ display: 'flex', flexDirection: 'row', mt: '40px', mb: '60px', padding: 0 }}>
+                {view === 'productos' && (
+                    <>
+                        {!isSmallScreen ? (
+                            <Box
+                                sx={{
+                                    width: '245px',
+                                    minWidth: '245px',
+                                    position: 'sticky',
+                                    top: 100,
+                                    height: 'calc(100vh - 100px)',
+                                    overflowY: 'auto',
+                                    padding: 2,
+                                    boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
+                                }}
+                            >
+                                <FilterDrawer 
+                                    boticasDisponibles={boticasDisponibles}
+                                    marcasDisponibles={marcasDisponibles}
+                                />
+                            </Box>
+                        ) : (
+                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+                                <IconButton
+                                    onClick={toggleFilterDrawer}
+                                    sx={{ mb: 2 }}
+                                >
+                                    <FilterListIcon />
+                                </IconButton>
+                            </Box>
+                        )}
+                    </>
+                )}
+                <Box sx={{ flexGrow: 1 }}>
+                    <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '12px' }}>
+                        Comienza a armar tu kit
+                    </Typography>
+                    
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                        <ButtonGroup variant="outlined" aria-label="Basic button group">
+                            <Button
+                                onClick={() => setView('productos')}
+                                variant={view === 'productos' ? 'contained' : 'outlined'}
+                                sx={{
+                                    backgroundColor: view === 'productos' ? '#1b986e' : 'transparent',
+                                    color: view === 'productos' ? '#fff' : '#1b986e',
+                                    borderColor: '#1b986e',
+                                    '&:hover': {
+                                        backgroundColor: view === 'productos' ? '#157f59' : '#e6f7f1',
+                                        borderColor: '#157f59',
+                                    }
+                                }}
+                            >
+                                Ver productos
+                            </Button>
+                            <Button
+                                onClick={() => setView('tiendas')}
+                                variant={view === 'tiendas' ? 'contained' : 'outlined'}
+                                sx={{
+                                    backgroundColor: view === 'tiendas' ? '#1b986e' : 'transparent',
+                                    color: view === 'tiendas' ? '#fff' : '#1b986e',
+                                    borderColor: '#1b986e',
+                                    '&:hover': {
+                                        backgroundColor: view === 'tiendas' ? '#157f59' : '#e6f7f1',
+                                        borderColor: '#157f59',
+                                    }
+                                }}
+                            >
+                                Ver tiendas
+                            </Button>
+                        </ButtonGroup>
+                    </Box>
+                    {view === 'productos' ? (
+                        <ProductoBody productosData={productosData} />
+                    ) : (
+                        <BoticaBody boticasData={boticasData} />
+                    )}
                 </Box>
+            </Box>
 
-            </Container>
-            <Container>
-                {view === 'productos' ? (
-                    <ProductoBody productosData={productosData} />
-                ) : (
-                    <BoticaBody boticasData={boticasData} />
-                )
-                }
-            </Container>
-            <FilterDrawer isOpen={isFilterOpen} toggleDrawer={toggleFilterDrawer} />
-    </div >
-    )
-}
+            {isSmallScreen && (
+                <FilterDrawerMini 
+                    isOpen={isFilterDrawerOpen} 
+                    toggleDrawer={toggleFilterDrawer} 
+                    boticasDisponibles={boticasDisponibles} 
+                    marcasDisponibles={marcasDisponibles}
+                />
+            )}
+        </div>
+    );
+};
 
-export default ArmaTuKitPage
+export default ArmaTuKitPage;

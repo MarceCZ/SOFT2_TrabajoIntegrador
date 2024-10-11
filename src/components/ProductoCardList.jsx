@@ -13,8 +13,12 @@ const ProductoCardList = (props) => {
     // Filtrar productos por rango de precios, botica y marca
     const newFilteredList = props.list.filter((product) => {
       const withinPriceRange = product.precio >= priceRange[0] && product.precio <= priceRange[1];
-      const matchesBoticaName = product.botica.toLowerCase().includes(boticaName.toLowerCase());
-      const matchesMarcaName = product.marca.toLowerCase().includes(marcaName.toLowerCase());
+
+      // Si no hay boticas seleccionadas, mostrar todos los productos de todas las boticas
+      const matchesBoticaName = boticaName.length === 0 || boticaName.includes(product.botica);
+
+      // Si no hay marcas seleccionadas, mostrar todos los productos de todas las marcas
+      const matchesMarcaName = marcaName.length === 0 || marcaName.includes(product.marca);
 
       // Retorna solo los productos que cumplen los tres criterios
       return withinPriceRange && matchesBoticaName && matchesMarcaName;
