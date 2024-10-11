@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 import ClientMainPage from './pages/ClientMainPage';
-import BusinessMainPage from './pages/BusinessMainPage';
+import BusinessProductsPage from './pages/BusinessProductsPage';
+import BusinessMetricsPage from './pages/BusinessMetricsPage';
 import ProductInfoPage from './pages/ProductInfoPage';
 import ArmaTuKitPage from './pages/ArmaTuKitPage';
 import ComoFuncionaPage from './pages/ComoFuncionaPage';
@@ -20,7 +21,8 @@ function App() {
           <Routes>
             {/*<Route path="/" element={<Home />} /> */}
             <Route path="/" element={<ClientMainPage />} />
-            <Route path='/mainbusiness' element={<BusinessMainPage />} />
+            <Route path='/productsbusiness' element={<BusinessProductsPage />} />
+            <Route path='/metricsbusiness' element={<BusinessMetricsPage />} />
             <Route path='/productinfo/:nombre/:botica' element={<ProductInfoPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/checkout' element={<CheckoutPage />} />
