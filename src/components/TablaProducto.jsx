@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import TableCell from '@mui/material/TableCell';
 import Fila from './FilaTablaProducto'; 
 
-const TablaProductos = ({ productos }) => {
+const TablaProductos = ({ productos, onDeleteClick }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -29,7 +29,7 @@ const TablaProductos = ({ productos }) => {
         </TableHead>
         <TableBody>
           {productos.map((producto) => (
-            <Fila key={producto.name} data={producto} />
+            <Fila key={producto.name} data={producto} onDeleteClick={onDeleteClick}/>
           ))}
         </TableBody>
       </Table>
