@@ -53,7 +53,7 @@ const BusinessMainPage = () => {
 
 
   return (
-    <div>
+    <div style={{ margin: '100px auto 0' }}>
       <Header />
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>
         <h1 style={{ textAlign: 'center' }}>{nombreBotica}</h1>

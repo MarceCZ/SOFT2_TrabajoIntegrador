@@ -17,8 +17,8 @@ const ProductInfoPage = () => {
     const decodedBotica = decodeURIComponent(botica.replace(/-/g, ' '));
 
     // Obtener el producto basado en el nombre y botica
-    const producto = data.productos.find((prod) => 
-        prod.nombre.toLowerCase() === decodedNombre.toLowerCase() && 
+    const producto = data.productos.find((prod) =>
+        prod.nombre.toLowerCase() === decodedNombre.toLowerCase() &&
         prod.botica.toLowerCase() === decodedBotica.toLowerCase()
     );
 
@@ -56,87 +56,101 @@ const ProductInfoPage = () => {
     }
 
     return (
-        <div>
+        <div style={{ margin: '60px auto 0' }}>
             <Header></Header>
-            <Box sx={{ padding: 4, maxWidth: '100%', margin: 'auto' }}>
-                <Button component={Link} to="/" sx={{ marginBottom: 2, top: 16, left: 16, color: '#1b986e' }}>← Volver</Button>
+            <Box sx={{ padding: 4, maxWidth: '100%', backgroundColor: '#f2f2f2', margin: 'auto', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                <Box sx={{ marginBottom: 2, textAlign: 'left', ml:{md:'3%'}}}>
+                    <Button
+                        component={Link}
+                        to="/"
+                        sx={{
+                            color: '#1b986e',
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            textDecoration: 'underline',
+                        }}
+                    >
+                        ← Volver
+                    </Button>
+                </Box>
 
-                <Grid container spacing={4}>
-                    {/* Sección izquierda: Imagen y detalles del producto */}
-                    <Grid item xs={12} md={6}>
-                        <CardMedia
-                            component="img"
-                            alt={producto.nombre}
-                            height="400"
-                            image={producto.imagen}
-                            sx={{ objectFit: 'contain', borderRadius: '8px', width: '100%', marginBottom: 2 }}
-                        />
-                        <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-                            {producto.nombre} | {producto.marca}
-                        </Typography>
-                        <Chip label={producto.botica} sx={{ marginBottom: 2, fontSize: '16px' }} />
-                        <Typography variant="h4" color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '30px' }}>
-                            S/ {producto.precio.toFixed(2)}
-                        </Typography>
+                <Box sx={{ maxWidth: '1400px', margin: 'auto' }}>
+                    <Grid container spacing={4}>
+                        {/* Sección izquierda: Imagen y detalles del producto */}
+                        <Grid item xs={12} md={6}>
+                            <Paper elevation={3} sx={{ padding: 4, borderRadius: '35px', backgroundColor: '#fff' }}>
+                                <CardMedia
+                                    component="img"
+                                    alt={producto.nombre}
+                                    height="300"
+                                    image={producto.imagen}
+                                    sx={{ objectFit: 'contain', borderRadius: '20px', width: '100%', marginBottom: 2 }}
+                                />
+                                <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 1, fontSize: '26px' }}>
+                                    {producto.nombre} | {producto.marca}
+                                </Typography>
+                                <Chip label={producto.botica} sx={{ marginBottom: 2, fontSize: '13px' }} />
+                                <Typography variant="h4" color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '26px' }}>
+                                    S/ {producto.precio.toFixed(2)}
+                                </Typography>
 
-                        {/* Sección de cantidad y botón de agregar */}
-                        <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
-                            {cantidad === 0 ? (
-                                <Button
-                                    onClick={plusOne}
-                                    size="medium"
-                                    sx={{ color: 'green', padding: 0, minWidth: 'unset' }}>
-                                    <AddCircleOutlineIcon fontSize="large" />
-                                </Button>
-                            ) : (
-                                <Paper elevation={3} sx={{ display: 'flex', alignItems: 'center', borderRadius: '20px', padding: '5px 15px' }}>
-                                    <IconButton onClick={minusOne}>
-                                        {cantidad > 1 ? <RemoveIcon /> : <DeleteIcon />} {/* Basurero si es 1 */}
-                                    </IconButton>
-                                    <Typography variant="h6" sx={{ margin: '0 15px' }}>{cantidad}</Typography>
-                                    <IconButton onClick={plusOne}>
-                                        <AddIcon />
-                                    </IconButton>
-                                </Paper>
-                            )}
-                        </Container>
+                                {/* Sección de cantidad y botón de agregar */}
+                                <Container sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '15px' }}>
+                                    {cantidad === 0 ? (
+                                        <Button
+                                            onClick={plusOne}
+                                            size="medium"
+                                            sx={{ color: 'green', padding: 0, minWidth: 'unset' }}>
+                                            <AddCircleOutlineIcon fontSize="large" />
+                                        </Button>
+                                    ) : (
+                                        <Paper elevation={3} sx={{ display: 'flex', alignItems: 'center', borderRadius: '20px', padding: '5px 15px' }}>
+                                            <IconButton onClick={minusOne}>
+                                                {cantidad > 1 ? <RemoveIcon /> : <DeleteIcon />}
+                                            </IconButton>
+                                            <Typography variant="h6" sx={{ margin: '0 15px' }}>{cantidad}</Typography>
+                                            <IconButton onClick={plusOne}>
+                                                <AddIcon />
+                                            </IconButton>
+                                        </Paper>
+                                    )}
+                                </Container>
+                            </Paper>
+                        </Grid>
+
+                        {/* Sección derecha: Descripción, contraindicaciones y advertencias */}
+                        <Grid item xs={12} md={6}>
+                            <Accordion>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="descripcion-content" id="descripcion-header">
+                                    <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Descripción</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.descripcion}</Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                            <Divider />
+
+                            <Accordion>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="contraindicaciones-content" id="contraindicaciones-header">
+                                    <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Contraindicaciones</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.contraindicaciones}</Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                            <Divider />
+
+                            <Accordion>
+                                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="advertencias-content" id="advertencias-header">
+                                    <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Advertencias y precauciones</Typography>
+                                </AccordionSummary>
+                                <AccordionDetails>
+                                    <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.advertencias}</Typography>
+                                </AccordionDetails>
+                            </Accordion>
+                        </Grid>
                     </Grid>
-
-                    {/* Sección derecha: Descripción, contraindicaciones y advertencias */}
-                    <Grid item xs={12} md={6}>
-                        {/* Acordeón para Descripción */}
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="descripcion-content" id="descripcion-header">
-                                <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Descripción</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.descripcion}</Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Divider />
-
-                        {/* Acordeón para Contraindicaciones */}
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="contraindicaciones-content" id="contraindicaciones-header">
-                                <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Contraindicaciones</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.contraindicaciones}</Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Divider />
-
-                        {/* Acordeón para Advertencias y precauciones */}
-                        <Accordion>
-                            <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="advertencias-content" id="advertencias-header">
-                                <Typography variant="h5" sx={{ fontWeight: 'bold', fontSize: '26px' }}>Advertencias y precauciones</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography variant="body1" sx={{ fontSize: '20px' }}>{producto.advertencias}</Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                    </Grid>
-                </Grid>
+                </Box>
             </Box>
         </div>
     )

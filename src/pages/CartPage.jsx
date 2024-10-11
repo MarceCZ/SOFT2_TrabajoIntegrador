@@ -26,7 +26,7 @@ const CartPage = () => {
   }
 
   return (
-    <div>
+    <div style={{ margin: '100px auto 0' }}>
       <Header />
       
       <Box sx={{ padding: '20px' }}>

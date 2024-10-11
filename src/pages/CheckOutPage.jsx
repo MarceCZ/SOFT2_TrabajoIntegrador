@@ -15,7 +15,7 @@ const CheckOutPage = () => {
   const { isDialogOpen, handlePaymentClick, handleCloseDialog } = usePaymentDialog();
 
   return (
-    <div>
+    <div style={{ margin: '100px auto 0' }}>
       <Header />
       <Grid container>
         {/* Formulario */}
