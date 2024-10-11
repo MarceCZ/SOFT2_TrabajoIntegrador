@@ -1,97 +1,48 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import ProductoBody from '../components/ProductoBody';
-import BoticaBody from '../components/BoticaBody';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import data from '../data/data.json';
-import { Box, Container, IconButton } from '@mui/material';
-import FilterDrawer from '../components/FilterDrawer';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import { Box, Container, Typography } from '@mui/material';
+
 
 
 const ClientMainPage = () => {
 
-  const [view, setView] = useState('productos');
-  const productosData = data.productos;
-  const boticasData = data.boticas;
-
-  const [isFilterOpen, setFilterOpen] = useState(false);
-
-  const toggleFilterDrawer = (open) => (event) => {
-    setFilterOpen(open);
-  };
-
   return (
-    <div style={{margin: '100px auto 0'}}>
+    <div style={{ margin: '100px auto 0' }}>
       <Header />
       <Box
         sx={{
           backgroundColor: '#1b986e',
-          height: '380px', 
+          height: '400px',
           width: '95%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: {xs:'center', md:'flex-start' },
           color: '#fff',
-          textAlign: 'center',
+          textAlign: {xs:'center', md:'left'},
           margin: '0 auto',
           borderRadius: '40px',
         }}
       >
-        <h1>¡Bienvenido a MediPlan+!</h1>
-      </Box>
-      <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px', alignItems: 'center' }}>
-        <h2 style={{ textAlign: "center" }}>Comienza a armar tu kit</h2>
-
-        <Box sx={{ display: 'flex' }}>
-          <Box sx={{ flexGrow: 1 }} />
-          <IconButton color="inherit" onClick={toggleFilterDrawer(true)} >
-            <FilterListIcon />
-          </IconButton>
-          <ButtonGroup variant="outlined" aria-label="Basic button group" sx={{ justifyContent: "center", paddingX: 5 }}>
-            <Button
-            onClick={() => setView('productos')} 
-            variant={view === 'productos' ? 'contained' : 'outlined'}
-            sx={{
-              backgroundColor: view === 'productos' ? '#1b986e' : 'transparent',
-              color: view === 'productos' ? '#fff' : '#1b986e',
-              borderColor: '#1b986e',
-              '&:hover': {
-                backgroundColor: view === 'productos' ? '#157f59' : '#e6f7f1',
-                borderColor: '#157f59',
-              }
-            }}
-            >
-              Ver productos</Button>
-            <Button
-            onClick={() => setView('tiendas')} 
-            variant={view === 'tiendas' ? 'contained' : 'outlined'}
-            
-            sx={{
-              backgroundColor: view === 'tiendas' ? '#1b986e' : 'transparent',
-              color: view === 'tiendas' ? '#fff' : '#1b986e',
-              borderColor: '#1b986e',
-              '&:hover': {
-                backgroundColor: view === 'tiendas' ? '#157f59' : '#e6f7f1',
-                borderColor: '#157f59',
-              }
-            }}>
-              Ver tiendas</Button>
-          </ButtonGroup>
-          <Box sx={{ width: '40px' }} /> 
+        <Box
+          sx={{
+            width: { xs: '100%', md: '80%' },
+            padding: '50px', 
+          }}
+        >
+          <Typography variant="h1" sx={{ fontWeight: 'bold', fontSize: { xs: '2.5rem', md: '3.8rem' }, pb: '15px' }}>
+            ¡Bienvenido a MediPlan+!
+          </Typography>
+          <Typography variant="h4" sx={{ fontWeight: 'normal', fontSize: { xs: '1.5rem', md: '2rem' } }}>
+            Tu salud a un click de distancia
+          </Typography>
         </Box>
+      </Box>
+      <Container sx={{ display: 'flex', flexDirection: 'column', mt: '40px', mb: '60px', alignItems: 'center' }}>
+        <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '12px' }}>
+          Comienza a armar tu kit
+        </Typography>
 
-      </Container>
-      <Container>
-        {view === 'productos' ? (
-          <ProductoBody productosData={productosData} />
-        ) : (
-            <BoticaBody boticasData={boticasData} />
-          )
-        }
-      </Container>
-      <FilterDrawer isOpen={isFilterOpen} toggleDrawer={toggleFilterDrawer} />
+        </Container>
     </div>
   )
 
