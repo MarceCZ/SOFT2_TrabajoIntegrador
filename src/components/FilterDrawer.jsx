@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
-import { Box, Typography, Slider, FormGroup, FormControlLabel, Checkbox, Button, Grid } from '@mui/material';
+import { Box, Typography, Slider, FormGroup, FormControlLabel, Checkbox, Button, Grid, TextField } from '@mui/material';
 import { FilterContext } from './FilterContext';
 
 const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
-    const { 
-        priceRange, 
-        updatePriceRange, 
-        boticaName, 
-        updateBoticaName, 
-        marcaName, 
-        updateMarcaName, 
-        resetFilters 
+    const {
+        priceRange,
+        updatePriceRange,
+        boticaName,
+        updateBoticaName,
+        marcaName,
+        updateMarcaName,
+        medicamentoName,
+        updateMedicamentoName,
+        resetFilters
     } = useContext(FilterContext);
 
     const handleSliderChange = (event, newValue) => {
@@ -30,15 +32,40 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
     return (
         <Grid container justifyContent="flex-start">
             <Grid>
-                <Box 
-                    sx={{ 
-                        padding: 2, 
+                <Box
+                    sx={{
+                        padding: 2,
                         width: '100%',
-                        overflowY: 'auto', 
                         maxWidth: '450px',
                     }}
                 >
                     <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold', textAlign: 'left' }}>Filtros</Typography>
+
+                    <TextField
+                        label="Buscar Medicamento"
+                        variant="outlined"
+                        value={medicamentoName}
+                        onChange={(e) => updateMedicamentoName(e.target.value)}
+                        sx={{
+                            mt: 1,
+                            mb: 2,
+                            '& label.Mui-focused': {
+                                color: '#1b986e',
+                            },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: '#1b986e',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#1b986e',
+                                },
+                                '&.Mui-focused fieldset': { 
+                                    borderColor: '#1b986e',
+                                },
+                            },
+                        }}
+                    />
+
 
                     <Typography variant="body1" sx={{ textAlign: 'left' }}>Rango de Precio:</Typography>
                     <Box
@@ -113,10 +140,10 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
                         ))}
                     </FormGroup>
 
-                    <Button 
-                        variant="outlined" 
-                        color="secondary" 
-                        onClick={resetFilters} 
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={resetFilters}
                         sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e', width: '100%' }}
                     >
                         Resetear Filtros

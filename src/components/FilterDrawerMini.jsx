@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Dialog, Box, Typography, Slider, Grid, Button, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { Dialog, Box, Typography, Slider, Grid, Button, FormGroup, FormControlLabel, Checkbox, TextField } from '@mui/material';
 import { FilterContext } from './FilterContext';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
@@ -12,6 +12,8 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
         updateBoticaName, 
         marcaName, 
         updateMarcaName, 
+        medicamentoName,
+        updateMedicamentoName,
         resetFilters 
     } = useContext(FilterContext);
 
@@ -29,6 +31,10 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
         updateMarcaName(value, checked);
     };
 
+    const handleMedicamentoChange = (event) => {
+        updateMedicamentoName(event.target.value);
+    };
+
     return (
         <Dialog open={isOpen} onClose={toggleDrawer} maxWidth="sm" fullWidth>
             <Box sx={{ padding: 2, display: 'flex', flexDirection: 'column' }}>
@@ -40,8 +46,32 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
                 </Box>
 
                 <Box sx={{ mt: 2 }}>
+                <TextField
+                        fullWidth
+                        label="Buscar Medicamento"
+                        variant="outlined"
+                        value={medicamentoName}
+                        onChange={(e) => updateMedicamentoName(e.target.value)}
+                        sx={{
+                            mt: 1,
+                            mb: 2,
+                            '& label.Mui-focused': {
+                                color: '#1b986e',
+                            },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: '#1b986e',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#1b986e',
+                                },
+                                '&.Mui-focused fieldset': { 
+                                    borderColor: '#1b986e',
+                                },
+                            },
+                        }}
+                    />
                     <Typography variant="body1">Rango de Precio:</Typography>
-
                     <Slider
                         value={priceRange}
                         onChange={handleSliderChange}

@@ -6,26 +6,22 @@ import Typography from '@mui/material/Typography';
 
 const ProductoCardList = (props) => {
   // Extraer los filtros del contexto (precio, botica y marca)
-  const { priceRange, boticaName, marcaName } = useContext(FilterContext); 
+  const { priceRange, boticaName, marcaName, medicamentoName } = useContext(FilterContext); 
   const [filteredList, setFilteredList] = useState(props.list); // Estado para la lista filtrada
 
   useEffect(() => {
     // Filtrar productos por rango de precios, botica y marca
     const newFilteredList = props.list.filter((product) => {
       const withinPriceRange = product.precio >= priceRange[0] && product.precio <= priceRange[1];
-
-      // Si no hay boticas seleccionadas, mostrar todos los productos de todas las boticas
       const matchesBoticaName = boticaName.length === 0 || boticaName.includes(product.botica);
-
-      // Si no hay marcas seleccionadas, mostrar todos los productos de todas las marcas
       const matchesMarcaName = marcaName.length === 0 || marcaName.includes(product.marca);
+      const matchMedicamentoName = product.nombre.toLowerCase().includes(medicamentoName.toLowerCase());
 
-      // Retorna solo los productos que cumplen los tres criterios
-      return withinPriceRange && matchesBoticaName && matchesMarcaName;
+      return withinPriceRange && matchesBoticaName && matchesMarcaName && matchMedicamentoName;
     });
 
     setFilteredList(newFilteredList); // Actualizar el estado de la lista filtrada
-  }, [priceRange, boticaName, marcaName, props.list]); // Dependencias de useEffect
+  }, [priceRange, boticaName, marcaName, medicamentoName, props.list]); // Dependencias de useEffect
 
   return (
     <Grid

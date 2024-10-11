@@ -15,7 +15,8 @@ const ProductFilter = () => {
       precioMinimo: 0,
       precioMaximo: Infinity,
       botica: '',
-      marca: ''
+      marca: '',
+      nombre: '',
     });
   };
 
@@ -53,6 +54,15 @@ const ProductFilter = () => {
         type="text"
         name="marca"
         value={filters.marca}
+        onChange={handleFilterChange}
+        sx={{ marginRight: '10px' }}
+      />
+      {/* Campo para filtrar por medicamento */}
+      <TextField
+        label="Medicamento"
+        type="text"
+        name="medicamento"
+        value={filters.medicamento}
         onChange={handleFilterChange}
         sx={{ marginRight: '10px' }}
       />
