@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Box, Container, Typography } from '@mui/material';
-
+import ProductoBody from '../components/ProductoBody';
+import data from '../data/data.json';
 
 
 const ClientMainPage = () => {
-
+  const productosData = data.productos;
   return (
     <div style={{ margin: '100px auto 0' }}>
       <Header />
@@ -16,9 +17,9 @@ const ClientMainPage = () => {
           width: '95%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: {xs:'center', md:'flex-start' },
+          justifyContent: { xs: 'center', md: 'flex-start' },
           color: '#fff',
-          textAlign: {xs:'center', md:'left'},
+          textAlign: { xs: 'center', md: 'left' },
           margin: '0 auto',
           borderRadius: '40px',
         }}
@@ -26,7 +27,7 @@ const ClientMainPage = () => {
         <Box
           sx={{
             width: { xs: '100%', md: '80%' },
-            padding: '50px', 
+            padding: '50px',
           }}
         >
           <Typography variant="h1" sx={{ fontWeight: 'bold', fontSize: { xs: '2.5rem', md: '3.8rem' }, pb: '15px' }}>
@@ -38,11 +39,15 @@ const ClientMainPage = () => {
         </Box>
       </Box>
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '40px', mb: '60px', alignItems: 'center' }}>
-        <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '12px' }}>
+        <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '30px' }}>
           Comienza a armar tu kit
         </Typography>
+        <Container>
+          <ProductoBody productosData={productosData} />
 
         </Container>
+
+      </Container>
     </div>
   )
 

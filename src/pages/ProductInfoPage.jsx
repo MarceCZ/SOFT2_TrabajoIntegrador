@@ -56,9 +56,9 @@ const ProductInfoPage = () => {
     }
 
     return (
-        <div style={{ margin: '60px auto 0' }}>
+        <div style={{ margin: '50px auto 0' }}>
             <Header></Header>
-            <Box sx={{ padding: 4, maxWidth: '100%', backgroundColor: '#f2f2f2', margin: 'auto', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <Box sx={{ padding: 4, maxWidth: '100%', backgroundColor: '#f2f2f2', minHeight: '84.5vh', margin: 'auto', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                 <Box sx={{ marginBottom: 2, textAlign: 'left', ml:{md:'3%'}}}>
                     <Button
                         component={Link}
