@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: white;+
 }
 
 .App-link {
@@ -46,3 +46,10 @@
 * {
   font-family: 'Gontserrat' !important;
 }
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Gontserrat', sans-serif;
+}
+

@@ -23,10 +23,26 @@ const ClientMainPage = () => {
   };
 
   return (
-    <div>
+    <div style={{margin: '100px auto 0'}}>
       <Header />
+      <Box
+        sx={{
+          backgroundColor: '#1b986e',
+          height: '380px', 
+          width: '95%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fff',
+          textAlign: 'center',
+          margin: '0 auto',
+          borderRadius: '40px',
+        }}
+      >
+        <h1>¡Bienvenido a MediPlan+!</h1>
+      </Box>
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px', alignItems: 'center' }}>
-        <h1 style={{ textAlign: "center" }}>Comienza a armar tu kit</h1>
+        <h2 style={{ textAlign: "center" }}>Comienza a armar tu kit</h2>
 
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ flexGrow: 1 }} />
