@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Toolbar } from '@mui/material';
 import Header from '../components/Header';
 import { CartContext } from '../components/CartContext';
 import CheckoutForm from '../components/CheckOutPage/CheckoutForm/CheckoutForm';
@@ -15,8 +15,9 @@ const CheckOutPage = () => {
   const { isDialogOpen, handlePaymentClick, handleCloseDialog } = usePaymentDialog();
 
   return (
-    <div style={{ margin: '100px auto 0' }}>
+    <div>
       <Header />
+      <Toolbar/>
       <Grid container>
         {/* Formulario */}
         <CheckoutForm

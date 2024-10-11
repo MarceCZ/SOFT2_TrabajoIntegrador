@@ -1,22 +1,44 @@
-import React, { useContext } from 'react'
-import { Drawer, Box, Typography, Divider } from '@mui/material'
-import { CartContext } from '../CartContext'
-import { useNavigate } from 'react-router-dom'
-import EmptyCartDrawer from './EmptyCartDrawer'
-import CartDrawerWithProducts from './CartDrawerWithProducts'
+import React, { useContext, useEffect } from 'react';
+import { Drawer, Box, Typography, Divider } from '@mui/material';
+import { CartContext } from '../CartContext';
+import { useNavigate } from 'react-router-dom';
+import EmptyCartDrawer from './EmptyCartDrawer';
+import CartDrawerWithProducts from './CartDrawerWithProducts';
 
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
   const { cartProducts, removeFromCart, totalCartPrice } = useContext(CartContext);
   const navigate = useNavigate();
 
+  // Manejar la eliminación de productos del carrito
   const handleRemove = (product) => {
     removeFromCart(product);
   };
 
+  // Detectar el cambio en el tamaño de la ventana y redirigir si es pequeño
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 600 && isOpen) {
+        navigate('/cart');  // Redirige a la página del carrito
+        toggleDrawer(false); // Cierra el Drawer
+      }
+    };
+
+    // Agrega el event listener cuando se monta el componente
+    window.addEventListener('resize', handleResize);
+
+    // Llama al handler de inmediato para verificar el tamaño inicial
+    handleResize();
+
+    // Limpia el event listener cuando se desmonta el componente
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    };
+  }, [isOpen, navigate, toggleDrawer])
+
   return (
     <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
       <Box sx={{ 
-        width: 460, 
+        width: 450,  // El ancho del Drawer cuando no se redirige
         display: 'flex', 
         flexDirection: 'column', 
         height: '100%', 

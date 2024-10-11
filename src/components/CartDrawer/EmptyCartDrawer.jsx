@@ -7,14 +7,18 @@ const EmptyCartDrawer = () => (
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center',
-      flexDirection: 'column' 
+      flexDirection: 'column',
+      textAlign: 'center', 
+      padding: 3, 
     }}>
     <img 
       src="https://static.vecteezy.com/system/resources/previews/009/885/111/original/sad-but-relieved-face-emoji-3d-illustration-png.png" 
       alt="Mi kit" 
-      style={{ width: 150, height: 150 }} 
+      style={{ width: 120, height: 120, marginBottom: 20 }} 
     />
-    <Typography variant="body1">No hay productos en tu kit</Typography>
+    <Typography variant="h6" fontWeight="bold" color="textSecondary">
+      No hay productos en tu kit
+    </Typography>
   </Box>
 )
 

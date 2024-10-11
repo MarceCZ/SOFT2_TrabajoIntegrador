@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button, Divider } from '@mui/material';
+import { Box, Typography, Divider, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const CartKitSummary = ({ totalCartPrice }) => {
@@ -8,7 +8,7 @@ const CartKitSummary = ({ totalCartPrice }) => {
   return (
     <Box
       sx={{
-        padding: '20px',
+        padding: { xs: '10px', md: '20px' },
         borderRadius: '12px',
         backgroundColor: '#f9fafb',
       }}
@@ -19,6 +19,7 @@ const CartKitSummary = ({ totalCartPrice }) => {
           marginBottom: '10px',
           fontWeight: 'bold',
           textAlign: 'center',
+          fontSize: { xs: '18px', md: '24px' },
         }}
       >
         Resumen de compra
@@ -26,20 +27,14 @@ const CartKitSummary = ({ totalCartPrice }) => {
       <Divider sx={{ mb: 1 }} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
         <Typography variant="body1">Subtotal</Typography>
-        <Typography variant="body1">
-          S/ {totalCartPrice}
-        </Typography>
+        <Typography variant="body1">S/ {totalCartPrice}</Typography>
       </Box>
       <Divider sx={{ my: 1 }} />
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
-        <Typography 
-          variant="body1" 
-          sx={{ fontWeight: 'bold' }}>
-            Total a pagar
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+          Total a pagar
         </Typography>
-        <Typography 
-          variant="body1" 
-          sx={{ fontWeight: 'bold' }}>
+        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
           S/ {totalCartPrice}
         </Typography>
       </Box>

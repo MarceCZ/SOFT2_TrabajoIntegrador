@@ -25,8 +25,8 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
   ];
 
   return (
-    <Grid item xs={6.5}>
-      <Box sx={{ padding: 2, marginLeft: '30vh' }}>
+    <Grid item xs={12} md={8} lg={6.5}>
+      <Box sx={{ padding: 2, marginLeft: { sm: '5vh', md: '10vh', lg: '30vh' }, maxWidth: '100%' }}>
         <Button onClick={() => navigate('/cart')} sx={{ marginBottom: 2, top: 16, color: '#1b986e' }}>← Volver</Button>
         <Typography variant="h5" gutterBottom>¡Estas muy cerca de tener tu kit!</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
@@ -47,7 +47,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
           </Grid>
 
           {/* Apellido Paterno y Apellido Materno */}
-          <Grid item xs={6} sx={{ mt: 0.5 }}>
+          <Grid item xs={12} sm={6} sx={{ mt: 0.5 }}>
             <TextField
               label="Apellido Paterno"
               name="apellidoPaterno"
@@ -57,7 +57,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
             />
           </Grid>
 
-          <Grid item xs={6} sx={{ mt: 0.5 }}>
+          <Grid item xs={12} sm={6} sx={{ mt: 0.5 }}>
             <TextField
               label="Apellido Materno"
               name="apellidoMaterno"
@@ -68,7 +68,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
           </Grid>
 
           {formFields.map((field, index) => (
-            <Grid item xs={field.xs} key={index} sx={{ mt: 0.5 }}>
+            <Grid item xs={12} sm={field.xs} key={index} sx={{ mt: 0.5 }}>
               <TextField
                 label={field.label}
                 name={field.name}
@@ -80,7 +80,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
           ))}
 
           {/* Tipo de documento y Número de documento */}
-          <Grid item xs={6} sx={{ mt: 0.5 }}>
+          <Grid item xs={12} sm={6} sx={{ mt: 0.5 }}>
             <FormControl fullWidth>
               <InputLabel sx={{ pl: 1 }}>Tipo de documento</InputLabel>
               <Select
@@ -96,7 +96,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
             </FormControl>
           </Grid>
 
-          <Grid item xs={6} sx={{ mt: 0.5 }}>
+          <Grid item xs={12} sm={6} sx={{ mt: 0.5 }}>
             <TextField
               label="Número de documento"
               name="numeroDocumento"
@@ -112,7 +112,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
             variant="contained"
             color="success"
             size="large"
-            sx={{ borderRadius: '25px', padding: '1.5vh 8vh', fontWeight: 'bold' }}
+            sx={{ borderRadius: '25px', padding: { xs: '1vh 4vh', sm: '1.5vh 6vh', md: '1.5vh 8vh' }, fontSize: { xs: '14px', md: '16px' }, fontWeight: 'bold' }}
             disabled={!isFormValid}
             onClick={handlePaymentClick}
           >
