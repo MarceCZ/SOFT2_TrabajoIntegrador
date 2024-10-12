@@ -25,6 +25,7 @@ const TablaProductos = ({ productos, onDeleteClick }) => {
             <TableCell align="right">Receta</TableCell>
             <TableCell align="right"></TableCell>
             
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

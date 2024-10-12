@@ -9,12 +9,12 @@ import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
 import data from '../data/data.json';
 import FormDialog from '../components/FormDialog';
 
-//import productoApi from '../api/producto';
+import productoApi from '../api/producto';
 import boticaApi from '../api/botica';
 
 const BusinessProductsPage = () => {
   const [open, setOpen] = useState(false);
-    
+  const [productId, setProductId] = useState(null);
   const [productos, setProductos] = useState([]);
   const [nombreBotica, setNombreBotica] = useState('');
   const [idBotica, setIdBotica] = useState(1);
@@ -24,14 +24,7 @@ const BusinessProductsPage = () => {
     handleOnLoad();
   }, []);
 
-  /*const handleOnLoad = async () => {
-    try {
-      const productosData = await productoApi.findAll();
-      setProductos(productosData);
-    } catch (error) {
-      console.error('Error fetching data: ', error);
-    }
-  }*/
+  
     const handleOnLoad = async () => {
       try {
         const botica = await boticaApi.findOneComplete(idBotica);
@@ -42,14 +35,18 @@ const BusinessProductsPage = () => {
       }
     }
 
-    const handleDeleteClick = (productId) => {
+    const handleDeleteClick = (id) => {
       setDeleteDialogOpen(true);
+      setProductId(id);
     };
 
     const handleDeleteConfirm = async () => {
       try {
-        // Lógica para eliminar el producto usando su ID
+        console.log('Deleting product with id: ', productId);
+        await productoApi.remove(productId);
         setDeleteDialogOpen(false);
+        setProductId(null);
+        handleOnLoad();
       } catch (error) {
         console.error('Error deleting product: ', error);
       }
@@ -57,6 +54,7 @@ const BusinessProductsPage = () => {
 
     const handleDeleteCancel = () => {
       setDeleteDialogOpen(false);
+      setProductId(null);
     };
 
 
@@ -73,7 +71,6 @@ const BusinessProductsPage = () => {
   return (
     <div style={{ margin: '100px auto 0' }}>
       <BusinessHeader />
-      <Toolbar />
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>
         <h1 style={{ textAlign: 'center' }}>{nombreBotica}</h1>
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: '20px' }}>

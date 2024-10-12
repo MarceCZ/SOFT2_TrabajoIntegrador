@@ -21,14 +21,10 @@ const Fila = ({ data, onDeleteClick }) => {
       <TableCell align="right">{data.stock}</TableCell>
       <TableCell align="right"><Checkbox checked={data.receta} disabled /></TableCell>
       <TableCell align="right">
-        <IconButton>
           <EditIcon />
-        </IconButton>
       </TableCell>
       <TableCell align="right">
-        <IconButton>
           <DeleteIcon onClick={() => onDeleteClick(data.id)}/>
-        </IconButton>
       </TableCell>
     </TableRow>
   );
