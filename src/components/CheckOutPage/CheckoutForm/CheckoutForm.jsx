@@ -1,11 +1,12 @@
 import React from 'react'
-import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button } from '@mui/material'
+import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button, Tooltip } from '@mui/material'
 import PersonPinIcon from '@mui/icons-material/PersonPin'
+import InfoIcon from '@mui/icons-material/Info'
 import { useNavigate } from 'react-router-dom'
 
 const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentClick }) => {
   const navigate = useNavigate();
-  const { nombre, apellidoPaterno, apellidoMaterno, direccion, departamentoMzReferencia, distrito, celular, tipoDocumento, numeroDocumento, email } = formData;
+  const { nombre, apellidoPaterno, apellidoMaterno, direccion, departamentoMzReferencia, distrito, celular, tipoDocumento, numeroDocumento, email, tipoSuscripcion } = formData;
 
   // Estilos comunes para los campos
   const commonInputProps = {
@@ -104,6 +105,35 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
               required
             />
           </Grid>
+
+          {/* Título para la suscripción con icono */}
+          <Grid item xs={12} sx={{ mt: 2, ml: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography sx={{ ml: 1, fontWeight: 'bold' }}>Elige el tipo de suscripción</Typography>
+              <Tooltip title="Los productos de su kit se entregarán el 1 de cada mes según el plan contratado.">
+                <InfoIcon sx={{ ml: 1 }} />
+              </Tooltip>
+            </Box>
+          </Grid>
+
+          {/* Tipo de suscripción */}
+          <Grid item xs={12} sm={6} sx={{ mt: 0.5 }}>
+            <FormControl fullWidth>
+              <InputLabel sx={{ pl: 1 }}>Tipo de suscripción</InputLabel>
+              <Select
+                label="Tipo de suscripción"
+                name="tipoSuscripcion"
+                value={tipoSuscripcion}
+                onChange={handleInputChange}
+                sx={{ borderRadius: '25px', pl: 1 }}
+              >
+                <MenuItem value="3meses">3 meses</MenuItem>
+                <MenuItem value="6meses">6 meses</MenuItem>
+                <MenuItem value="1anio">1 año</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
@@ -123,4 +153,4 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
   )
 }
 
-export default CheckoutForm
+export default CheckoutForm;

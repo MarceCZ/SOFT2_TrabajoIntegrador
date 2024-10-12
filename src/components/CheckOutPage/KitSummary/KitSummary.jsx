@@ -26,7 +26,7 @@ const KitSummary = ({ cartProducts, totalCartPrice }) => {
           <Divider sx={{ my: 1 }} />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Total a pagar</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Total a pagar cada mes</Typography>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>S/ {totalCartPrice.toFixed(2)}</Typography>
           </Box>
         </Box>
