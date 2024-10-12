@@ -16,10 +16,17 @@ const DeleteConfirmationDialog = ({ open, onConfirm, onCancel }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onCancel} color="primary">
+        <Button onClick={onCancel} sx={{
+              mt: 2,
+              backgroundColor: '#1b986e',  
+              color: '#fff',                
+              '&:hover': {
+               backgroundColor: '#157a57', 
+              },
+            }} autoFocus>
           Cancelar
         </Button>
-        <Button onClick={onConfirm} color="primary" autoFocus>
+        <Button onClick={onConfirm} sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e' }}>
           Eliminar
         </Button>
       </DialogActions>
