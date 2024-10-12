@@ -81,7 +81,7 @@ const BusinessProductsPage = () => {
             <Button  onClick={handleClickOpen}sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e' }}
               >Agregar Producto</Button>
           </ButtonGroup>
-          <FormDialog open={open} handleClose={handleClose} />
+          <FormDialog open={open} handleClose={handleClose} idBotica={idBotica}/>
         </Box>
         <TablaProductos productos={productos} onDeleteClick={handleDeleteClick}/> {/* Se pasa la variable de estado al componente TablaProductos */}
         <DeleteConfirmationDialog
