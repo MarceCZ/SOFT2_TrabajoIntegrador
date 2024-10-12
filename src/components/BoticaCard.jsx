@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const BoticaCard = (props) => {
   const navigate = useNavigate()
 
+  const CardOnClick = () => {
+    const formattedBotica = props.nombre.replace(/\s+/g, '-').toLowerCase(); // Formatear nombre de la botica
+    navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`, { state: { botica: props } });
+  };
+
   return (
     <Card   
       item xs={4} 
@@ -15,7 +20,7 @@ const BoticaCard = (props) => {
         minHeight: "320px", 
         borderRadius: "10px", 
         boxShadow: 2 }}>
-      <CardActionArea>
+      <CardActionArea onClick={CardOnClick}>
         <CardMedia
           component="img"
           alt={props.nombre}

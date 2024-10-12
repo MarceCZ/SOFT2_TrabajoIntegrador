@@ -62,7 +62,7 @@ const ProductInfoPage = () => {
                 <Box sx={{ marginBottom: 2, textAlign: 'left', ml:{md:'3%'}}}>
                     <Button
                         component={Link}
-                        to="/"
+                        to="/arma-tu-kit"
                         sx={{
                             color: '#1b986e',
                             fontSize: '16px',

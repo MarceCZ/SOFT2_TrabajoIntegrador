@@ -26,6 +26,34 @@ const ArmaTuKitPage = () => {
     return (
         <div style={{ margin: '100px auto 0' }}>
             <Header />
+            <Box
+                sx={{
+                    backgroundColor: '#1b986e',
+                    height: '220px',
+                    width: '95%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#fff',
+                    textAlign: 'center',
+                    margin: '0 auto',
+                    borderRadius: '40px',
+                }}
+            >
+                <Box
+                    sx={{
+                        width: { xs: '100%', md: '80%' },
+                        padding: '50px',
+                    }}
+                >
+                    <Typography variant="h1" sx={{ fontWeight: 'bold', fontSize: { xs: '2rem', md: '3.2rem' }, pb: '15px' }}>
+                        Arma tu kit
+                    </Typography>
+                    <Typography variant="h4" sx={{ fontWeight: 'normal', fontSize: { xs: '1rem', md: '1.4rem' } }}>
+                        Encuentra aquí lo que necesites
+                    </Typography>
+                </Box>
+            </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', mt: '40px', mb: '60px', padding: 0 }}>
                 {view === 'productos' && (
                     <>
@@ -60,11 +88,11 @@ const ArmaTuKitPage = () => {
                     </>
                 )}
                 <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2.2rem', pb: '12px' }}>
-                        Comienza a armar tu kit
+                    <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2rem', pb: '20px' }}>
+                        ¿Qué prefieres ver?
                     </Typography>
                     
-                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
                         <ButtonGroup variant="outlined" aria-label="Basic button group">
                             <Button
                                 onClick={() => setView('productos')}

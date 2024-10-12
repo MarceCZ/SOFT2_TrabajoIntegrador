@@ -13,7 +13,7 @@
       "stock": 100,
       "requiere_receta": false,
       "id_botica": 1,
-      "botica": "Botica Mi Salud",
+      "botica": "Mifarma",
       "path": "/boticas/1/productos/paracetamol-500mg-genfar"
     },
     {
@@ -29,7 +29,7 @@
       "stock": 200,
       "requiere_receta": false,
       "id_botica": 1,
-      "botica": "Botica Mi Salud",
+      "botica": "Mifarma",
       "path": "/boticas/1/productos/ibuprofeno-400mg-mk"
     },
     {
@@ -45,7 +45,7 @@
       "stock": 50,
       "requiere_receta": true,
       "id_botica": 2,
-      "botica": "Farmacia Peruana",
+      "botica": "Inkafarma",
       "path": "/boticas/2/productos/amoxicilina-500mg-bayer"
     },
     {
@@ -61,7 +61,7 @@
       "stock": 80,
       "requiere_receta": false,
       "id_botica": 2,
-      "botica": "Farmacia Peruana",
+      "botica": "Inkafarma",
       "path": "/boticas/2/productos/clorfenamina-4mg-sanofi"
     },
     {
@@ -77,7 +77,7 @@
       "stock": 30,
       "requiere_receta": true,
       "id_botica": 3,
-      "botica": "Botica del Pueblo",
+      "botica": "Farmacia Universal",
       "path": "/boticas/3/productos/losartan-50mg-teva"
     },
     {
@@ -93,7 +93,7 @@
       "stock": 120,
       "requiere_receta": false,
       "id_botica": 3,
-      "botica": "Botica del Pueblo",
+      "botica": "Farmacia Universal",
       "path": "/boticas/3/productos/omeprazol-20mg-sandoz"
     }
   ],
