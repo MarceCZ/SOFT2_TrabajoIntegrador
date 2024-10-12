@@ -22,7 +22,7 @@ const CartKitSummary = ({ totalCartPrice }) => {
           fontSize: { xs: '18px', md: '24px' },
         }}
       >
-        Resumen de compra
+        Resumen de mi suscripción
       </Typography>
       <Divider sx={{ mb: 1 }} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>

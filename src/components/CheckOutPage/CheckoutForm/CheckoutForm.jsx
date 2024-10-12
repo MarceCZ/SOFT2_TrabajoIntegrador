@@ -33,7 +33,6 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
           <PersonPinIcon fontSize="large" />
           <Typography sx={{ ml: 1, fontWeight: 'bold' }}>Completa algunos de tus datos</Typography>
         </Box>
-
         <Grid container spacing={2} sx={{ mt: 0.5 }}>
           {/* Campo Nombre completo */}
           <Grid item xs={12} sx={{ mt: 0.5 }}>

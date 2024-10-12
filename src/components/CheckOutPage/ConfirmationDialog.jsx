@@ -57,15 +57,22 @@ const ConfirmationDialog = ({ isOpen, handleClose }) => {
       </DialogContent>
 
       <DialogActions>
-        <Button
-          onClick={handleBackToHome}
-          color="primary"
-          variant="contained"
-          fullWidth
-          sx={{ borderRadius: '25px', padding: '12px', fontWeight: 'bold' }}
-        >
-          Volver a la página principal
-        </Button>
+      <Button
+        onClick={handleBackToHome}
+        variant="contained"
+        fullWidth
+        sx={{ 
+          backgroundColor: '#2c3e50', 
+          borderRadius: '25px', 
+          padding: '12px', 
+          fontWeight: 'bold',
+          '&:hover': {
+            backgroundColor: '#1a242f',  
+          }
+        }}
+      >
+        Volver a la página principal
+      </Button>
       </DialogActions>
     </Dialog>
   )

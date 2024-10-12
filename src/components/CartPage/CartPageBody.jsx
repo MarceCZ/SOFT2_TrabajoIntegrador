@@ -5,7 +5,7 @@ import useCart from '../../hooks/useCart';
 import { Box, Grid, Typography } from '@mui/material';
 
 const CartPageBody = () => {
-    const { cartProducts, handleRemove, minusOne, plusOne, totalCartPrice } = useCart();
+    const { cartProducts, handleRemove, minusOne, plusOne, totalCartPrice } = useCart()
 
     return(
         <>
@@ -40,4 +40,4 @@ const CartPageBody = () => {
     )
 }
 
-export default CartPageBody;
+export default CartPageBody
