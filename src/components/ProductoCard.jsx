@@ -16,7 +16,13 @@ const ProductoCard = (props) => {
   const CardOnClick = () => {
     const formattedNombre = props.nombre.replace(/\s+/g, '-').toLowerCase();
     const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
-    navigate(`/productinfo/${encodeURIComponent(formattedNombre)}/${encodeURIComponent(formattedBotica)}`, { state: { product: props } });  
+    navigate(`/productinfo/${encodeURIComponent(formattedNombre)}/${encodeURIComponent(formattedBotica)}`, { state: { product: props } });
+  }
+
+  const handleBoticaClick = (event) => {
+    event.stopPropagation();
+    const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
+    navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
   }
 
   // Manejar el click en el botón de agregar
@@ -96,6 +102,7 @@ const ProductoCard = (props) => {
             </Typography>
           </Box>
           <Chip label={props.botica}
+            onClick={handleBoticaClick}
             sx={{ fontSize: '10px', backgroundColor: 'lightgray' }} />
           <Container sx={{
             width: '100%',

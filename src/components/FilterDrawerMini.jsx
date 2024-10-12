@@ -4,7 +4,7 @@ import { FilterContext } from './FilterContext';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
-const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisponibles }) => {
+const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisponibles, decodedBotica }) => {
     const { 
         priceRange, 
         updatePriceRange, 
@@ -29,10 +29,6 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
     const handleMarcaChange = (event) => {
         const { value, checked } = event.target;
         updateMarcaName(value, checked);
-    };
-
-    const handleMedicamentoChange = (event) => {
-        updateMedicamentoName(event.target.value);
     };
 
     return (
@@ -83,30 +79,33 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
                     />
 
                     <Grid container spacing={2} sx={{ mt: 2 }}>
-                        <Grid item xs={6}>
-                            <Typography variant="body1">Botica</Typography>
-                            <FormGroup>
-                                {boticasDisponibles.map((botica, index) => (
-                                    <FormControlLabel
-                                        key={index}
-                                        control={
-                                            <Checkbox
-                                                checked={boticaName.includes(botica)}
-                                                onChange={handleBoticaChange}
-                                                value={botica}
-                                                sx={{
-                                                    color: '#1b986e',
-                                                    '&.Mui-checked': {
+                        {!decodedBotica && (
+                            <Grid item xs={6}>
+                                <Typography variant="body1">Botica</Typography>
+                                <FormGroup>
+                                    {boticasDisponibles.map((botica, index) => (
+                                        <FormControlLabel
+                                            key={index}
+                                            control={
+                                                <Checkbox
+                                                    checked={boticaName.includes(botica)}
+                                                    onChange={handleBoticaChange}
+                                                    value={botica}
+                                                    sx={{
                                                         color: '#1b986e',
-                                                    },
-                                                }}
-                                            />
-                                        }
-                                        label={botica}
-                                    />
-                                ))}
-                            </FormGroup>
-                        </Grid>
+                                                        '&.Mui-checked': {
+                                                            color: '#1b986e',
+                                                        },
+                                                    }}
+                                                />
+                                            }
+                                            label={botica}
+                                        />
+                                    ))}
+                                </FormGroup>
+                            </Grid>
+                        )}
+                        
                         <Grid item xs={6}>
                             <Typography variant="body1">Marca</Typography>
                             <FormGroup>
@@ -148,3 +147,4 @@ const FilterDrawerMini = ({ isOpen, toggleDrawer, boticasDisponibles, marcasDisp
 };
 
 export default FilterDrawerMini;
+

@@ -9,8 +9,10 @@ import data from '../data/data.json';
 import Header from '../components/Header';
 import { CartContext } from '../components/CartContext';  // Importar el contexto del carrito
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useNavigate } from 'react-router-dom';
 
 const ProductInfoPage = () => {
+    const navigate = useNavigate();
     const { nombre, botica } = useParams();  // Obtener nombre y botica desde la URL
 
     const decodedNombre = decodeURIComponent(nombre.replace(/-/g, ' '));
@@ -55,6 +57,12 @@ const ProductInfoPage = () => {
         }
     }
 
+    const handleBoticaClick = (event) => {
+        event.stopPropagation();
+        const formattedBotica = producto.botica.replace(/\s+/g, '-').toLowerCase();
+        navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
+      }
+
     return (
         <div style={{ margin: '50px auto 0' }}>
             <Header></Header>
@@ -89,7 +97,7 @@ const ProductInfoPage = () => {
                                 <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 1, fontSize: '26px' }}>
                                     {producto.nombre} | {producto.marca}
                                 </Typography>
-                                <Chip label={producto.botica} sx={{ marginBottom: 2, fontSize: '13px' }} />
+                                <Chip label={producto.botica} onClick={handleBoticaClick} sx={{ marginBottom: 2, fontSize: '13px' }} />
                                 <Typography variant="h4" color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '26px' }}>
                                     S/ {producto.precio.toFixed(2)}
                                 </Typography>

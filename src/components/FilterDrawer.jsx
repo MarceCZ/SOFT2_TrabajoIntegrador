@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Box, Typography, Slider, FormGroup, FormControlLabel, Checkbox, Button, Grid, TextField } from '@mui/material';
 import { FilterContext } from './FilterContext';
 
-const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
+const FilterDrawer = ({ boticasDisponibles, marcasDisponibles, decodedBotica }) => {
     const {
         priceRange,
         updatePriceRange,
@@ -66,7 +66,6 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
                         }}
                     />
 
-
                     <Typography variant="body1" sx={{ textAlign: 'left' }}>Rango de Precio:</Typography>
                     <Box
                         sx={{
@@ -92,29 +91,33 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
                         />
                     </Box>
 
-                    <Typography variant="body1" sx={{ mt: 2, textAlign: 'left' }}>Botica:</Typography>
-                    <FormGroup>
-                        {boticasDisponibles.map((botica, index) => (
-                            <FormControlLabel
-                                key={index}
-                                control={
-                                    <Checkbox
-                                        checked={boticaName.includes(botica)}
-                                        onChange={handleBoticaChange}
-                                        value={botica}
-                                        sx={{
-                                            color: '#1b986e',
-                                            '&.Mui-checked': {
-                                                color: '#1b986e',
-                                            },
-                                        }}
+                    {!decodedBotica && (
+                        <>
+                            <Typography variant="body1" sx={{ mt: 2, textAlign: 'left' }}>Botica:</Typography>
+                            <FormGroup>
+                                {boticasDisponibles.map((botica, index) => (
+                                    <FormControlLabel
+                                        key={index}
+                                        control={
+                                            <Checkbox
+                                                checked={boticaName.includes(botica)}
+                                                onChange={handleBoticaChange}
+                                                value={botica}
+                                                sx={{
+                                                    color: '#1b986e',
+                                                    '&.Mui-checked': {
+                                                        color: '#1b986e',
+                                                    },
+                                                }}
+                                            />
+                                        }
+                                        label={botica}
+                                        sx={{ typography: 'body2', textAlign: 'left' }}
                                     />
-                                }
-                                label={botica}
-                                sx={{ typography: 'body2', textAlign: 'left' }}
-                            />
-                        ))}
-                    </FormGroup>
+                                ))}
+                            </FormGroup>
+                        </>
+                    )}
 
                     <Typography variant="body1" sx={{ mt: 2, textAlign: 'left' }}>Marca:</Typography>
                     <FormGroup>
@@ -155,3 +158,4 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
 };
 
 export default FilterDrawer;
+
