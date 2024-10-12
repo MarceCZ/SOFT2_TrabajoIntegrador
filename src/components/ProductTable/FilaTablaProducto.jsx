@@ -2,7 +2,6 @@ import React from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -24,7 +23,7 @@ const Fila = ({ data, onDeleteClick }) => {
           <EditIcon />
       </TableCell>
       <TableCell align="right">
-          <DeleteIcon onClick={() => onDeleteClick(data.id)}/>
+          <DeleteIcon sx={{ color: '#f28b82' }} onClick={() => onDeleteClick(data.id)}/>
       </TableCell>
     </TableRow>
   );

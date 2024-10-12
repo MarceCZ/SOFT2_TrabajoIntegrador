@@ -226,10 +226,17 @@ return (
       {error ? <p style={{ color: 'red' }}>{error}</p> : <p>&nbsp;</p>}
     </DialogContent>
     <DialogActions>
-      <Button onClick={handleClose} color="primary">
+      <Button onClick={handleClose} sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e' }}>
         Cancelar
       </Button>
-      <Button type="submit" color="primary" onClick={handleSubmit}>
+      <Button type="submit" onClick={handleSubmit} sx={{
+              mt: 2,
+              backgroundColor: '#1b986e',  
+              color: '#fff',                
+              '&:hover': {
+               backgroundColor: '#157a57', 
+              },
+            }}>
         Enviar
       </Button>
     </DialogActions>

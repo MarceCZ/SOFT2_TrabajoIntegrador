@@ -1,14 +1,11 @@
 import BusinessHeader from '../components/BusinessHeader';
-//import productosData from '../data/data.json'; // Este es el JSON que contiene los datos
-import { Container, Box, ButtonGroup, Toolbar } from '@mui/material';
+import { Container, Box,} from '@mui/material';
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import TablaProductos from '../components/TablaProducto'; // Importamos el componente de la tabla
+import TablaProductos from '../components/ProductTable/TablaProducto';
 import { useState, useEffect } from 'react';
 import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
-import data from '../data/data.json';
 import FormDialog from '../components/FormDialog';
-
 import productoApi from '../api/producto';
 import boticaApi from '../api/botica';
 
@@ -71,13 +68,26 @@ const BusinessProductsPage = () => {
   return (
     <div style={{ margin: '100px auto 0' }}>
       <BusinessHeader />
+      <Box
+        sx={{
+          backgroundColor: '#1b986e',
+          height: '150px',
+          width: '90%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',        
+          justifyContent: 'center',
+          color: '#fff',
+          margin: '0 auto',
+          borderRadius: '40px',
+        }}
+      ><h1 style={{ textAlign: 'center', margin: 0}}>Productos</h1 >
+      <h4 style={{ textAlign: 'center', margin: 0}}>{nombreBotica}</h4 >
+      </Box> 
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>
-        <h1 style={{ textAlign: 'center' }}>{nombreBotica}</h1>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: '20px' }}>
-          <ButtonGroup variant="outlined" aria-label="Basic button group">
-            <Button  onClick={handleClickOpen}sx={{ mt: 2, borderColor: '#1b986e', color: '#1b986e' }}
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: '25px' }}>
+            <Button variant="contained" onClick={handleClickOpen} sx={{ padding: '10px 40px', backgroundColor: '#4b4b4b', borderRadius: '30px'}}
               >Agregar Producto</Button>
-          </ButtonGroup>
           <FormDialog open={open} handleClose={handleClose} idBotica={idBotica}/>
         </Box>
         <TablaProductos productos={productos} onDeleteClick={handleDeleteClick}/> {/* Se pasa la variable de estado al componente TablaProductos */}

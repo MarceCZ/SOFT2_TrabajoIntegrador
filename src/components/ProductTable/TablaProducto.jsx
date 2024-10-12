@@ -12,7 +12,7 @@ const TablaProductos = ({ productos, onDeleteClick }) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead sx={{ '& th': { fontWeight: 'bold' } }}>
           <TableRow>
             <TableCell>Producto</TableCell>
             <TableCell align="right">Marca</TableCell>
@@ -24,7 +24,6 @@ const TablaProductos = ({ productos, onDeleteClick }) => {
             <TableCell align="right">Stock</TableCell>
             <TableCell align="right">Receta</TableCell>
             <TableCell align="right"></TableCell>
-            
             <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
