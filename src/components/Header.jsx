@@ -43,7 +43,6 @@ const Header = () => {
               variant="h5"
               sx={{
                 fontWeight: 'bold',
-                fontFamily: 'Gontserrat, sans-serif',
               }}
             >
               MediPlan+

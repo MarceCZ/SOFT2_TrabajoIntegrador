@@ -1,5 +1,5 @@
 import BusinessHeader from '../components/BusinessHeader';
-import { Container, Box,} from '@mui/material';
+import { Container, Box, Typography} from '@mui/material';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TablaProductos from '../components/ProductTable/TablaProducto';
@@ -81,8 +81,12 @@ const BusinessProductsPage = () => {
           margin: '0 auto',
           borderRadius: '40px',
         }}
-      ><h1 style={{ textAlign: 'center', margin: 0}}>Productos</h1 >
-      <h4 style={{ textAlign: 'center', margin: 0}}>{nombreBotica}</h4 >
+      ><Typography variant="h3" sx={{ textAlign: 'center', margin: 0 }}>
+        Productos
+      </Typography>
+      <Typography variant="h4" sx={{ textAlign: 'center', margin: 0 }}>
+        {nombreBotica}
+      </Typography>
       </Box> 
       <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: '25px' }}>

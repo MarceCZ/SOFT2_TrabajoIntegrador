@@ -1,5 +1,5 @@
 import BusinessHeader from '../components/BusinessHeader';
-import { Container,Box, Grid, Toolbar } from '@mui/material';
+import { Container,Box, Grid, Toolbar, Typography } from '@mui/material';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
@@ -44,8 +44,8 @@ const BusinessMetricsPage = () => {
           margin: '0 auto',
           borderRadius: '40px',
         }}
-      ><h1 style={{ textAlign: 'center', margin: 0}}>Métricas</h1 >
-      <h4 style={{ textAlign: 'center', margin: 0}}>{nombreBotica}</h4 >
+      ><Typography variant='h3' sx={{ textAlign: 'center', margin: 0}}>Métricas</Typography >
+      <Typography variant='h4' sx={{ textAlign: 'center', margin: 0}}>{nombreBotica}</Typography >
       </Box> 
       <Toolbar/>
         <Container sx={{ display: 'flex', flexDirection: 'column', mt: '30px', mb: '50px' }}>

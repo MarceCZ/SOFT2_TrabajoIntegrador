@@ -37,19 +37,5 @@
   }
 }
 
-@font-face {
-  font-family: 'Gontserrat';
-  src: url('./fonts/GontserratRegular.ttf') format('truetype')
-}
 
-
-* {
-  font-family: 'Gontserrat' !important;
-}
-
-body {
-  margin: 0;
-  overflow-x: hidden;
-  font-family: 'Gontserrat', sans-serif;
-}
 
