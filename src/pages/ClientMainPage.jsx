@@ -3,11 +3,11 @@ import { Box, Container, Typography, Button } from '@mui/material';
 import CustomCarousel from '../components/CustomCarousel.jsx';
 import CallToAction from '../components/CallToAction.jsx';
 import { useNavigate } from 'react-router-dom';
-import data from '../data/data.json';
+import useProductosData from '../hooks/useProductosData';
 
 
 const ClientMainPage = () => {
-  const productosData = data.productos;
+  const { productosData } = useProductosData();
   const navigate = useNavigate();
 
   return (

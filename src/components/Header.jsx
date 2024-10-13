@@ -99,15 +99,15 @@ const Header = () => {
               <ListItemText primary="¿Cómo funciona?" sx={{ color: '#000' }} />
             </ListItem>
             <ListItem button component={Link} to="/arma-tu-kit">
-              <ListItemText primary="Arma tu kit" sx={{ color: '#000' }}/>
+              <ListItemText primary="Arma tu kit" sx={{ color: '#000' }} />
             </ListItem>
             <ListItem button component={Link} to="/cart">
-              <MedicalServicesRoundedIcon sx={{ marginRight: 1 ,color: '#000' }} />
-              <ListItemText primary="Mi kit" sx={{ color: '#000' }}/>
+              <MedicalServicesRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
+              <ListItemText primary="Mi kit" sx={{ color: '#000' }} />
             </ListItem>
             <ListItem button>
-              <PersonRoundedIcon sx={{ marginRight: 1 ,color: '#000' }} />
-              <ListItemText primary="Mi cuenta" sx={{ color: '#000' }}/>
+              <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
+              <ListItemText primary="Mi cuenta" sx={{ color: '#000' }} />
             </ListItem>
           </List>
         </Box>
@@ -117,4 +117,3 @@ const Header = () => {
 };
 
 export default Header;
-

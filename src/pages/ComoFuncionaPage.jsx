@@ -1,12 +1,9 @@
-import { Box,  Typography, Grid, } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Grid } from '@mui/material';
 import Header from '../components/Header';
-import { useNavigate } from 'react-router-dom';
 import CallToAction from '../components/CallToAction.jsx';
 import PasoCard from '../components/ComoFuncionaPage/PasoCard.jsx';
-import Paso1 from '../assets/PasosImg/Paso1.png'
-import Paso2 from '../assets/PasosImg/Paso2.png'
-import Paso3 from '../assets/PasosImg/Paso3.png'
-import Paso4 from '../assets/PasosImg/Paso4.png'
+import pasosData from '../data/pasos.js';
 
 const ComoFuncionaPage = () => {
     return (
@@ -40,33 +37,23 @@ const ComoFuncionaPage = () => {
                     </Typography>
                 </Box>
             </Box>
+
             <Box sx={{ margin: { md: '5% 10%', xs: '10% 20%' } }}>
                 <Grid container spacing={4}>
-                    <PasoCard
-                        imageUrl={Paso1}
-                        title="1. Arma tu kit"
-                        body="Selecciona los productos que deseas añadir a tu kit de salud."
-                    />
-                    <PasoCard
-                        imageUrl={Paso2}
-                        title="2. Suscríbete a tu kit"
-                        body="Completa los detalles que te solicitamos y confirma tu suscripción."
-                    />
-                    <PasoCard
-                        imageUrl={Paso3}
-                        title="3. Recibe tu kit"
-                        body="Cada primer día del mes, recibirás el kit que armaste."
-                    />
-                    <PasoCard
-                        imageUrl={Paso4}
-                        title="4. Mantente saludable"
-                        body="Mantén tu salud bajo control con tu kit personalizado."
-                    />
+                    {pasosData.map((paso, index) => (
+                        <PasoCard
+                            key={index}
+                            imageUrl={paso.imageUrl}
+                            title={paso.title}
+                            body={paso.body}
+                        />
+                    ))}
                 </Grid>
             </Box>
+
             <CallToAction />
         </div>
-    )
-}
+    );
+};
 
-export default ComoFuncionaPage
+export default ComoFuncionaPage;
