@@ -7,8 +7,9 @@ const PasoCard = (props) => {
       <Card sx={{ boxShadow: 'none' }}>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image={props.imageUrl}
+          style={{ objectFit: 'contain' }}  
         />
         <CardContent>
           <Typography variant="h5" sx={{ fontWeight: 'bold' }}>

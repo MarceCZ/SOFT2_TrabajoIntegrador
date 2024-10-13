@@ -15,7 +15,11 @@ const ClientMainPage = () => {
       <Header />
       <Box
         sx={{
-          backgroundColor: '#1b986e',
+          backgroundImage: `url('/media.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight:'450px',
           height: '450px',
           width: '95%',
           display: 'flex',
@@ -42,7 +46,7 @@ const ClientMainPage = () => {
           <Button
             variant="contained"
             onClick={() => navigate('/como-funciona')}
-            sx={{ fontSize: '1.2rem', padding: '10px 40px', backgroundColor: '#4b4b4b', borderRadius: '30px', mt:'20px' }}
+            sx={{ fontSize: '1.2rem', padding: '10px 40px', backgroundColor: '#4b4b4b', borderRadius: '30px', mt: '20px' }}
           >
             Conoce más
           </Button>
@@ -71,7 +75,7 @@ const ClientMainPage = () => {
       </Box>
       <CallToAction />
 
-     
+
     </div>
 
   )

@@ -38,8 +38,4 @@ const Tarjeta = sequelize.define('tarjeta', {
 
 Tarjeta.belongsTo(Cliente, { foreignKey: 'idCliente', targetId: 'id' })
 
-
-
-
-
 export default Tarjeta;

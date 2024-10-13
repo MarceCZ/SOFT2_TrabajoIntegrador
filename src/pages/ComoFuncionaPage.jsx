@@ -3,9 +3,12 @@ import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import CallToAction from '../components/CallToAction.jsx';
 import PasoCard from '../components/ComoFuncionaPage/PasoCard.jsx';
+import Paso1 from '../assets/PasosImg/Paso1.png'
+import Paso2 from '../assets/PasosImg/Paso2.png'
+import Paso3 from '../assets/PasosImg/Paso3.png'
+import Paso4 from '../assets/PasosImg/Paso4.png'
 
 const ComoFuncionaPage = () => {
-    const navigate = useNavigate();
     return (
         <div style={{ margin: '100px auto 0' }}>
             <Header />
@@ -40,29 +43,28 @@ const ComoFuncionaPage = () => {
             <Box sx={{ margin: { md: '5% 10%', xs: '10% 20%' } }}>
                 <Grid container spacing={4}>
                     <PasoCard
-                        imageUrl="URL_DE_TU_IMAGEN_1"
+                        imageUrl={Paso1}
                         title="1. Arma tu kit"
                         body="Selecciona los productos que deseas añadir a tu kit de salud."
                     />
                     <PasoCard
-                        imageUrl="URL_DE_TU_IMAGEN_2"
+                        imageUrl={Paso2}
                         title="2. Suscríbete a tu kit"
                         body="Completa los detalles que te solicitamos y confirma tu suscripción."
                     />
                     <PasoCard
-                        imageUrl="URL_DE_TU_IMAGEN_3"
+                        imageUrl={Paso3}
                         title="3. Recibe tu kit"
                         body="Cada primer día del mes, recibirás el kit que armaste."
                     />
                     <PasoCard
-                        imageUrl="URL_DE_TU_IMAGEN_4"
+                        imageUrl={Paso4}
                         title="4. Mantente saludable"
                         body="Mantén tu salud bajo control con tu kit personalizado."
                     />
                 </Grid>
             </Box>
             <CallToAction />
-
         </div>
     )
 }

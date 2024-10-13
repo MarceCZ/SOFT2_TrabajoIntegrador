@@ -32,8 +32,7 @@ const CartActions = ({ totalCartPrice, navigate }) => (
         </Button>
       </Grid>
       <Grid item xs={6}>
-        <Button 
-          color="success" 
+        <Button  
           variant="contained"
           onClick={() => navigate('/checkout')}
           sx={{ 
@@ -43,6 +42,7 @@ const CartActions = ({ totalCartPrice, navigate }) => (
             fontWeight: 'bold',
             padding: '10px 16px',
             transition: 'all 0.3s',
+            backgroundColor: '#1b986e',
             '&:hover': {
               backgroundColor: '#66bb6a' 
             }
