@@ -5,6 +5,7 @@ import ProductoBody from '../components/ProductoBody';
 import BoticaBody from '../components/BoticaBody';
 import FilterDrawer from '../components/FilterDrawer/FilterDrawer';
 import FilterDrawerMini from '../components/FilterDrawer/FilterDrawerMini';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import useArmaTuKit from '../hooks/useArmaTuKit';
 
 const ArmaTuKitPage = () => {
@@ -53,23 +54,36 @@ const ArmaTuKitPage = () => {
                 </Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row', mt: '40px', mb: '60px', padding: 0 }}>
-                {view === 'productos' && !isSmallScreen && (
-                    <Box
-                        sx={{
-                            minWidth: '280px',
-                            position: 'sticky',
-                            top: '100px',
-                            height: 'calc(100vh - 100px)',
-                            overflowY: 'auto',
-                            padding: 2,
-                            boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
-                        }}
-                    >
-                        <FilterDrawer
-                            boticasDisponibles={boticasDisponibles}
-                            marcasDisponibles={marcasDisponibles}
-                        />
-                    </Box>
+            {view === 'productos' && (
+                    <>
+                        {!isSmallScreen ? (
+                            <Box
+                                sx={{
+                                    minWidth: '280px',
+                                    position: 'sticky', 
+                                    top: '100px',       
+                                    height: 'calc(100vh - 100px)',
+                                    overflowY: 'auto',   
+                                    padding: 2,
+                                    boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
+                                }}
+                            >
+                                <FilterDrawer
+                                    boticasDisponibles={boticasDisponibles}
+                                    marcasDisponibles={marcasDisponibles}
+                                />
+                            </Box>
+                        ) : (
+                            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
+                                <IconButton
+                                    onClick={toggleFilterDrawer}
+                                    sx={{ mb: 2 }}
+                                >
+                                    <FilterListIcon />
+                                </IconButton>
+                            </Box>
+                        )}
+                    </>
                 )}
                 <Box sx={{ flexGrow: 1 }}>
                     <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2rem', pb: '20px' }}>
