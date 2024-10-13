@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Paper, Typography, Button, useMediaQuery, Divider, IconButton } from '@mui/material';
-import FilterDrawer from '../components/FilterDrawer';
-import FilterDrawerMini from '../components/FilterDrawerMini';
+import FilterDrawer from '../components/FilterDrawer/FilterDrawer';
+import FilterDrawerMini from '../components/FilterDrawer/FilterDrawerMini';
 import FilterListIcon from '@mui/icons-material/FilterList'; 
 import Header from '../components/Header';
 import ProductoBody from '../components/ProductoBody';

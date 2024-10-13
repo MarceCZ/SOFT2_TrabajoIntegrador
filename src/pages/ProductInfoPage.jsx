@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import data from '../data/data.json';
 import Header from '../components/Header';
-import { CartContext } from '../components/CartContext';  // Importar el contexto del carrito
+import { CartContext } from '../components/CartContext'; 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useNavigate } from 'react-router-dom';
 

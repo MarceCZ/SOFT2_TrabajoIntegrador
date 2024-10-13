@@ -3,8 +3,8 @@ import { Box, Typography, ButtonGroup, Button, useMediaQuery, IconButton } from 
 import Header from '../components/Header';
 import ProductoBody from '../components/ProductoBody';
 import BoticaBody from '../components/BoticaBody';
-import FilterDrawer from '../components/FilterDrawer';
-import FilterDrawerMini from '../components/FilterDrawerMini';
+import FilterDrawer from '../components/FilterDrawer/FilterDrawer';
+import FilterDrawerMini from '../components/FilterDrawer/FilterDrawerMini';
 import useArmaTuKit from '../hooks/useArmaTuKit';
 
 const ArmaTuKitPage = () => {
@@ -124,4 +124,3 @@ const getButtonStyles = (isSelected) => ({
 });
 
 export default ArmaTuKitPage;
-
