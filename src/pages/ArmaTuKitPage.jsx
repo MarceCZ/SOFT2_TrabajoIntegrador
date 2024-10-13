@@ -22,7 +22,7 @@ const ArmaTuKitPage = () => {
     const toggleFilterDrawer = () => {
         setFilterDrawerOpen((prev) => !prev);
     };
-    
+
     return (
         <div style={{ margin: '100px auto 0' }}>
             <Header />
@@ -60,17 +60,16 @@ const ArmaTuKitPage = () => {
                         {!isSmallScreen ? (
                             <Box
                                 sx={{
-                                    width: '245px',
-                                    minWidth: '245px',
-                                    position: 'sticky',
-                                    top: 100,
+                                    minWidth: '280px',
+                                    position: 'sticky', 
+                                    top: '100px',       
                                     height: 'calc(100vh - 100px)',
-                                    overflowY: 'auto',
+                                    overflowY: 'auto',   
                                     padding: 2,
                                     boxShadow: '2px 0 5px rgba(0,0,0,0.1)',
                                 }}
                             >
-                                <FilterDrawer 
+                                <FilterDrawer
                                     boticasDisponibles={boticasDisponibles}
                                     marcasDisponibles={marcasDisponibles}
                                 />
@@ -91,7 +90,7 @@ const ArmaTuKitPage = () => {
                     <Typography variant="h2" sx={{ fontWeight: 'bold', textAlign: "center", fontSize: '2rem', pb: '20px' }}>
                         ¿Qué prefieres ver?
                     </Typography>
-                    
+
                     <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
                         <ButtonGroup variant="outlined" aria-label="Basic button group">
                             <Button
@@ -135,10 +134,10 @@ const ArmaTuKitPage = () => {
             </Box>
 
             {isSmallScreen && (
-                <FilterDrawerMini 
-                    isOpen={isFilterDrawerOpen} 
-                    toggleDrawer={toggleFilterDrawer} 
-                    boticasDisponibles={boticasDisponibles} 
+                <FilterDrawerMini
+                    isOpen={isFilterDrawerOpen}
+                    toggleDrawer={toggleFilterDrawer}
+                    boticasDisponibles={boticasDisponibles}
                     marcasDisponibles={marcasDisponibles}
                 />
             )}
