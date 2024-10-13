@@ -1,27 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import Logo from '../assets/logo.png';
 import { AppBar, Toolbar, IconButton, Typography, Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
-import { CartContext } from './CartContext';
 import CartDrawer from './CartDrawer/CartDrawer';
+import MenuIcon from '@mui/icons-material/Menu';
 import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
-import MenuIcon from '@mui/icons-material/Menu'; // Importación correcta
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useCartDrawer from '../hooks/header/useCartDrawer.jsx';
+import useMenuDrawer from '../hooks/header/useMenuDrawer.jsx';
 
 const Header = () => {
-  const { totalProducts } = useContext(CartContext);
-  const [hideCart, setHideCart] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const { isCartDrawerOpen, toggleCartDrawer, totalProducts } = useCartDrawer();
+  const { isMenuDrawerOpen, toggleMenuDrawer } = useMenuDrawer();
   const navigate = useNavigate();
-
-  const toggleCartDrawer = (open) => (event) => {
-    setHideCart(open);
-  };
-
-  const toggleMenuDrawer = (open) => (event) => {
-    setIsDrawerOpen(open);
-  };
 
   const location = useLocation();
   const isCartPage = location.pathname === '/cart' || location.pathname === '/checkout';
@@ -66,7 +58,7 @@ const Header = () => {
             </Button>
           </Box>
 
-          {/* Iconos responsive */}
+          {/* Iconos del carrito y usuario dentro del header */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
             {!isCartPage && (
               <IconButton color="inherit" onClick={toggleCartDrawer(true)}>
@@ -84,10 +76,10 @@ const Header = () => {
       </AppBar>
 
       {/* Drawer para el carrito */}
-      <CartDrawer isOpen={hideCart} toggleDrawer={toggleCartDrawer} />
+      <CartDrawer isOpen={isCartDrawerOpen} toggleDrawer={toggleCartDrawer} />
 
-      {/* Drawer para el menú*/}
-      <Drawer anchor="right" open={isDrawerOpen} onClose={toggleMenuDrawer(false)}>
+      {/* Drawer para el menú */}
+      <Drawer anchor="right" open={isMenuDrawerOpen} onClose={toggleMenuDrawer(false)}>
         <Box
           sx={{ width: 250 }}
           role="presentation"
