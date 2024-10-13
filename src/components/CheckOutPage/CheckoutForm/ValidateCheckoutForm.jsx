@@ -13,7 +13,8 @@ const ValidateCheckoutForm = () => {
     tipoDocumento: 'dni',
     numeroDocumento: '',
     email: '',
-  })
+    tipoSuscripcion: '', // Añadimos tipoSuscripcion al estado inicial
+  });
 
   const [isFormValid, setIsFormValid] = useState(false);
 
@@ -35,8 +36,10 @@ const ValidateCheckoutForm = () => {
       celular,
       numeroDocumento,
       email,
+      tipoSuscripcion, // Incluimos tipoSuscripcion en la validación
     } = formData;
 
+    // Validamos que todos los campos requeridos y tipoSuscripcion estén llenos
     const isValid =
       nombre &&
       apellidoPaterno &&
@@ -45,12 +48,13 @@ const ValidateCheckoutForm = () => {
       distrito &&
       celular &&
       numeroDocumento &&
-      email;
+      email &&
+      tipoSuscripcion; // Verificamos que tipoSuscripcion no esté vacío
 
-    setIsFormValid(isValid)
-  }, [formData])
+    setIsFormValid(isValid);
+  }, [formData]);
 
-  return { formData, isFormValid, handleInputChange }
-}
+  return { formData, isFormValid, handleInputChange };
+};
 
-export default ValidateCheckoutForm
+export default ValidateCheckoutForm;

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../components/CartContext'
 
-const useCartActions = () => {
+const useRemoveFromCart = () => {
     const { removeFromCart } = useContext(CartContext);
   
     const handleRemove = (product) => {
@@ -11,5 +11,5 @@ const useCartActions = () => {
     return { handleRemove };
 };
 
-export default useCartActions;
+export default useRemoveFromCart;
   

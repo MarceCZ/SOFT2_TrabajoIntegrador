@@ -4,12 +4,12 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext, useEffect } from 'react';
-import { CartContext } from './CartContext';
+import { useState, useEffect } from 'react';
+import useCart from '../hooks/useCart'; // Importa el hook useCart
 
 const ProductoCard = (props) => {
   const navigate = useNavigate();
-  const { cartProducts, addToCart, removeFromCart } = useContext(CartContext);  // Acceder al contexto
+  const { cartProducts, plusOne, minusOne } = useCart(); // Usa el hook useCart para obtener funciones necesarias
   const [cantidad, setCantidad] = useState(0);
 
   // Manejar el click en el card para redirigir a la página de detalles
@@ -17,40 +17,28 @@ const ProductoCard = (props) => {
     const formattedNombre = props.nombre.replace(/\s+/g, '-').toLowerCase();
     const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
     navigate(`/productinfo/${encodeURIComponent(formattedNombre)}/${encodeURIComponent(formattedBotica)}`, { state: { product: props } });
-  }
+  };
 
   const handleBoticaClick = (event) => {
     event.stopPropagation();
     const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
     navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
-  }
-
-  // Manejar el click en el botón de agregar
-  const handleAddClick = (event) => {
-    event.stopPropagation();
-    setCantidad(1);
-    addToCart(props, 1);
-  }
-
-  // Incrementar la cantidad
-  const plusOne = (event) => {
-    event.stopPropagation()
-    setCantidad(cantidad + 1)
-    addToCart(props, 1)
-  }
-
-  // Decrementar la cantidad
-  const minusOne = (event) => {
-    event.stopPropagation()
-    if (cantidad > 1) {
-      setCantidad(cantidad - 1)
-      addToCart(props, -1)
-    } else {
-      setCantidad(0);
-      removeFromCart(props)
-    }
   };
 
+  const handleAddClick = (event) => {
+    event.stopPropagation();
+    plusOne(props); // Usa la función plusOne del hook para agregar el producto
+  };
+
+  const handlePlusOne = (event) => {
+    event.stopPropagation();
+    plusOne(props); // Usa la función plusOne del hook
+  };
+
+  const handleMinusOne = (event) => {
+    event.stopPropagation();
+    minusOne(props); // Usa la función minusOne del hook para decrementar la cantidad
+  };
 
   useEffect(() => {
     const existingItem = cartProducts.find(item => item.id === props.id);
@@ -60,6 +48,7 @@ const ProductoCard = (props) => {
       setCantidad(0);
     }
   }, [cartProducts, props.id]);
+
   return (
     <Card
       item xs={4}
@@ -97,7 +86,7 @@ const ProductoCard = (props) => {
                 WebkitLineClamp: 2,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
-              }} >
+              }}>
               {props.nombre} | {props.marca}
             </Typography>
           </Box>
@@ -129,11 +118,11 @@ const ProductoCard = (props) => {
             ) : (
               // Control de incremento/decremento cuando la cantidad es mayor a 0
               <Paper elevation={3} sx={{ display: 'flex', alignItems: 'center', borderRadius: '20px', padding: '5px 15px' }}>
-                <IconButton onClick={minusOne}>
+                <IconButton onClick={handleMinusOne}>
                   {cantidad > 1 ? <RemoveIcon /> : <DeleteIcon />}  {/* Cambiar al ícono de eliminar si cantidad es 1 */}
                 </IconButton>
                 <Typography variant="h6" sx={{ margin: '0 15px' }}>{cantidad}</Typography>
-                <IconButton onClick={plusOne}>
+                <IconButton onClick={handlePlusOne}>
                   <AddIcon />
                 </IconButton>
               </Paper>
@@ -145,4 +134,4 @@ const ProductoCard = (props) => {
   );
 }
 
-export default ProductoCard;
+export default ProductoCard

@@ -1,8 +1,8 @@
-import React from 'react'
-import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button, Tooltip } from '@mui/material'
-import PersonPinIcon from '@mui/icons-material/PersonPin'
-import InfoIcon from '@mui/icons-material/Info'
-import { useNavigate } from 'react-router-dom'
+import React from 'react';
+import { Box, Grid, Typography, TextField, MenuItem, FormControl, InputLabel, Select, Button, Tooltip } from '@mui/material';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentClick }) => {
   const navigate = useNavigate();
@@ -142,7 +142,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
             color="success"
             size="large"
             sx={{ borderRadius: '25px', padding: { xs: '1vh 4vh', sm: '1.5vh 6vh', md: '1.5vh 8vh' }, fontSize: { xs: '14px', md: '16px' }, fontWeight: 'bold' }}
-            disabled={!isFormValid}
+            disabled={!isFormValid} // El botón se desactiva si isFormValid es falso
             onClick={handlePaymentClick}
           >
             Pagar
@@ -150,7 +150,7 @@ const CheckoutForm = ({ formData, handleInputChange, isFormValid, handlePaymentC
         </Box>
       </Box>
     </Grid>
-  )
+  );
 }
 
 export default CheckoutForm;
