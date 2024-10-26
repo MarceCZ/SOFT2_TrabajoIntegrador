@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-//validación de formulario de checkout
+// Validación de formulario de checkout
 const ValidateCheckoutForm = () => {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -14,19 +14,49 @@ const ValidateCheckoutForm = () => {
     numeroDocumento: '',
     email: '',
     tipoSuscripcion: '', // Añadimos tipoSuscripcion al estado inicial
-  });
+  })
 
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false)
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
+    let newValue = value
+
+    // Aplicar restricciones específicas para cada campo
+    if (name === "nombre" || name === "apellidoPaterno" || name === "apellidoMaterno" || name === "distrito") {
+      // Solo permitir letras y espacios
+      newValue = newValue.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
+    }
+
+    if (name === "celular") {
+      // Solo permitir números y máximo de 9 dígitos
+      newValue = newValue.replace(/[^0-9]/g, '').slice(0, 9)
+    }
+
+    if (name === "numeroDocumento") {
+      if (formData.tipoDocumento === "dni") {
+        // Solo permitir números y exactamente 8 dígitos para DNI
+        newValue = newValue.replace(/[^0-9]/g, '').slice(0, 8)
+      } else if (formData.tipoDocumento === "carnet") {
+        // Permitir números y letras para Carnet de extranjería y máximo de 12 caracteres
+        newValue = newValue.replace(/[^a-zA-Z0-9]/g, '').slice(0, 12)
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
-    }));
-  };
+      [name]: newValue,
+    }))
+  }
 
-  useEffect(() => {
+  // Funciones de validación
+  const isOnlyLetters = (text) => /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(text);
+  const isValidPhoneNumber = (text) => /^\d{9}$/.test(text);
+  const isValidEmail = (text) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(text);
+  const isValidDNI = (text) => /^\d{8}$/.test(text);
+  const isValidCarnet = (text) => /^[a-zA-Z0-9]{1,12}$/.test(text);
+
+  const validateForm = () => {
     const {
       nombre,
       apellidoPaterno,
@@ -36,25 +66,42 @@ const ValidateCheckoutForm = () => {
       celular,
       numeroDocumento,
       email,
-      tipoSuscripcion, // Incluimos tipoSuscripcion en la validación
-    } = formData;
+      tipoSuscripcion,
+      tipoDocumento
+    } = formData
 
-    // Validamos que todos los campos requeridos y tipoSuscripcion estén llenos
-    const isValid =
-      nombre &&
-      apellidoPaterno &&
-      apellidoMaterno &&
-      direccion &&
-      distrito &&
-      celular &&
-      numeroDocumento &&
-      email &&
-      tipoSuscripcion; // Verificamos que tipoSuscripcion no esté vacío
+    // Verificar que todos los campos requeridos cumplan con las validaciones
+    const isFormComplete = 
+      isOnlyLetters(nombre) &&
+      isOnlyLetters(apellidoPaterno) &&
+      isOnlyLetters(apellidoMaterno) &&
+      direccion.trim() !== '' &&
+      isOnlyLetters(distrito) &&
+      isValidPhoneNumber(celular) &&
+      isValidEmail(email) &&
+      tipoSuscripcion &&
+      ((tipoDocumento === 'dni' && isValidDNI(numeroDocumento)) ||
+       (tipoDocumento === 'carnet' && isValidCarnet(numeroDocumento)))
 
-    setIsFormValid(isValid);
-  }, [formData]);
+    setIsFormValid(isFormComplete);
+  };
 
-  return { formData, isFormValid, handleInputChange };
-};
+  useEffect(() => {
+    validateForm()
+  }, [
+    formData.nombre,
+    formData.apellidoPaterno,
+    formData.apellidoMaterno,
+    formData.direccion,
+    formData.distrito,
+    formData.celular,
+    formData.numeroDocumento,
+    formData.email,
+    formData.tipoSuscripcion,
+    formData.tipoDocumento,
+  ])
 
-export default ValidateCheckoutForm;
+  return { formData, isFormValid, handleInputChange }
+}
+
+export default ValidateCheckoutForm

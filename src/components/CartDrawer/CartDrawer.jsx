@@ -3,12 +3,10 @@ import { Drawer, Box, Divider } from '@mui/material';
 import { CartContext } from '../CartContext';
 import CartContent from './CartContent';
 import useRedirectOnResize from '../../hooks/useRedirectOnResize';
-import useRemoveFromCart from '../../hooks/useRemoveFromCart';
 import CartHeader from './CartHeader';
 
 const CartDrawer = ({ isOpen, toggleDrawer }) => {
-  const { cartProducts, totalCartPrice } = useContext(CartContext);
-  const { handleRemove } = useRemoveFromCart();
+  const { cartProducts, totalCartPrice, removeFromCart } = useContext(CartContext);
 
   useRedirectOnResize(isOpen, toggleDrawer);
 
@@ -17,7 +15,10 @@ const CartDrawer = ({ isOpen, toggleDrawer }) => {
       <Box sx={{ width: 450, display: 'flex', flexDirection: 'column', height: '100%', paddingLeft: '10px', paddingRight: '10px' }}>
         <CartHeader />
         <Divider />
-        <CartContent cartProducts={cartProducts} handleRemove={handleRemove} totalCartPrice={totalCartPrice} />
+        <CartContent 
+          cartProducts={cartProducts} 
+          handleRemove={removeFromCart} 
+          totalCartPrice={totalCartPrice} />
       </Box>
     </Drawer>
   )

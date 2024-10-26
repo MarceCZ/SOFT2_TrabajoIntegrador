@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
   }, [cartProducts])
 
   // Función para agregar productos al kit
-  const addToCart = (product, cantidad) => {
+  const modifyQuantity = (product, cantidad) => {
     setCartProducts((prevItems) => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
@@ -47,7 +47,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider 
       value={{ 
         cartProducts, 
-        addToCart, 
+        modifyQuantity, 
         removeFromCart, 
         clearCart, 
         totalProducts, 

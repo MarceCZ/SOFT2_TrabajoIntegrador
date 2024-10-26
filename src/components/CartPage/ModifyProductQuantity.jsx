@@ -4,7 +4,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const ModifyProductQuantity = ({ item, minusOne, plusOne, handleRemove }) => (
+const ModifyProductQuantity = ({ item, handleModifyQuantity, hanldeRemoveFromCart }) => (
   <Box
     sx={{
       display: 'flex',
@@ -18,16 +18,16 @@ const ModifyProductQuantity = ({ item, minusOne, plusOne, handleRemove }) => (
     }}
   >
     {item.cantidad > 1 ? (
-      <IconButton onClick={() => minusOne(item)} sx={{ padding: 0 }}>
+      <IconButton onClick={() => handleModifyQuantity(item, -1)} sx={{ padding: 0 }}>
         <RemoveIcon />
       </IconButton>
     ) : (
-      <IconButton onClick={() => handleRemove(item)} sx={{ padding: 0 }}>
+      <IconButton onClick={() => hanldeRemoveFromCart(item)} sx={{ padding: 0 }}>
         <DeleteIcon />
       </IconButton>
     )}
     <Typography sx={{ mx: 1 }}>{item.cantidad}</Typography>
-    <IconButton onClick={() => plusOne(item)} sx={{ padding: 0 }}>
+    <IconButton onClick={() => handleModifyQuantity(item, 1)} sx={{ padding: 0 }}>
       <AddIcon />
     </IconButton>
   </Box>

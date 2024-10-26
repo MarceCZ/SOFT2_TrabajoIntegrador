@@ -28,7 +28,7 @@ const TablaProductos = ({ productos, onDeleteClick }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {productos.map((producto) => (
+          {productos?.map((producto) => (
             <Fila key={producto.name} data={producto} onDeleteClick={onDeleteClick}/>
           ))}
         </TableBody>

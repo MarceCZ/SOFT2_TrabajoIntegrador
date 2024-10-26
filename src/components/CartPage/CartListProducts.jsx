@@ -3,7 +3,7 @@ import { Grid, Paper, Typography, Divider, Button } from '@mui/material';
 import CartProductDetails from './CartProductDetails';
 import ModifyProductQuantity from './ModifyProductQuantity';
 
-const CartListProducts = ({ cartProducts, minusOne, plusOne, handleRemove }) => (
+const CartListProducts = ({ cartProducts, handleModifyQuantity, hanldeRemoveFromCart }) => (
   <>
     <Grid container alignItems="center" sx={{ fontWeight: 'bold', mb: 2, color: '#6c6c6c' }}>
       <Grid item xs={12} md={4} sx={{ paddingLeft: { xs: '10px', md: '90px' }, display: { xs: 'none', md: 'block' } }}>
@@ -42,9 +42,8 @@ const CartListProducts = ({ cartProducts, minusOne, plusOne, handleRemove }) => 
           <Grid item xs={12} md={2} sx={{ textAlign: 'center' }}>
             <ModifyProductQuantity
               item={item}
-              minusOne={minusOne}
-              plusOne={plusOne}
-              handleRemove={handleRemove}
+              handleModifyQuantity={handleModifyQuantity}
+              hanldeRemoveFromCart={hanldeRemoveFromCart}
             />
           </Grid>
 
@@ -55,23 +54,24 @@ const CartListProducts = ({ cartProducts, minusOne, plusOne, handleRemove }) => 
           </Grid>
 
           <Grid
-            item
-            xs={12}
-            md={1}
-            sx={{
-              textAlign: { xs: 'center', md: 'right' },
-              pr: { md: 1 },
-              mt: { xs: 2, md: 0 },
-            }}
-          >
-            <Button onClick={() => handleRemove(item)} color="error" sx={{ fontSize: { xs: '12px', md: '14px' } }}>
-              Eliminar
-            </Button>
-          </Grid>
+              item
+              xs={12}
+              md={1}
+              sx={{
+                textAlign: { xs: 'center', md: 'right' },
+                pr: { md: 1 },
+                mt: { xs: 2, md: 0 },
+              }}
+            >
+              <Button onClick={() => hanldeRemoveFromCart(item)} color="error" sx={{ fontSize: { xs: '12px', md: '14px' } }}>
+                Eliminar
+              </Button>
+            </Grid>
+
         </Grid>
       </Paper>
     ))}
   </>
-)
+);
 
-export default CartListProducts
+export default CartListProducts;

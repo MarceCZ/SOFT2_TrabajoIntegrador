@@ -1,16 +1,29 @@
-import React from 'react'
-import { TextField, Grid, IconButton, InputAdornment } from '@mui/material'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import VisibilityIcon from '@mui/icons-material/Visibility'
+import React from 'react';
+import { TextField, Grid, IconButton, InputAdornment } from '@mui/material';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const PaymentInput = ({ formValues, formErrors, handleInputChange, showCvv, toggleShowCvv }) => {
+  
+  const handleCardNumberChange = (e) => {
+    // Solo permitir números
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    handleInputChange({ target: { name: 'cardNumber', value } });
+  };
+
+  const handleCardholderNameChange = (e) => {
+    // Solo permitir letras y espacios
+    const value = e.target.value.replace(/[^a-zA-Z\sáéíóúÁÉÍÓÚñÑ]/g, '');
+    handleInputChange({ target: { name: 'cardholderName', value } });
+  };
+
   return (
     <>
       <TextField
         label="Número de tarjeta"
         name="cardNumber"
         value={formValues.cardNumber}
-        onChange={handleInputChange}
+        onChange={handleCardNumberChange}
         fullWidth
         margin="normal"
         error={!!formErrors.cardNumber}
@@ -85,7 +98,7 @@ const PaymentInput = ({ formValues, formErrors, handleInputChange, showCvv, togg
         label="Nombre del titular"
         name="cardholderName"
         value={formValues.cardholderName}
-        onChange={handleInputChange}
+        onChange={handleCardholderNameChange}
         fullWidth
         margin="normal"
         placeholder="Ingrese el nombre del titular"
