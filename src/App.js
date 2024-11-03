@@ -6,6 +6,7 @@ import BusinessMetricsPage from './pages/BusinessMetricsPage';
 import ProductInfoPage from './pages/ProductInfoPage';
 import ArmaTuKitPage from './pages/ArmaTuKitPage';
 import ComoFuncionaPage from './pages/ComoFuncionaPage';
+import LoginPage from './pages/LoginPage';
 import { CartProvider } from './components/CartContext';
 import { FilterProvider } from './components/FilterContext';
 import CartPage from './pages/CartPage'
@@ -30,6 +31,7 @@ function App() {
             <Route path="/como-funciona" element={<ComoFuncionaPage />} />
             <Route path="/arma-tu-kit" element={<ArmaTuKitPage />} />
             <Route path="/boticainfo/:botica" element={<BoticaProductsPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </FilterProvider>
       </CartProvider>

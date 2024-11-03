@@ -13,10 +13,6 @@ import recetaRouter from './src/routes/receta.js';
 import tarjetaRouter from './src/routes/tarjeta.js';
 import suscripcionRouter from './src/routes/suscripcion.js'; 
 
-
-
-
-
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());

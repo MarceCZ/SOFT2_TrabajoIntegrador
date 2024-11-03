@@ -43,13 +43,23 @@ const update = async (req, res) => {
     return sendResult(result, res);
 }
 
+const login = async (req, res) => {
+    const { email, password } = req.body;
+    const user = await model.findOne({ where: { email } });
+    if (user && user.password === password) {
+        return sendResult(user, res);
+    } else {
+        return sendResult(null, res);
+    }
+};
+
 const sendResult = (result, res) => {
     if (result)
         return res.status(200).json(result);
     else
-        return res.status(500).json({ message: 'No encontrado.'});
+        return res.status(500).json({ message: 'Usuario o contraseña incorrectos.'});
 }
 
-const controller = { findAll, create, findOne, remove, update }
+const controller = { findAll, create, findOne, remove, update, login }
 
 export default controller;
