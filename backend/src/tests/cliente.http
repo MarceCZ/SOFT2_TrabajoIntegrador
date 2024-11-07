@@ -16,3 +16,7 @@ Content-Type: application/json
     "celular": "987654321",
     "idUsuario": 2
 }
+
+###
+
+GET http://localhost:3001/cliente

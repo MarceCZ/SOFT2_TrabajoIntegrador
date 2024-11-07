@@ -26,7 +26,4 @@ const Suscripcion = sequelize.define('suscripcion', {
 
 Suscripcion.belongsTo(Cliente, { foreignKey: 'idCliente', targetId: 'id' })
 
-
-
-
 export default Suscripcion;

@@ -5,6 +5,19 @@ import { useNavigate } from 'react-router-dom';
 const CartKitSummary = ({ totalCartPrice }) => {
   const navigate = useNavigate();
 
+  // Función para verificar autenticación
+  const isAuthenticated = () => {
+    return sessionStorage.getItem('userId') !== null;
+  };
+
+  const handleSubscriptionClick = () => {
+    if (isAuthenticated()) {
+      navigate('/checkout');
+    } else {
+      navigate('/login?redirect=/checkout');
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -43,7 +56,7 @@ const CartKitSummary = ({ totalCartPrice }) => {
         variant="contained"
         color="success"
         fullWidth
-        onClick={() => navigate('/checkout')}
+        onClick={handleSubscriptionClick} // Llama a la función que maneja la verificación de autenticación
         sx={{ borderRadius: '25px', padding: '10px 0', mt: 2, fontWeight: 'bold' }}
       >
         Subscribirme a mi kit

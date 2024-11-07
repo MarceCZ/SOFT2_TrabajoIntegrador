@@ -9,6 +9,7 @@ const ConfirmationDialog = ({ isOpen, handleClose }) => {
 
   const handleBackToHome = () => {
     clearCart()
+    handleClose()
     navigate('/')
   }
 

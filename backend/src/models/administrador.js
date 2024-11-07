@@ -19,7 +19,4 @@ const Administrador = sequelize.define('administrador', {
 
 Administrador.belongsTo(Usuario,     { foreignKey: 'idUsuario', targetId: 'id' })
 
-
-
-
 export default Administrador;

@@ -5,7 +5,7 @@ import CartActions from './CartActions'
 
 const CartDrawerWithProducts = ({ cartProducts, handleRemove, totalCartPrice, navigate }) => (
   <>
-    <Box sx={{ flexGrow: 1, overflowY: 'auto', p: 2, maxHeight: '450px' }}>
+    <Box sx={{ flexGrow: 1, overflowY: 'auto', p: 2, maxHeight: '80%' }}>
       <List sx={{ mt: -1 }}>
         {cartProducts.map((item) => (
           <CartProductItem key={item.id} item={item} handleRemove={handleRemove} />

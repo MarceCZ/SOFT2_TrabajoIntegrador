@@ -18,7 +18,4 @@ const Kit = sequelize.define('kit', {
 Kit.belongsTo(Suscripcion, { foreignKey: 'idSuscripcion', targetId: 'id' })
 Suscripcion.hasMany(Kit, { foreignKey: 'idSuscripcion'});
 
-
-
-
 export default Kit;

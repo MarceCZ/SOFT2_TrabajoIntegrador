@@ -1,0 +1,12 @@
+POST http://localhost:3001/suscripcion/create
+Content-Type: application/json
+
+{
+    "userId": 2,
+    "subsType": "3 meses",
+    "totalCartPrice": 100,
+    "cartProducts": [
+        { "productId": 1, "cantidad": 2, "recetaId": null },
+        { "productId": 2, "cantidad": 1, "recetaId": null }
+    ]
+}

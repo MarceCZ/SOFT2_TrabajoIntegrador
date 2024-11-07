@@ -21,7 +21,7 @@ function App() {
       <CartProvider>
         <FilterProvider>
           <Routes>
-            {/*<Route path="/" element={<Home />} /> */}
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<ClientMainPage />} />
             <Route path='/productsbusiness' element={<BusinessProductsPage />} />
             <Route path='/metricsbusiness' element={<BusinessMetricsPage />} />
@@ -31,7 +31,6 @@ function App() {
             <Route path="/como-funciona" element={<ComoFuncionaPage />} />
             <Route path="/arma-tu-kit" element={<ArmaTuKitPage />} />
             <Route path="/boticainfo/:botica" element={<BoticaProductsPage />} />
-            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </FilterProvider>
       </CartProvider>

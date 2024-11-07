@@ -1,42 +1,47 @@
+import React, { useState } from "react";
 import { Container, Typography, CircularProgress, Backdrop, Box } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../components/LoginForm.jsx";
-import Header from '../components/Header';
+import Header from "../components/Header";
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Obtener URL de redirección desde los parámetros de consulta
+    const searchParams = new URLSearchParams(location.search);
+    const redirectPath = searchParams.get("redirect") || "/arma-tu-kit"; // Ruta predeterminada
 
     const handleLogin = async (correo, password) => {
         setLoading(true);
         setLoginError("");
 
         try {
-            const response = await fetch('http://localhost:3001/usuario/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const response = await fetch("http://localhost:3001/usuario/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email: correo, password }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                console.log("Login exitoso:", data);
-                setLoading(false);
-                navigate("/arma-tu-kit");
+                console.log("Login exitoso:", data.id);
+                sessionStorage.setItem("userId", data.id);
+                // Redirigir a la URL especificada o a la página predeterminada
+                navigate(redirectPath);
             } else {
                 console.error("Error en el login:", data.message);
-                setLoading(false);
                 setLoginError(data.message || "Error de autenticación.");
             }
         } catch (error) {
             console.error("Error de conexión:", error.message);
-            setLoading(false);
             setLoginError(error.message);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -52,9 +57,9 @@ const LoginPage = () => {
                     flexDirection: { xs: "column", md: "row" },
                     justifyContent: "center",
                     alignItems: "center",
-                    backgroundColor: "#F5F5F5"
-                }}>
-
+                    backgroundColor: "#F5F5F5",
+                }}
+            >
                 <Box
                     sx={{
                         width: "50%",
@@ -62,7 +67,7 @@ const LoginPage = () => {
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         height: "100vh",
-                        display: { xs: "none", md: "block" }
+                        display: { xs: "none", md: "block" },
                     }}
                 />
 
@@ -91,8 +96,6 @@ const LoginPage = () => {
                     </Typography>
                     <LoginForm onLogin={handleLogin} errorMessage={loginError} />
                 </Box>
-
-
             </Container>
 
             <Backdrop
@@ -102,7 +105,7 @@ const LoginPage = () => {
                 <CircularProgress color="inherit" />
             </Backdrop>
         </>
-    );
-};
+    )
+}
 
-export default LoginPage;
+export default LoginPage

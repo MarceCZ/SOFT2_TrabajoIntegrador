@@ -19,5 +19,4 @@ const Usuario = sequelize.define('usuario', {
     },
 })
 
-
 export default Usuario;

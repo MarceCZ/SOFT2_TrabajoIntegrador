@@ -101,7 +101,8 @@ const ValidateCheckoutForm = () => {
     formData.tipoDocumento,
   ])
 
-  return { formData, isFormValid, handleInputChange }
+  // Ahora incluimos setFormData en el retorno
+  return { formData, setFormData, isFormValid, handleInputChange }
 }
 
 export default ValidateCheckoutForm

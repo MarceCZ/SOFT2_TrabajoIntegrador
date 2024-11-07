@@ -24,5 +24,4 @@ Receta.belongsTo(Cliente, { foreignKey: 'idCliente', targetId: 'id' })
 
 Cliente.hasMany(Receta, { foreignKey: 'idCliente'});
 
-
 export default Receta;

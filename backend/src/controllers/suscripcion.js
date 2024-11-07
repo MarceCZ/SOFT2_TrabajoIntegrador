@@ -1,5 +1,6 @@
 import model from '../models/suscripcion.js'
 import RepositoryBase from '../repositories/base.js';
+import service from '../services/suscripcion.js';
 
 const repository = new RepositoryBase(model);
 
@@ -11,11 +12,16 @@ const findAll = async (req, res) => {
 }
 
 const create = async (req, res) => {
-    const payload = req.body;
+    try {
+        const payload = req.body;
 
-    const result = await repository.create(payload);
-
-    return sendResult(result, res);
+        const result = await service.createSubswithKit(payload);
+        return res.status(200).json(result);
+    }
+    catch (error) {
+        console.log('Error en la creacion de la subscripcion: ', error);
+        return res.status(500).json({ message: 'Error en la creacion de la subscripcion.'});
+    }
 }
 
 const findOne = async (req, res) => {
@@ -49,6 +55,7 @@ const sendResult = (result, res) => {
     else
         return res.status(500).json({ message: 'No encontrado.'});
 }
+
 
 const controller = { findAll, create, findOne, remove, update }
 

@@ -4,8 +4,6 @@ import Kit from './kit.js'
 import Producto from './producto.js'
 import Receta from './receta.js'
 
-
-
 const KitProducto = sequelize.define('kit_producto', {
     id: {
         type: DataTypes.INTEGER,
@@ -34,7 +32,5 @@ KitProducto.belongsTo(Receta, { foreignKey: 'idReceta', targetId: 'id' })
 Producto.hasMany(KitProducto, { foreignKey: 'idProducto'});
 Kit.hasMany(KitProducto, { foreignKey: 'idKit'});
 Receta.hasMany(KitProducto, { foreignKey: 'idReceta'});
-
-
 
 export default KitProducto;

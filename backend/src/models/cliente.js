@@ -49,6 +49,6 @@ const Cliente = sequelize.define('cliente', {
 
 Cliente.belongsTo(Usuario, { foreignKey: 'idUsuario', targetId: 'id' })
 
-
+Usuario.hasOne(Cliente, { foreignKey: 'idUsuario'})
 
 export default Cliente;
