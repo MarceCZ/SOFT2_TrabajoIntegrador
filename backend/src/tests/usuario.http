@@ -28,6 +28,15 @@ Content-Type: application/json
     "email": "20210630@aloe.ulima.edu.pe",
     "password": "12345678"
 }
+###
+
+POST http://localhost:3001/usuario/login
+Content-Type: application/json
+
+{
+    "email": "botica@mediplan.com",
+    "password": "12345678"
+}
 
 ###
 GET http://localhost:3001/usuario/complete/2

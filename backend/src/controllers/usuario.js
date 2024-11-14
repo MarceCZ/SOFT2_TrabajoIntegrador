@@ -77,13 +77,24 @@ const update = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    const user = await model.findOne({ where: { email } });
-    if (user && user.password === password) {
-        return sendResult(user, res);
-    } else {
-        return sendResult(null, res);
+    console.log("Intento de login con:", email, password);  // Debugging
+
+    try {
+        const user = await model.findOne({ where: { email } });
+        console.log("Usuario encontrado:", user);  // Verifica si el usuario es encontrado
+
+        if (user && user.password === password) {
+            return sendResult(user, res);
+        } else {
+            console.log("Contraseña incorrecta o usuario no encontrado");
+            return sendResult(null, res);
+        }
+    } catch (error) {
+        console.error("Error en la función login:", error);
+        return res.status(500).json({ message: "Error en el servidor al buscar el usuario." });
     }
 };
+
 
 //enviar el resultado
 const sendResult = (result, res) => {

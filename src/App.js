@@ -14,6 +14,7 @@ import CheckoutPage from './pages/CheckOutPage'
 import BoticaProductsPage from './pages/BoticaProductsPage';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './themes/theme';
+import RutaProtegida from "./components/RutaProtegida";
 
 function App() {
   return (
@@ -23,8 +24,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<ClientMainPage />} />
-            <Route path='/productsbusiness' element={<BusinessProductsPage />} />
-            <Route path='/metricsbusiness' element={<BusinessMetricsPage />} />
+            <Route path='/productsbusiness' element={<RutaProtegida><BusinessProductsPage /></RutaProtegida>} />
+            <Route path='/metricsbusiness' element={<RutaProtegida><BusinessMetricsPage /></RutaProtegida>} />
             <Route path='/productinfo/:nombre/:botica' element={<ProductInfoPage />} />
             <Route path='/cart' element={<CartPage />} />
             <Route path='/checkout' element={<CheckoutPage />} />

@@ -1,8 +1,8 @@
 import Sequelize from 'sequelize'
 
-const hostname = '127.0.0.1'
+const hostname = 'soft2-2024-2-grupo-proyecto-db.postgres.database.azure.com'
 const username = 'postgres'
-const password = 'postgres'
+const password = 'Ulima20241'
 const database = 'soft2db'
 const dbPort = 5432
 const dialect = 'postgres'

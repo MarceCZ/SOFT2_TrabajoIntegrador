@@ -3,6 +3,7 @@ import { Container, Typography, CircularProgress, Backdrop, Box } from "@mui/mat
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../components/LoginForm.jsx";
 import Header from "../components/Header";
+import usuarioApi from '../api/usuario';
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
@@ -10,28 +11,30 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Obtener URL de redirección desde los parámetros de consulta
+    // obtener url desde los parámetros
     const searchParams = new URLSearchParams(location.search);
-    const redirectPath = searchParams.get("redirect") || "/arma-tu-kit"; // Ruta predeterminada
+    const redirectPath = searchParams.get("redirect") || "/arma-tu-kit"; // redigir
 
     const handleLogin = async (correo, password) => {
         setLoading(true);
         setLoginError("");
 
         try {
-            const response = await fetch("http://localhost:3001/usuario/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: correo, password }),
-            });
+            const data = await usuarioApi.login(correo, password);
 
-            const data = await response.json();
-
-            if (response.ok) {
+            if (data && data.id) {
                 console.log("Login exitoso:", data.id);
-                sessionStorage.setItem("userId", data.id);
-                // Redirigir a la URL especificada o a la página predeterminada
-                navigate(redirectPath);
+                localStorage.setItem("userId", data.id);
+                //preguntar si es botica para el acceso a sus páginas
+                const isBotica = correo.includes("@mediplan.com");
+                localStorage.setItem("isBotica", isBotica);
+
+                if (isBotica) {
+                    navigate("/productsbusiness");
+                } else {
+                    navigate(redirectPath);
+                }
+
             } else {
                 console.error("Error en el login:", data.message);
                 setLoginError(data.message || "Error de autenticación.");
