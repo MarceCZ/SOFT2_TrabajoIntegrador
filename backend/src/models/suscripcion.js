@@ -25,5 +25,6 @@ const Suscripcion = sequelize.define('suscripcion', {
 })
 
 Suscripcion.belongsTo(Cliente, { foreignKey: 'idCliente', targetId: 'id' })
+Cliente.hasOne(Suscripcion, { foreignKey: 'idCliente'})
 
 export default Suscripcion;

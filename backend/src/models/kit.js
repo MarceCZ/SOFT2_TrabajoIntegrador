@@ -13,6 +13,10 @@ const Kit = sequelize.define('kit', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    fecha: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
 })
 
 Kit.belongsTo(Suscripcion, { foreignKey: 'idSuscripcion', targetId: 'id' })

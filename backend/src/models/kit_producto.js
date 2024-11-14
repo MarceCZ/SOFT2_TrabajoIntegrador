@@ -11,6 +11,10 @@ const KitProducto = sequelize.define('kit_producto', {
         autoIncrement: true,
         allowNull: false
     },
+    cantProducto: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     idProducto: {
         type: DataTypes.INTEGER,
         allowNull: false

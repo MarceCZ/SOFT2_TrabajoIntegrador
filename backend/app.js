@@ -10,8 +10,8 @@ import kitRouter from './src/routes/kit.js';
 import clienteRouter from './src/routes/cliente.js';
 import administradorRouter from './src/routes/administrador.js';
 import recetaRouter from './src/routes/receta.js';
-import tarjetaRouter from './src/routes/tarjeta.js';
 import suscripcionRouter from './src/routes/suscripcion.js'; 
+import emailRouter from './src/routes/email.js';
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,8 +29,8 @@ app.use('/kit', kitRouter);
 app.use('/cliente', clienteRouter);
 app.use('/administrador', administradorRouter);
 app.use('/receta', recetaRouter);
-app.use('/tarjeta', tarjetaRouter);
 app.use('/suscripcion', suscripcionRouter);
+app.use('/email', emailRouter);
 
 
 export default app;
