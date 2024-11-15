@@ -7,6 +7,8 @@ import ProductInfoPage from './pages/ProductInfoPage';
 import ArmaTuKitPage from './pages/ArmaTuKitPage';
 import ComoFuncionaPage from './pages/ComoFuncionaPage';
 import LoginPage from './pages/LoginPage';
+import RecuperarPage from './pages/RecuperarPage';
+import RecuperarNuevaPage from './pages/RecuperarNuevaPage';
 import { CartProvider } from './components/CartContext';
 import { FilterProvider } from './components/FilterContext';
 import CartPage from './pages/CartPage'
@@ -23,6 +25,8 @@ function App() {
         <FilterProvider>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/recuperar" element={<RecuperarPage />} />
+            <Route path="/restablecer" element={<RecuperarNuevaPage />} />
             <Route path="/" element={<ClientMainPage />} />
             <Route path='/productsbusiness' element={<RutaProtegida><BusinessProductsPage /></RutaProtegida>} />
             <Route path='/metricsbusiness' element={<RutaProtegida><BusinessMetricsPage /></RutaProtegida>} />

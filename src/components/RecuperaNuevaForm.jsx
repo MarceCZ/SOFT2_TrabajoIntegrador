@@ -3,17 +3,21 @@ import { TextField, Button, Typography, Alert, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const LoginForm = ({ onLogin, errorMessage }) => {
+const RecuperaNuevaForm = ({ onLogin, errorMessage }) => {
     const [correo, setCorreo] = useState("");
-    const [password, setPassword] = useState("");
+    const [codigo, setCodigo] = useState("");
+    const [password1, setPassword1] = useState("");
+    const [password2, setPassword2] = useState("");
     const [error, setError] = useState(false);
     const [errormsg, setErrormsg] = useState("");
 
     const mensajesError = {
         emailVacio: "El campo de correo electrónico está vacío.",
         emailInvalido: "El correo electrónico no es válido.",
+        codigoVacio: "El campo de código está vacío.",
         passwordVacia: "El campo de contraseña está vacío.",
-        passwordCorta: "La contraseña debe tener al menos 8 caracteres."
+        passwordCorta: "La contraseña debe tener al menos 8 caracteres.",
+        passwordNoCoincide: "Las contraseñas no coinciden.",
     };
 
     const getErrorValidacion = () => {
@@ -25,12 +29,18 @@ const LoginForm = ({ onLogin, errorMessage }) => {
         if (!emailRegex.test(correo.trim())) {
             return mensajesError.emailInvalido;
         }
-        if (password.trim().length === 0) {
+        if (codigo.trim().length === 0) {
+            return mensajesError.codigoVacio;
+        }
+        if (password1.trim().length === 0 || password2.trim().length === 0) {
             return mensajesError.passwordVacia;
         }
-        //if (password.trim().length < 8) {
-        //    return mensajesError.passwordCorta;
-        //}
+        if (password1.trim().length < 8) {
+            return mensajesError.passwordCorta;
+        }
+        if (password1 !== password2) {
+            return mensajesError.passwordNoCoincide;
+        }
         return null;
     };
 
@@ -45,7 +55,7 @@ const LoginForm = ({ onLogin, errorMessage }) => {
             return;
         }
         try {
-            await onLogin(correo, password);
+            await onLogin(correo, password1);
         } catch (error) {
             setError(true);
             setErrormsg(error.message);
@@ -62,6 +72,19 @@ const LoginForm = ({ onLogin, errorMessage }) => {
     return (
         <Box sx={{ width: "100%", maxWidth: 400 }}>
             <form>
+                <Typography
+                    to="/recuperar"
+                    sx={{
+                        display: "block",
+                        textAlign: "center",
+                        marginBottom: 2,
+                        fontSize: 14,
+                        color: "#333",
+                        textDecoration: "none",
+                    }}
+                >
+                    Ingresa el código que enviamos a tu correo y tu nueva contraseña.
+                </Typography>
                 <TextField
                     label="Correo electrónico"
                     placeholder="ejemplo@correo.com"
@@ -72,14 +95,33 @@ const LoginForm = ({ onLogin, errorMessage }) => {
                     onChange={(e) => setCorreo(e.target.value)}
                 />
                 <TextField
-                    label="Contraseña"
+                    label="Código"
+                    placeholder="Ejemplo: 123abc"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ marginBottom: 2 }}
+                    value={codigo}
+                    onChange={(e) => setCodigo(e.target.value)}
+                />
+                <TextField
+                    label="Nueva contraseña"
                     placeholder="Su contraseña debe tener mínimo 8 dígitos"
                     variant="outlined"
                     fullWidth
                     type="password"
                     sx={{ marginBottom: 2 }}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password1}
+                    onChange={(e) => setPassword1(e.target.value)}
+                />
+                <TextField
+                    label="Confirmar nueva contraseña"
+                    placeholder="Las contraseñas deben coincidir"
+                    variant="outlined"
+                    fullWidth
+                    type="password"
+                    sx={{ marginBottom: 2 }}
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
                 />
                 <Button
                     variant="contained"
@@ -96,15 +138,16 @@ const LoginForm = ({ onLogin, errorMessage }) => {
                     }}
                     onClick={handleSubmit}
                 >
-                    Inicia sesión
+                    Confirmar cambio
                 </Button>
+                
                 <Typography
                     component={Link}
-                    to="/recuperar"
+                    to="/login"
                     sx={{
                         display: "block",
                         textAlign: "center",
-                        marginTop: 2,
+                        marginTop: 3,
                         fontSize: 14,
                         color: "#1b986e",
                         textDecoration: "none",
@@ -113,24 +156,7 @@ const LoginForm = ({ onLogin, errorMessage }) => {
                         },
                     }}
                 >
-                    ¿Olvidaste tu contraseña?
-                </Typography>
-                <Typography
-                    component={Link}
-                    to="/registro"
-                    sx={{
-                        display: "block",
-                        textAlign: "center",
-                        marginTop: 1,
-                        fontSize: 14,
-                        color: "#1b986e",
-                        textDecoration: "none",
-                        '&:hover': {
-                            textDecoration: "underline",
-                        },
-                    }}
-                >
-                    ¿Aún no tienes una cuenta? Regístrate
+                    ¿No deseas cambiar tu contraseña? Ingresa ahora
                 </Typography>
             </form>
             {error && (
@@ -147,4 +173,4 @@ const LoginForm = ({ onLogin, errorMessage }) => {
     );
 };
 
-export default LoginForm;
+export default RecuperaNuevaForm;

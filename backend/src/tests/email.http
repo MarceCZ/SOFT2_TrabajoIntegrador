@@ -1,0 +1,18 @@
+# Test para actualizar el correo electrónico del usuario
+PUT http://localhost:3001/usuario
+Content-Type: application/json
+
+{
+    "id": 20,
+    "email": "aldanaeguiluz@gmail.com"
+}
+
+###
+
+# Test para solicitud de restablecimiento de contraseña
+POST http://localhost:3001/email/reset-request
+Content-Type: application/json
+
+{
+    "email": "aldanaeguiluz@gmail.com"
+}

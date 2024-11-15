@@ -14,6 +14,7 @@ import suscripcionRouter from './src/routes/suscripcion.js';
 import emailRouter from './src/routes/email.js';
 
 const app = express();
+console.log(process.env.POSTMARK_API_TOKEN);
 app.use(bodyParser.json());
 app.use(cors());
 
