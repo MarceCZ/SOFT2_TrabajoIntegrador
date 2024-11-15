@@ -17,8 +17,14 @@ import session from 'express-session';
 
 const app = express();
 console.log(process.env.POSTMARK_API_TOKEN);
+
+app.use(cors({
+    origin: 'http://localhost:3000', 
+    credentials: true // habilitar cookies
+}));
+
 app.use(bodyParser.json());
-app.use(cors());
+
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secreto_unico',
@@ -27,9 +33,10 @@ app.use(session({
     cookie: {
         maxAge: 60 * 60 * 1000, // expiración de la cookie en 1 hora
         secure: false, 
-        httpOnly: true,
+        httpOnly: false,
     }
 }));
+
 
 app.get('/', (req, res) => {
     return res.json({ message: "Hello World", code: "201"});

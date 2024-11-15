@@ -39,6 +39,8 @@ const resetPassword = async (req, res) => {
 const verificarCodeCambiarPassword = async (req, res) => {
     const { email, verificationCode, newPassword } = req.body;
 
+    console.log("Contenido de req.session antes de validar:", req.session);
+
     console.log("Correo recibido:", email);
     console.log("Código de verificación recibido:", verificationCode);
     console.log("Código de verificación en sesión:", req.session.verificationCode);

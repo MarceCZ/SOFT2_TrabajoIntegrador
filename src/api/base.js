@@ -2,7 +2,7 @@ const URI = 'http://localhost:3001/';//dirección de la API local. Se va a cambi
 //const URI = 'https://soft2-2024-2-backend-azdtbqdqd4acajas.eastus2-01.azurewebsites.net/';
 
 const get = async (endpoint) => {
-  return await fetch(URI + endpoint)
+  return await fetch(URI + endpoint,{ credentials: 'include' })
             .then(response => response.json())
             .then(data => {
                 return data
@@ -16,8 +16,9 @@ const post = async (endpoint, payload) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
-    }
+        body: JSON.stringify(payload),
+        credentials: 'include' 
+    };
     
     return await fetch(URI + endpoint, postPayload)
               .then(response => response.json())
@@ -33,9 +34,10 @@ const post = async (endpoint, payload) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        credentials: 'include'
     
-    }
+    };
 
     return await fetch(URI + endpoint, postPayload)
               .then(response => response.json())
@@ -50,8 +52,9 @@ const post = async (endpoint, payload) => {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-        }
-    }
+        },
+        credentials: 'include'
+    };
 
     return await fetch(URI + endpoint, postPayload)
               .then(response => response.json())
