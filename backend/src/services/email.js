@@ -14,7 +14,7 @@ const sendVerificationCodeEmail = async (email, verificationCode, name) => {
             product_name: "Mediplan+",
             name: name,
             verification_code: verificationCode, 
-            action_url: `http://localhost:3000/recuperar-nueva`
+            action_url: `http://localhost:3000/restablecer`
         }
     });
 };

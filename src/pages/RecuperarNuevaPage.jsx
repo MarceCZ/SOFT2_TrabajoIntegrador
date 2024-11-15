@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RecuperarNuevaForm from "../components/RecuperaNuevaForm.jsx";
 import Header from "../components/Header.jsx";
 import usuarioApi from '../api/usuario.js';
+import correoApi from '../api/email.js';
 
 const RecuperarNuevaPage = () => {
     const [loading, setLoading] = useState(false);
@@ -15,29 +16,34 @@ const RecuperarNuevaPage = () => {
     const searchParams = new URLSearchParams(location.search);
     const redirectPath = searchParams.get("redirect") || "/arma-tu-kit"; // redigir
 
-    const handleLogin = async (correo, password) => {
+    const handleLogin = async (correo, codigo, password) => {
         setLoading(true);
         setLoginError("");
 
         try {
-            const data = await usuarioApi.login(correo, password);
+            const response = await correoApi.verificarYCambiarPassword(correo, codigo, password);
 
-            if (data && data.id) {
-                console.log("Login exitoso:", data.id);
-                localStorage.setItem("userId", data.id);
-                //preguntar si es botica para el acceso a sus páginas
-                const isBotica = correo.includes("@mediplan.com");
-                localStorage.setItem("isBotica", isBotica);
+            console.log("Status de la respuesta de la API:", response.status);
+            console.log("Respuesta completa de la API:", response);
 
-                if (isBotica) {
-                    navigate("/productsbusiness");
-                } else {
-                    navigate(redirectPath);
+            if (response.status === 200) {
+                console.log("Contraseña cambiada exitosamente");
+                // Iniciar sesión después de cambiar la contraseña
+                const loginData = await usuarioApi.login(correo, password);
+                if (loginData && loginData.id) {
+                    localStorage.setItem("userId", loginData.id);
+                    const isBotica = correo.includes("@mediplan.com");
+                    localStorage.setItem("isBotica", isBotica);
+    
+                    if (isBotica) {
+                        navigate("/productsbusiness");
+                    } else {
+                        navigate(redirectPath);
+                    }
                 }
-
             } else {
-                console.error("Error en el login:", data.message);
-                setLoginError(data.message || "Error de autenticación.");
+                console.error("Error en el cambio de contraseña:", response.message);
+                setLoginError(response.message || "Error al cambiar la contraseña.");
             }
         } catch (error) {
             console.error("Error de conexión:", error.message);

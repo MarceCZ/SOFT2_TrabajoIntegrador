@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Alert, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const RecuperaForm = ({ onLogin, errorMessage }) => {
+const RecuperaForm = ({ onRequestReset, errorMessage }) => {
     const [correo, setCorreo] = useState("");
     const [error, setError] = useState(false);
     const [errormsg, setErrormsg] = useState("");
@@ -29,17 +29,25 @@ const RecuperaForm = ({ onLogin, errorMessage }) => {
         setErrormsg("");
 
         const validacionError = getErrorValidacion();
+        console.log("Validación del correo:", validacionError);
         if (validacionError) {
             setError(true);
             setErrormsg(validacionError);
             return;
         }
+
+        
+        await onRequestReset(correo);
     };
 
     useEffect(() => {
+        console.log("Prop errorMessage recibido:", errorMessage);
         if (errorMessage) {
             setError(true);
             setErrormsg(errorMessage);
+        } else {
+            setError(false); 
+            setErrormsg("");
         }
     }, [errorMessage]);
 
@@ -92,7 +100,7 @@ const RecuperaForm = ({ onLogin, errorMessage }) => {
                     sx={{
                         display: "block",
                         textAlign: "center",
-                        marginTop: 1,
+                        marginTop: 3,
                         fontSize: 14,
                         color: "#1b986e",
                         textDecoration: "none",
@@ -104,7 +112,7 @@ const RecuperaForm = ({ onLogin, errorMessage }) => {
                     ¿Aún no tienes una cuenta? Regístrate
                 </Typography>
             </form>
-            {error && (
+            {error && errormsg &&(
                 <Alert
                     icon={<ErrorOutlineIcon fontSize="inherit" />}
                     severity="error"

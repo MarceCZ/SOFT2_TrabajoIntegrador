@@ -3,47 +3,34 @@ import { Container, Typography, CircularProgress, Backdrop, Box } from "@mui/mat
 import { useNavigate, useLocation } from "react-router-dom";
 import RecuperaForm from "../components/RecuperaForm.jsx";
 import Header from "../components/Header";
-import usuarioApi from '../api/usuario';
+import correoApi from '../api/email.js';
 
 const RecuperarPage = () => {
     const [loading, setLoading] = useState(false);
-    const [loginError, setLoginError] = useState("");
+    const [requestError, setRequestError] = useState("");
     const navigate = useNavigate();
-    const location = useLocation();
 
-    // obtener url desde los parámetros
-    const searchParams = new URLSearchParams(location.search);
-    const redirectPath = searchParams.get("redirect") || "/arma-tu-kit"; // redigir
-
-    const handleLogin = async (correo, password) => {
+    const handleRequestReset = async (correo) => {
         setLoading(true);
-        setLoginError("");
+        setRequestError("");
 
         try {
-            const data = await usuarioApi.login(correo, password);
+            const response = await correoApi.requestPasswordReset(correo);
 
-            if (data && data.id) {
-                console.log("Login exitoso:", data.id);
-                localStorage.setItem("userId", data.id);
-                //preguntar si es botica para el acceso a sus páginas
-                const isBotica = correo.includes("@mediplan.com");
-                localStorage.setItem("isBotica", isBotica);
+            console.log("Status de la respuesta de la API:", response.status);
+            console.log("Respuesta completa de la API:", response);
 
-                if (isBotica) {
-                    navigate("/productsbusiness");
-                } else {
-                    navigate(redirectPath);
-                }
-
+            if (response.status !== 200) {
+                setRequestError(response.message);
             } else {
-                console.error("Error en el login:", data.message);
-                setLoginError(data.message || "Error de autenticación.");
+                console.log("Solicitud de restablecimiento enviada:", correo);
+                setRequestError("");
+                navigate("/restablecer");
             }
         } catch (error) {
             console.error("Error de conexión:", error.message);
-            setLoginError(error.message);
-        }
-        finally {
+            setRequestError(error.message);
+        } finally {
             setLoading(false);
         }
     };
@@ -97,7 +84,7 @@ const RecuperarPage = () => {
                     >
                         Recupera tu contraseña
                     </Typography>
-                    <RecuperaForm onLogin={handleLogin} errorMessage={loginError} />
+                    <RecuperaForm onRequestReset={handleRequestReset} errorMessage={requestError} />
                 </Box>
             </Container>
 

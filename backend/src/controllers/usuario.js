@@ -95,29 +95,6 @@ const login = async (req, res) => {
     }
 };
 
-const findOneEmail = async (email) => {
-    try {
-        const user = await model.findOne({ where: { email } });
-        return user;
-    } catch (error) {
-        console.error("Error en al encontrar el correo:", error);
-        throw new Error("Error al buscar el usuario por correo electrónico.");
-    }
-};
-
-const updatePassword = async (email, newPassword) => {
-    try {
-        const result = await model.update(
-            { password: newPassword }, 
-            { where: { email } }      
-        );
-        return result;
-    } catch (error) {
-        console.error("Error en updatePassword:", error);
-        throw new Error("Error al actualizar la contraseña.");
-    }
-};
-
 
 //enviar el resultado
 const sendResult = (result, res) => {
@@ -127,6 +104,6 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'Usuario o contraseña incorrectos.'});
 }
 
-const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete, findOneEmail, updatePassword }
+const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete}
 
 export default controller;

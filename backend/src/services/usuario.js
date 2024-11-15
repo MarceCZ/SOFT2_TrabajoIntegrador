@@ -8,8 +8,20 @@ const findOneEmail = async (email) => {
     });
 };
 
+const updatePassword = async (email, newPassword) => {
+    try {
+        const result = await Usuario.update(
+            { password: newPassword }, 
+            { where: { email } }      
+        );
+        return result;
+    } catch (error) {
+        console.error("Error en updatePassword:", error);
+        throw new Error("Error al actualizar la contraseña.");
+    }
+};
 
 
- const service = {findOneEmail}
+ const service = {findOneEmail, updatePassword}
 
  export default service

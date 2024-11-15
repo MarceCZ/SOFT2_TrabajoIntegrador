@@ -12,11 +12,24 @@ import administradorRouter from './src/routes/administrador.js';
 import recetaRouter from './src/routes/receta.js';
 import suscripcionRouter from './src/routes/suscripcion.js'; 
 import emailRouter from './src/routes/email.js';
+import session from 'express-session';
+
 
 const app = express();
 console.log(process.env.POSTMARK_API_TOKEN);
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'secreto_unico',
+    resave: true, 
+    saveUninitialized: true, 
+    cookie: {
+        maxAge: 60 * 60 * 1000, // expiración de la cookie en 1 hora
+        secure: false, 
+        httpOnly: true,
+    }
+}));
 
 app.get('/', (req, res) => {
     return res.json({ message: "Hello World", code: "201"});
@@ -32,6 +45,7 @@ app.use('/administrador', administradorRouter);
 app.use('/receta', recetaRouter);
 app.use('/suscripcion', suscripcionRouter);
 app.use('/email', emailRouter);
+
 
 
 export default app;

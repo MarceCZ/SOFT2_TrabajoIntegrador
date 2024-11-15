@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "id": 20,
-    "email": "aldanaeguiluz@gmail.com"
+    "email": "20210914@aloe.ulima.edu.pe"
 }
 
 ###
@@ -14,5 +14,28 @@ POST http://localhost:3001/email/reset-request
 Content-Type: application/json
 
 {
-    "email": "aldanaeguiluz@gmail.com"
+    "email": "20210914@aloe.ulima.edu.pe"
+}
+
+###
+
+# Test para verificar el código de verificación y cambiar la contraseña
+POST http://localhost:3001/email/verificar-code
+Content-Type: application/json
+
+{
+    "email": "20210914@aloe.ulima.edu.pe",
+    "verificationCode": "169424",
+    "newPassword": "ochodigitos"
+}
+
+###
+
+# Test para iniciar sesión con la nueva contraseña
+POST http://localhost:3001/usuario/login
+Content-Type: application/json
+
+{
+    "email": "20210914@aloe.ulima.edu.pe",
+    "password": "87654321"
 }

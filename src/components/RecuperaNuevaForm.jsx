@@ -55,7 +55,7 @@ const RecuperaNuevaForm = ({ onLogin, errorMessage }) => {
             return;
         }
         try {
-            await onLogin(correo, password1);
+            await onLogin(correo, codigo, password1);
         } catch (error) {
             setError(true);
             setErrormsg(error.message);
@@ -83,7 +83,7 @@ const RecuperaNuevaForm = ({ onLogin, errorMessage }) => {
                         textDecoration: "none",
                     }}
                 >
-                    Ingresa el código que enviamos a tu correo y tu nueva contraseña.
+                    Revisa tu correo, ingresa el códgo indicado y crea tu nueva contraseña.
                 </Typography>
                 <TextField
                     label="Correo electrónico"
