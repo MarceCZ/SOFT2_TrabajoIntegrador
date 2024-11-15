@@ -17,6 +17,7 @@ import BoticaProductsPage from './pages/BoticaProductsPage';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './themes/theme';
 import RutaProtegida from "./components/RutaProtegida";
+import SignInPage from './pages/SignInPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <CartProvider>
         <FilterProvider>
           <Routes>
+            <Route path="/signin" element={<SignInPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/recuperar" element={<RecuperarPage />} />
             <Route path="/restablecer" element={<RecuperarNuevaPage />} />

@@ -27,11 +27,11 @@ const Cliente = sequelize.define('cliente', {
     },
     direccion: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     distrito: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     referencias: {
         type: DataTypes.STRING,

@@ -1,0 +1,13 @@
+###
+POST http://localhost:3001/usuario/signin
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "12345678",
+  "dni": "12345678",
+  "nombre": "Juan",
+  "apellido1": "Pérez",
+  "apellido2": "García",
+  "celular": "987654321"
+}

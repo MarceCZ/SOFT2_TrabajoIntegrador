@@ -1,5 +1,7 @@
+import sequelize from '../config/database.js';
+import Usuario from '../models/usuario.js';
+import Cliente from '../models/cliente.js';
 
-import Usuario from '../models/usuario.js'
 const findOneEmail = async (email) => {
     return await Usuario.findOne({
         where: {
@@ -21,7 +23,45 @@ const updatePassword = async (email, newPassword) => {
     }
 };
 
+const crearUsuarioCliente = async (payload) => {
+    const { email, password, dni, nombre, apellido1, apellido2, celular } = payload;
 
- const service = {findOneEmail, updatePassword}
+    if (!email || !password || !dni || !nombre || !apellido1 || !apellido2 || !celular) {
+        throw new Error('Faltan datos obligatorios.');
+    }
+
+    // Verificar si ya existe un usuario con el mismo correo
+    const existente = await Usuario.findOne({ where: { email } });
+    if (existente) {
+        throw new Error(`El correo ${email} ya está registrado.`);
+    }
+
+    const transaction = await sequelize.transaction();
+
+    try {
+        // Crear el usuario
+        const newUser = await Usuario.create({ email, password }, { transaction });
+
+        // Crear el cliente asociado
+        await Cliente.create({
+            dni,
+            nombre,
+            apellido1,
+            apellido2,
+            celular,
+            idUsuario: newUser.id,
+        }, { transaction });
+
+        await transaction.commit();
+
+        return { message: 'Usuario y cliente creados con éxito.', idUsuario: newUser.id, status: 200 };
+    } catch (error) {
+        await transaction.rollback();
+        throw new Error('Error al crear el usuario y cliente: ' + error.message);
+    }
+};
+
+
+ const service = {findOneEmail, updatePassword, crearUsuarioCliente}
 
  export default service

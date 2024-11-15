@@ -18,5 +18,7 @@ router.get('/complete/:id', controller.findOneComplete);
 //Ruta para login
 router.post('/login', controller.login);
 
+//Ruta apra registrar
+router.post('/signin', controller.signin);
 
 export default router;

@@ -1,6 +1,7 @@
 import model from '../models/usuario.js'
 import RepositoryBase from '../repositories/base.js';
 import service from '../services/cliente.js'
+import * as usuarioService from '../services/usuario.js';
 const repository = new RepositoryBase(model);
 
 const findAll = async (req, res) => {
@@ -104,6 +105,23 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'Usuario o contraseña incorrectos.'});
 }
 
-const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete}
+//registrar usuario con su cliente asociado
+const signin = async (req, res) => {
+    try {
+        const payload = req.body;
+
+        const result = await usuarioService.crearUsuarioCliente(payload);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        console.error('Error en la creación del usuario: ', error);
+
+        return res.status(500).json({
+            message: 'Error en la creación del usuario y cliente: ' + error.message,
+        });
+    }
+};
+
+const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete, signin}
 
 export default controller;

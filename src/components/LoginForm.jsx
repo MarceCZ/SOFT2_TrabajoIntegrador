@@ -117,7 +117,7 @@ const LoginForm = ({ onLogin, errorMessage }) => {
                 </Typography>
                 <Typography
                     component={Link}
-                    to="/registro"
+                    to="/signin"
                     sx={{
                         display: "block",
                         textAlign: "center",
