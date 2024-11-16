@@ -28,7 +28,6 @@ const RecuperarNuevaPage = () => {
 
             if (response.status === 200) {
                 console.log("Contraseña cambiada exitosamente");
-                // Iniciar sesión después de cambiar la contraseña
                 const loginData = await usuarioApi.login(correo, password);
                 if (loginData && loginData.id) {
                     localStorage.setItem("userId", loginData.id);

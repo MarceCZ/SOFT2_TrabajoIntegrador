@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Typography, CircularProgress, Backdrop, Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../components/LoginForm.jsx";
 import Header from "../components/Header";
 import usuarioApi from '../api/usuario';
+import { AuthContext } from "../components/AuthContext";
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
+    const { login } = useContext(AuthContext); 
 
     // obtener url desde los parámetros
     const searchParams = new URLSearchParams(location.search);
@@ -24,9 +26,9 @@ const LoginPage = () => {
 
             if (data && data.id) {
                 console.log("Login exitoso:", data.id);
-                localStorage.setItem("userId", data.id);
+                login(data.id);
                 //preguntar si es botica para el acceso a sus páginas
-                const isBotica = correo.includes("@mediplan.com");
+                const isBotica = correo.trim().toLowerCase().endsWith("@mediplan.com");
                 localStorage.setItem("isBotica", isBotica);
 
                 if (isBotica) {

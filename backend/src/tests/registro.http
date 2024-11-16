@@ -9,5 +9,8 @@ Content-Type: application/json
   "nombre": "Juan",
   "apellido1": "Pérez",
   "apellido2": "García",
-  "celular": "987654321"
+  "celular": "987654321",
+  "direccion": "aaa",
+  "distrito": "aaa",
+  "referencias": "aaa"
 }

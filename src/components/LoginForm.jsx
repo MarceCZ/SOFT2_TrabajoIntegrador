@@ -28,9 +28,9 @@ const LoginForm = ({ onLogin, errorMessage }) => {
         if (password.trim().length === 0) {
             return mensajesError.passwordVacia;
         }
-        //if (password.trim().length < 8) {
-        //    return mensajesError.passwordCorta;
-        //}
+        if (password.trim().length < 8) {
+            return mensajesError.passwordCorta;
+        }
         return null;
     };
 
