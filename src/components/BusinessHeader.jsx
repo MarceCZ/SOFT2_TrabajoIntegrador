@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import Logo from '../assets/logo.png';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, Button, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const BusinessHeader = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleMenuDrawer = (open) => (event) => {
     setIsDrawerOpen(open);
@@ -16,6 +18,12 @@ const BusinessHeader = () => {
 
   const handleTitleClick = () => {
     navigate('/');
+  };
+
+  const handleLogout = () => {
+    logout(); 
+    navigate('/'); 
+    toggleMenuDrawer(false)(); 
   };
 
   return (
@@ -78,10 +86,29 @@ const BusinessHeader = () => {
             <ListItem button component={Link} to="/metricsbusiness">
               <ListItemText primary="MÉTRICAS" sx={{ color: '#000' }} />
             </ListItem>
-            <ListItem button>
-              <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
-              <ListItemText primary="Mi cuenta" sx={{ color: '#000' }} />
-            </ListItem>
+          </List>
+          <Divider />
+          <List>
+            {isAuthenticated ? (
+              <>
+                <ListItem button component={Link} to="/perfil">
+                  <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
+                  <ListItemText primary="Mi cuenta" sx={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button onClick={handleLogout}>
+                  <ListItemText primary="Cerrar sesión" sx={{ color: '#000' }} />
+                </ListItem>
+              </>
+            ) : (
+              <>
+                <ListItem button component={Link} to="/login">
+                  <ListItemText primary="Ingresar" sx={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button component={Link} to="/signin">
+                  <ListItemText primary="Registrarse" sx={{ color: '#000' }} />
+                </ListItem>
+              </>
+            )}
           </List>
         </Box>
       </Drawer>
