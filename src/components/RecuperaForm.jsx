@@ -36,7 +36,7 @@ const RecuperaForm = ({ onRequestReset, errorMessage }) => {
             return;
         }
 
-        
+
         await onRequestReset(correo);
     };
 
@@ -96,7 +96,7 @@ const RecuperaForm = ({ onRequestReset, errorMessage }) => {
                 
                 <Typography
                     component={Link}
-                    to="/registro"
+                    to="/signin"
                     sx={{
                         display: "block",
                         textAlign: "center",
