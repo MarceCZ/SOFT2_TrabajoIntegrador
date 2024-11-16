@@ -14,7 +14,7 @@ const CheckOutPage = () => {
   const { formData, setFormData, isFormValid, handleInputChange } = useCheckoutForm();
   const { isDialogOpen, handlePaymentClick, handleCloseDialog } = usePaymentDialog();
 
-  const userId = sessionStorage.getItem('userId');
+  const userId = localStorage.getItem('userId');
 
   return (
     <div>

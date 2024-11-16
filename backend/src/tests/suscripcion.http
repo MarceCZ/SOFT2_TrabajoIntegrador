@@ -10,3 +10,17 @@ Content-Type: application/json
         { "productId": 2, "cantidad": 1, "recetaId": null }
     ]
 }
+
+###
+
+GET http://localhost:3001/suscripcion
+
+###
+
+DELETE http://localhost:3001/suscripcion
+
+###
+
+POST http://localhost:3001/suscripcion/cancel/1
+
+###

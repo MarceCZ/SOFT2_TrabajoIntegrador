@@ -7,7 +7,7 @@ const CartKitSummary = ({ totalCartPrice }) => {
 
   // Función para verificar autenticación
   const isAuthenticated = () => {
-    return sessionStorage.getItem('userId') !== null;
+    return localStorage.getItem('userId') !== null;
   };
 
   const handleSubscriptionClick = () => {

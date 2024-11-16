@@ -56,7 +56,32 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'No encontrado.'});
 }
 
+const cancelSuscripcion = async (req, res) => {
+    const { id } = req.params; // Capturamos el ID desde los parámetros de la URL
 
-const controller = { findAll, create, findOne, remove, update }
+    if (!id) {
+        return res.status(400).json({ message: 'El ID de la suscripción es requerido.' });
+    }
+
+    try {
+        // Llamamos al servicio para cancelar la suscripción
+        const result = await service.cancelSubscription(id);
+        return res.status(result.status).json(result); 
+    } catch (error) {
+        return res.status(500).json({ message: error.message }); // Manejo de errores
+    }
+}
+
+const removeAllSubscriptions = async (req, res) => {
+    try {
+        const result = await service.resetAllSubscriptions(); 
+        return res.status(result.status).json(result); 
+    } catch (error) {
+        return res.status(500).json({ message: error.message }); 
+    }
+};
+
+
+const controller = { findAll, create, findOne, remove, update, cancelSuscripcion, removeAllSubscriptions }
 
 export default controller;
