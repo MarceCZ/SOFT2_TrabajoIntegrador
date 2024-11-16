@@ -22,9 +22,13 @@ const Suscripcion = sequelize.define('suscripcion', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    estado: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    }
 })
 
 Suscripcion.belongsTo(Cliente, { foreignKey: 'idCliente', targetId: 'id' })
-Cliente.hasOne(Suscripcion, { foreignKey: 'idCliente'})
+Cliente.hasMany(Suscripcion, { foreignKey: 'idCliente'})
 
 export default Suscripcion;
