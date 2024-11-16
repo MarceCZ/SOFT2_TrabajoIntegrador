@@ -64,7 +64,7 @@ const SignInPage = () => {
                         backgroundImage: "url(media.png)",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        height: "100vh",
+                        height: "150vh",
                         display: { xs: "none", md: "block" },
                     }}
                 />
@@ -79,21 +79,32 @@ const SignInPage = () => {
                         backgroundColor: "white",
                         padding: 4,
                         height: "100vh",
+                        marginTop: { xs: 20},
                     }}
                 >
-                    <Typography
-                        variant="h4"
-                        align="center"
+                    <Box
                         sx={{
-                            marginTop: 4,
-                            marginBottom: 2,
-                            fontWeight: "bold",
-                            color: "#333",
+                            position: "sticky",
+                            top: 0,
+                            backgroundColor: "white",
+                            zIndex: 1,
+                            padding: 2,
                         }}
                     >
-                        Regístrate
-                    </Typography>
-                    <SignInForm onRegister={handleRegister} errorMessage={registerError} />
+                        <Typography
+                            variant="h4"
+                            align="center"
+                            sx={{
+                                fontWeight: "bold",
+                                color: "#333",
+                            }}
+                        >
+                            Regístrate
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <SignInForm onRegister={handleRegister} errorMessage={registerError} />
+                    </Box>
                 </Box>
             </Container>
 
