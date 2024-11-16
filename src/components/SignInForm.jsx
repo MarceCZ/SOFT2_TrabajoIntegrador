@@ -12,6 +12,9 @@ const SignInForm = ({ onRegister, errorMessage }) => {
     const [apellido2, setApellido2] = useState("");
     const [dni, setDni] = useState("");
     const [celular, setCelular] = useState("");
+    const [distrito, setDistrito] = useState("");
+    const [direccion, setDireccion] = useState("");
+    const [referencias, setReferencia] = useState("");
     const [error, setError] = useState(false);
     const [errormsg, setErrormsg] = useState("");
 
@@ -188,6 +191,36 @@ const SignInForm = ({ onRegister, errorMessage }) => {
                     sx={{ marginBottom: 1 }}
                     value={celular}
                     onChange={(e) => setCelular(e.target.value)}
+                />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <TextField
+                    label="Distrito"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ marginBottom: 1 }}
+                    value={distrito}
+                    onChange={(e) => setDistrito(e.target.value)}
+                />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <TextField
+                    label="Referencia"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ marginBottom: 1 }}
+                    value={referencias}
+                    onChange={(e) => setReferencia(e.target.value)}
+                />
+          </Grid>
+          <Grid item xs={12}>
+          <TextField
+                    label="Dirección"
+                    variant="outlined"
+                    fullWidth
+                    sx={{ marginBottom: 1 }}
+                    value={direccion}
+                    onChange={(e) => setDireccion(e.target.value)}
                 />
           </Grid>
           <Grid item xs={12}>
