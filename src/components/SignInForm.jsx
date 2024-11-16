@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const SignInForm = ({ onRegister, errorMessage }) => {
-    const [correo, setCorreo] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [nombre, setNombre] = useState("");
@@ -36,7 +36,7 @@ const SignInForm = ({ onRegister, errorMessage }) => {
         celularCorta: "El celular debe tener 9 números.",
         distritoVacio: "El campo de distrito está vacío.",
         direccionVacio: "El campo de dirección está vacío.",
-        referenciaVacio: "El campo de referencia está vacío."
+        referenciaVacio: "El campo de referencia está vacío.",
     };
 
     const getErrorValidacion = () => {
@@ -74,10 +74,10 @@ const SignInForm = ({ onRegister, errorMessage }) => {
         if (!soloNumerosRegex.test(celular.trim()) || celular.trim().length !== 9) {
             return mensajesError.celularCorta;
         }
-        if (correo.trim().length === 0) {
+        if (email.trim().length === 0) {
             return mensajesError.emailVacio;
         }
-        if (!emailRegex.test(correo.trim())) {
+        if (!emailRegex.test(email.trim())) {
             return mensajesError.emailInvalido;
         }
         if (password.trim().length === 0) {
@@ -121,7 +121,7 @@ const SignInForm = ({ onRegister, errorMessage }) => {
             referencias,
             dni,
             celular,
-            correo,
+            email,
             password
         };
     
@@ -230,8 +230,8 @@ const SignInForm = ({ onRegister, errorMessage }) => {
                     variant="outlined"
                     fullWidth
                     sx={{ marginBottom: 1 }}
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
           </Grid>
           <Grid item xs={12}>

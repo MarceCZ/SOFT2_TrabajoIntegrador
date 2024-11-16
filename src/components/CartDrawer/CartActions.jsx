@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Button, Grid } from '@mui/material';
 
 const CartActions = ({ totalCartPrice, navigate }) => {
-  const isAuthenticated = () => sessionStorage.getItem('userId') !== null;
+  const isAuthenticated = () => localStorage.getItem('userId') !== null;
 
   return (
     <Box sx={{ padding: 2, mt: 'auto' }}>
