@@ -24,9 +24,9 @@ const updatePassword = async (email, newPassword) => {
 };
 
 const crearUsuarioCliente = async (payload) => {
-    const { email, password, dni, nombre, apellido1, apellido2, celular } = payload;
+    const {email, password, dni, nombre, apellido1, apellido2, celular, distrito, referencias, direccion} = payload;
 
-    if (!email || !password || !dni || !nombre || !apellido1 || !apellido2 || !celular) {
+    if (!email || !password || !dni || !nombre || !apellido1 || !apellido2 || !celular || !distrito || !referencias || !direccion) {
         throw new Error('Faltan datos obligatorios.');
     }
 
@@ -48,6 +48,9 @@ const crearUsuarioCliente = async (payload) => {
             nombre,
             apellido1,
             apellido2,
+            direccion,
+            distrito,
+            referencias,
             celular,
             idUsuario: newUser.id,
         }, { transaction });

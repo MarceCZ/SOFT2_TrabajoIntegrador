@@ -1,7 +1,7 @@
 import model from '../models/usuario.js'
 import RepositoryBase from '../repositories/base.js';
 import service from '../services/cliente.js'
-import * as usuarioService from '../services/usuario.js';
+import usuarioService from '../services/usuario.js';
 const repository = new RepositoryBase(model);
 
 const findAll = async (req, res) => {

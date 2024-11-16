@@ -93,7 +93,7 @@ const SignInPage = () => {
                     >
                         Regístrate
                     </Typography>
-                    <SignInForm onLogin={handleRegister} errorMessage={registerError} />
+                    <SignInForm onRegister={handleRegister} errorMessage={registerError} />
                 </Box>
             </Container>
 

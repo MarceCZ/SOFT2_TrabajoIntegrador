@@ -30,7 +30,10 @@ const SignInForm = ({ onRegister, errorMessage }) => {
         dniVacio: "El campo de documento de identidad está vacío.",
         dniInvalido: "El documento de identidad debe contener al menos 8 números.",
         celularVacio: "El campo de celular está vacío.",
-        celularCorta: "El celular debe tener 9 números."
+        celularCorta: "El celular debe tener 9 números.",
+        distritoVacio: "El campo de distrito está vacío.",
+        direccionVacio: "El campo de dirección está vacío.",
+        referenciaVacio: "El campo de referencia está vacío."
     };
 
     const getErrorValidacion = () => {
@@ -83,6 +86,15 @@ const SignInForm = ({ onRegister, errorMessage }) => {
         if (password !== password2) {
             return mensajesError.password2Invalido;
         }
+        if (distrito.trim().length === 0) {
+            return mensajesError.distritoVacio;
+        }
+        if (referencias.trim().length === 0) {
+            return mensajesError.referenciaVacio;
+        }
+        if (direccion.trim().length === 0) {
+            return mensajesError.direccionVacio;
+        }
         return null;
     };
 
@@ -101,10 +113,13 @@ const SignInForm = ({ onRegister, errorMessage }) => {
             nombre,
             apellido1,
             apellido2,
+            direccion,
+            distrito,
+            referencias,
             dni,
             celular,
             correo,
-            password,
+            password
         };
     
         try {
