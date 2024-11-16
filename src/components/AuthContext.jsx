@@ -4,15 +4,21 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("userId"));
+    const [isBotica, setIsBotica] = useState(localStorage.getItem("isBotica") === "true");
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
+        const boticaStatus = localStorage.getItem('isBotica') === "true";
         setIsAuthenticated(!!userId);
+        setIsBotica(boticaStatus);
+        
     }, []);
 
-    const login = (userId) => {
+    const login = (userId, isBoticaStatus) => {
         localStorage.setItem('userId', userId);
+        localStorage.setItem('isBotica', isBoticaStatus);
         setIsAuthenticated(true);
+        setIsBotica(isBoticaStatus);
     };
 
     const logout = () => {

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Container, Typography, CircularProgress, Backdrop, Box } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import RecuperarNuevaForm from "../components/RecuperaNuevaForm.jsx";
 import Header from "../components/Header.jsx";
 import usuarioApi from '../api/usuario.js';
 import correoApi from '../api/email.js';
+import { AuthContext } from "../components/AuthContext"; 
 
 const RecuperarNuevaPage = () => {
     const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
+    const { login } = useContext(AuthContext); 
 
     // obtener url desde los parámetros
     const searchParams = new URLSearchParams(location.search);
@@ -30,9 +32,8 @@ const RecuperarNuevaPage = () => {
                 console.log("Contraseña cambiada exitosamente");
                 const loginData = await usuarioApi.login(correo, password);
                 if (loginData && loginData.id) {
-                    localStorage.setItem("userId", loginData.id);
-                    const isBotica = correo.includes("@mediplan.com");
-                    localStorage.setItem("isBotica", isBotica);
+                    const isBotica = correo.trim().toLowerCase().endsWith("@mediplan.com");
+                    login(loginData.id, isBotica);
     
                     if (isBotica) {
                         navigate("/productsbusiness");
@@ -41,12 +42,11 @@ const RecuperarNuevaPage = () => {
                     }
                 }
             } else {
-                console.error("Error en el cambio de contraseña:", response.message);
-                setLoginError(response.message || "Error al cambiar la contraseña.");
+                setLoginError("Error al iniciar sesión después de cambiar la contraseña");
             }
         } catch (error) {
             console.error("Error de conexión:", error.message);
-            setLoginError(error.message);
+            setLoginError(error.message || "Error al cambiar la contraseña.");
         }
         finally {
             setLoading(false);
