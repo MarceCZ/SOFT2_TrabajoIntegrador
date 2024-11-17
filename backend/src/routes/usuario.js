@@ -11,6 +11,9 @@ router.delete('/:id', controller.remove);
 router.put('/', controller.update);
 
 
+//Ruta para los usuarios clientes con sus suscripciones y kits
+router.get('/usuariokits', controller.findAllCompleteUsuarioKits);
+
 //Ruta para Usuarios que son clientes
 router.get('/complete', controller.findAllComplete);
 router.get('/complete/:id', controller.findOneComplete);

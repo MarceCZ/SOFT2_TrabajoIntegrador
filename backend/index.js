@@ -1,5 +1,6 @@
 import app from './app.js';
 import sequelize from './src/config/database.js';
+import './src/services/crono.js'; 
 
 async function main() {
     try {

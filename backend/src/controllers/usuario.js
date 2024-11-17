@@ -2,6 +2,7 @@ import model from '../models/usuario.js'
 import RepositoryBase from '../repositories/base.js';
 import service from '../services/cliente.js'
 import usuarioService from '../services/usuario.js';
+import usuarioKitsService from '../services/usuario_kits.js';
 const repository = new RepositoryBase(model);
 
 const findAll = async (req, res) => {
@@ -17,6 +18,14 @@ const findAllComplete = async (req, res) => {
 
     return sendResult(result, res);
 }
+
+//encontrar todos los usuarios con sus clientes y sus kits
+const findAllCompleteUsuarioKits = async (req, res) => {
+    const result = await usuarioKitsService.findAllComplete();
+
+    return sendResult(result, res);
+}
+
 
 //encontrar un usuario con su cliente
 const findOneComplete = async (req, res) => {
@@ -122,6 +131,6 @@ const signin = async (req, res) => {
     }
 };
 
-const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete, signin}
+const controller = {  findAll, create, findOne, remove, update, login,findAllComplete ,findOneComplete, findAllCompleteUsuarioKits,signin}
 
 export default controller;

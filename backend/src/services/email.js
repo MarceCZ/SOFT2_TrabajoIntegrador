@@ -19,4 +19,23 @@ const sendVerificationCodeEmail = async (email, verificationCode, name) => {
     });
 };
 
-export default { sendVerificationCodeEmail };
+const sendNotificationEmail = async (email, nombre, productos, idPedido,fecha, valorTotal) => {
+    await client.sendEmailWithTemplate({
+        From: "20210630@aloe.ulima.edu.pe",
+        To: email,
+        TemplateId: 37883994, 
+        TemplateModel: {
+            product_url: "http://localhost:3000/",
+            product_name: "Mediplan+",
+            name: nombre,
+            receipt_id: idPedido,
+            date: fecha,
+            receipt_details: productos,
+            total:valorTotal,
+            company_name: "Mediplan+",
+            company_address: "Lima, Peru"
+                },
+    });
+};
+
+export default { sendVerificationCodeEmail , sendNotificationEmail};
