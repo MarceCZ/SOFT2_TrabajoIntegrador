@@ -8,9 +8,11 @@ import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
 import FormDialog from '../components/FormDialog';
 import productoApi from '../api/producto';
 import boticaApi from '../api/botica';
+import FormDialogStock from '../components/FormDialogStock';
 
 const BusinessProductsPage = () => {
   const [open, setOpen] = useState(false);
+  const [openStock, setOpenStock] = useState(false);
   const [productId, setProductId] = useState(null);
   const [productos, setProductos] = useState([]);
   const [nombreBotica, setNombreBotica] = useState('');
@@ -63,6 +65,17 @@ const BusinessProductsPage = () => {
     setOpen(false);
     handleOnLoad();
   };
+  
+  const handleCloseStock = async () => {
+    setOpenStock(false);
+    handleOnLoad();
+  };
+
+  const onEditStockClick = (id) => {
+    setProductId(id);
+    setOpenStock(true);
+  }
+
 
 
   return (
@@ -94,7 +107,8 @@ const BusinessProductsPage = () => {
               >Agregar Producto</Button>
           <FormDialog open={open} handleClose={handleClose} idBotica={idBotica}/>
         </Box>
-        <TablaProductos productos={productos} onDeleteClick={handleDeleteClick}/> {/* Se pasa la variable de estado al componente TablaProductos */}
+        <TablaProductos productos={productos} onDeleteClick={handleDeleteClick} onEditStockClick={onEditStockClick}/> {/* Se pasa la variable de estado al componente TablaProductos */}
+        <FormDialogStock open={openStock} handleClose={handleCloseStock} idProducto={productId} />
         <DeleteConfirmationDialog
           open={deleteDialogOpen}
           onConfirm={handleDeleteConfirm}

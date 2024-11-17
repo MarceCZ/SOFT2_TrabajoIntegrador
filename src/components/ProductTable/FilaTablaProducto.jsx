@@ -5,7 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const Fila = ({ data, onDeleteClick }) => {
+const Fila = ({ data, onDeleteClick, onEditStockClick }) => {
   return (
     <TableRow>
       <TableCell component="th" scope="row">
@@ -20,7 +20,7 @@ const Fila = ({ data, onDeleteClick }) => {
       <TableCell align="right">{data.stock}</TableCell>
       <TableCell align="right"><Checkbox checked={data.receta} disabled /></TableCell>
       <TableCell align="right">
-          <EditIcon />
+          <EditIcon sx={{ color: '#1b986e' }} onClick={() =>onEditStockClick(data.id)} />
       </TableCell>
       <TableCell align="right">
           <DeleteIcon sx={{ color: '#f28b82' }} onClick={() => onDeleteClick(data.id)}/>
