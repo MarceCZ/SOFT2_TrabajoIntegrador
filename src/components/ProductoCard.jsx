@@ -16,9 +16,7 @@ const ProductoCard = (props) => {
     };
 
     const handleBoticaClick = (event) => {
-        event.stopPropagation();
-        const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
-        navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
+        navigate(`/productinfo/${props.id}`);
     };
 
     useEffect(() => {

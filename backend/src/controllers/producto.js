@@ -27,6 +27,22 @@ const findOne = async (req, res) => {
     return sendResult(result, res);
 }
 
+const findAllComplete = async (req, res) => {
+
+    const result = await service.findAllComplete();
+
+    return sendResult(result, res);
+}
+
+const findOneComplete = async (req, res) => {
+
+    const id = req.params.id;
+
+    const result = await service.findOneComplete(id);
+
+    return sendResult(result, res);
+}
+
 const remove = async (req, res) => {
     const id = req.params.id;
 

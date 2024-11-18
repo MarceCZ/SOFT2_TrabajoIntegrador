@@ -7,33 +7,56 @@ import Header from '../components/Header';
 import { CartContext } from '../components/CartContext';
 import QuantityControls from '../components/QuantityControls';
 import { useNavigate } from 'react-router-dom';
+import apiProd from '../api/producto'; // Importar la API de productos
+
 
 const ProductInfoPage = () => {
     const navigate = useNavigate();
-    const { nombre, botica } = useParams();
-    const decodedNombre = decodeURIComponent(nombre.replace(/-/g, ' '));
-    const decodedBotica = decodeURIComponent(botica.replace(/-/g, ' '));
+    const { id } = useParams();  // Obtener el id de los parámetros de la URL
+    
+    const [producto, setProducto] = useState(null);  // Estado para almacenar el producto
+    const [loading, setLoading] = useState(true);    // Estado de carga
+    const [error, setError] = useState(null);        // Estado de error
 
-    // Obtener el producto basado en el nombre y botica
-    const producto = data.productos.find((prod) =>
-        prod.nombre.toLowerCase() === decodedNombre.toLowerCase() &&
-        prod.botica.toLowerCase() === decodedBotica.toLowerCase()
-    );
 
     const { cartProducts } = useContext(CartContext);
     const [cantidad, setCantidad] = useState(0);
 
+    const fetchProduct = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const fetchedProduct = await apiProd.findOneComplete(id); // Usamos la función findOneComplete
+            setProducto(fetchedProduct); // Guardamos el producto en el estado
+        } catch (err) {
+            console.error("Error al cargar el producto:", err);
+            setError("No se encontró el producto.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Obtener producto desde la API cuando el componente se monta o cambia el id
+    useEffect(() => {
+        fetchProduct();
+    }, [id]);
+
+
     // Buscar si el producto ya está en el carrito y sincronizar la cantidad
     useEffect(() => {
-        const productoEnCarrito = cartProducts.find(item => item.id === producto?.id);
-        setCantidad(productoEnCarrito ? productoEnCarrito.cantidad : 0);
+        if (producto) {
+            const productoEnCarrito = cartProducts.find(item => item.id === producto.id);
+            setCantidad(productoEnCarrito ? productoEnCarrito.cantidad : 0);
+        }
     }, [cartProducts, producto]);
 
     // Manejar el click para redirigir a la página de la botica
     const handleBoticaClick = (event) => {
         event.stopPropagation();
-        const formattedBotica = producto.botica.replace(/\s+/g, '-').toLowerCase();
-        navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
+        if (producto && producto.botica) {
+            const formattedBotica = producto.botica.nombre.replace(/\s+/g, '-').toLowerCase();
+            navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
+        }
     };
 
     if (!producto) {
@@ -74,9 +97,9 @@ const ProductInfoPage = () => {
                                 <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 1, fontSize: '26px' }}>
                                     {producto.nombre} | {producto.marca}
                                 </Typography>
-                                <Chip label={producto.botica} onClick={handleBoticaClick} sx={{ marginBottom: 2, fontSize: '13px' }} />
+                                <Chip label={producto.botica.nombre} onClick={handleBoticaClick} sx={{ marginBottom: 2, fontSize: '13px' }} />
                                 <Typography variant="h4" color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '26px' }}>
-                                    S/ {producto.precio.toFixed(2)}
+                                    S/ {producto.precio}
                                 </Typography>
 
                                 {/* Sección de cantidad y botón de agregar */}

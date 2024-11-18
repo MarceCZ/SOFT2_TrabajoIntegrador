@@ -1,5 +1,11 @@
 GET http://localhost:3001/producto
 
+###
+GET http://localhost:3001/producto/complete
+
+###
+GET http://localhost:3001/producto/complete/1
+
 
 ###
 POST http://localhost:3001/producto

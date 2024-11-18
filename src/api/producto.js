@@ -12,6 +12,10 @@ const remove = async (id) => await base.remove(`${endpoint}/${id}`)
 
 const findOne = async (id) => await base.get(`${endpoint}/${id}`)
 
-const api = { findAll, create, update, remove, findOne }
+const findAllComplete = async () => await base.get(`${endpoint}/complete`)
+
+const findOneComplete = async (id) => await base.get(`${endpoint}/complete/${id}`)
+
+const api = { findAll, create, update, remove, findOne, findAllComplete, findOneComplete }
 
 export default api;
