@@ -1,5 +1,6 @@
 import model from '../models/producto.js'
 import RepositoryBase from '../repositories/base.js';
+import service from '../services/producto.js';
 
 const repository = new RepositoryBase(model);
 
@@ -66,6 +67,6 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'No encontrado.'});
 }
 
-const controller = { findAll, create, findOne, remove, update }
+const controller = { findAll, create, findOne, remove, update,findAllComplete, findOneComplete };
 
 export default controller;
