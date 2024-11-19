@@ -79,6 +79,7 @@ const ProductoCardList = () => {
             imagen={e.imagen}
             botica={e.botica.nombre} // Consultar el nombre de la botica
             precio={e.precio}
+            receta={e.receta}
           />
 
         )
