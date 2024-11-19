@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Grid, Typography, Button, Tooltip } from '@mui/material';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import InfoIcon from '@mui/icons-material/Info';
@@ -14,7 +14,7 @@ const containerStyles = {
   maxWidth: '100%'
 };
 
-const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isFormValid, handlePaymentClick }) => {
+const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isFormValid, handlePaymentClick, cartProducts }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -29,7 +29,8 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
     tipoDocumento,
     numeroDocumento,
     email,
-    tipoSuscripcion
+    tipoSuscripcion,
+    recetaLink
   } = formData;
 
   // Función para cargar datos del usuario si está logueado
@@ -62,7 +63,10 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
     } else {
       setIsLoggedIn(false);
     }
-  }, [setFormData]);
+  }, [userId, setFormData]);
+
+  // Comprobar si al menos un producto requiere receta
+  const requiereReceta = cartProducts.some(product => product.receta);
 
   return (
     <Grid item xs={12} md={8} lg={6.5}>
@@ -105,10 +109,7 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
               name="tipoDocumento"
               value={tipoDocumento}
               onChange={handleInputChange}
-              options={[
-                { label: 'DNI', value: 'dni' },
-                { label: 'Carnet de Extranjería', value: 'carnet' }
-              ]}
+              options={[{ label: 'DNI', value: 'dni' }, { label: 'Carnet de Extranjería', value: 'carnet' }]}
               disabled={isLoggedIn}
             />
           </Grid>
@@ -130,13 +131,23 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
               name="tipoSuscripcion"
               value={tipoSuscripcion}
               onChange={handleInputChange}
-              options={[
-                { label: '3 meses', value: '3meses' },
-                { label: '6 meses', value: '6meses' },
-                { label: '1 año', value: '1anio' }
-              ]}
+              options={[{ label: '3 meses', value: '3meses' }, { label: '6 meses', value: '6meses' }, { label: '1 año', value: '1anio' }]}
             />
           </Grid>
+
+          {/* Si algún producto requiere receta, mostramos el campo de receta */}
+          {requiereReceta && (
+            <Grid item xs={12} sx={{ mt: 2, ml: 1 }}>
+              <Typography sx={{ ml: 1, fontWeight: 'bold' }}>Por favor, adjunte su receta</Typography>
+              <TextFieldComponent
+                label="Adjunte su receta (link)"
+                name="recetaLink"
+                value={recetaLink || ''}
+                onChange={handleInputChange}
+                required
+              />
+            </Grid>
+          )}
         </Grid>
 
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>

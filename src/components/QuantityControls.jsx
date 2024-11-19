@@ -33,7 +33,7 @@ const QuantityControls = ({ product, cantidad }) => {
                     <AddCircleOutlineIcon fontSize="large" />
                 </Button>
             ) : (
-                <Paper elevation={3}  sx={{ display: 'flex', alignItems: 'center', borderRadius: '30px', padding: '5px 12px' }}>
+                <Paper elevation={3}  sx={{ display: 'flex', alignItems: 'center', borderRadius: '30px', padding: '4px 5px' }}>
                     <IconButton onClick={minusOne}>
                         {cantidad > 1 ? <RemoveIcon /> : <DeleteIcon color="error"/>}
                     </IconButton>

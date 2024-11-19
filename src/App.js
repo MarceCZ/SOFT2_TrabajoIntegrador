@@ -21,6 +21,7 @@ import RutaProtegidaCliente from "./components/RutasProtegidas/RutaProtegidaClie
 import RutaPublica from "./components/RutasProtegidas/RutaPublica";
 import SignInPage from './pages/SignInPage';
 import { AuthProvider } from './components/AuthContext';
+import FAQPage from './pages/FAQPage';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path="/como-funciona" element={<RutaProtegidaCliente><ComoFuncionaPage /></RutaProtegidaCliente>} />
               <Route path="/arma-tu-kit" element={<RutaProtegidaCliente><ArmaTuKitPage /></RutaProtegidaCliente>} />
               <Route path="/boticainfo/:botica" element={<RutaProtegidaCliente><BoticaProductsPage /></RutaProtegidaCliente>} />
+              <Route path="/faq" element={<RutaPublica><FAQPage/></RutaPublica>}/>
             </Routes>
           </FilterProvider>
         </CartProvider>

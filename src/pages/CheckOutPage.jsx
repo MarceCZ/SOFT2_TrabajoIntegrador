@@ -29,6 +29,7 @@ const CheckOutPage = () => {
           handleInputChange={handleInputChange}
           isFormValid={isFormValid}
           handlePaymentClick={() => handlePaymentClick(isFormValid)}
+          cartProducts={cartProducts}
         />
         {/* Resumen de compra */}
         <KitSummary cartProducts={cartProducts} totalCartPrice={totalCartPrice} />

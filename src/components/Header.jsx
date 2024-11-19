@@ -67,6 +67,9 @@ const Header = () => {
             <Button color="inherit" component={Link} to="/arma-tu-kit" sx={{ color: '#000' }}>
               Arma tu kit
             </Button>
+            <Button color="inherit" component={Link} to="/faq" sx={{ color: '#000' }}>
+              FAQ
+            </Button>
           </Box>
 
           {/* Iconos del carrito y usuario dentro del header */}
