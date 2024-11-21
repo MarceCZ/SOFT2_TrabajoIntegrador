@@ -118,9 +118,9 @@ const Header = () => {
           <List>
             {isAuthenticated ? (
               <>
-                <ListItem button component={Link} to="/perfil">
+                <ListItem button component={Link} to="/mi-perfil">
                   <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
-                  <ListItemText primary="Mi cuenta" sx={{ color: '#000' }} />
+                  <ListItemText primary="Mi perfil" sx={{ color: '#000' }} />
                 </ListItem>
                 <ListItem button onClick={handleLogout}>
                   <ListItemText primary="Cerrar sesión" sx={{ color: '#000' }} />

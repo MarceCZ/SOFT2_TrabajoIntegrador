@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Drawer, Box, List, ListItem, ListItemText, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth  } from '../AuthContext';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
 const UserDrawer = ({ isOpen, toggleDrawer}) => {
   const { isAuthenticated, logout } = useAuth();
@@ -28,7 +29,8 @@ const UserDrawer = ({ isOpen, toggleDrawer}) => {
         <List>
           {isAuthenticated ? (
             <>
-              <ListItem button onClick={() => navigate('/')}>
+              <ListItem button onClick={() => navigate('/mi-perfil')}>
+                <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
                 <ListItemText primary="Mi perfil" />
               </ListItem>
               <ListItem button onClick={handleLogout}>

@@ -1,0 +1,11 @@
+GET http://localhost:3001/cliente
+
+###
+
+PUT http://localhost:3001/cliente/12
+Content-Type: application/json
+
+{
+    "distrito": "holiwis"
+}
+

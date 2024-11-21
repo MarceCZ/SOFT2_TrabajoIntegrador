@@ -34,6 +34,7 @@ const findOneComplete = async (req, res) => {
 
     if(usuario && usuario.cliente) {
         const dataCliente = {
+            id: usuario.cliente.id,
             nombre: usuario.cliente.nombre,
             apellido1: usuario.cliente.apellido1,
             apellido2: usuario.cliente.apellido2,
