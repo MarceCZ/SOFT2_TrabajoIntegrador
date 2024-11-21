@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import FAQPageBody from '../components/FAQPageBody';
+import FAQPageBody from '../components/FAQPage/FAQPageBody';
 
 const FAQPage = () => {
 

@@ -24,3 +24,9 @@ DELETE http://localhost:3001/suscripcion
 POST http://localhost:3001/suscripcion/cancel/1
 
 ###
+
+GET http://localhost:3001/kit
+
+###
+
+GET http://localhost:3001/kit_producto

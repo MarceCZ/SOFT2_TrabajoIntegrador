@@ -43,7 +43,7 @@ function App() {
               <Route path="/como-funciona" element={<RutaProtegidaCliente><ComoFuncionaPage /></RutaProtegidaCliente>} />
               <Route path="/arma-tu-kit" element={<RutaProtegidaCliente><ArmaTuKitPage /></RutaProtegidaCliente>} />
               <Route path="/boticainfo/:botica" element={<RutaProtegidaCliente><BoticaProductsPage /></RutaProtegidaCliente>} />
-              <Route path="/faq" element={<RutaPublica><FAQPage/></RutaPublica>}/>
+              <Route path="/faq" element={<RutaProtegidaCliente><FAQPage/></RutaProtegidaCliente>}/>
             </Routes>
           </FilterProvider>
         </CartProvider>

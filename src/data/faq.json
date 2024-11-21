@@ -1,87 +1,90 @@
 [
-    {
-      "question": "¿Qué es el servicio de suscripción de medicamentos?",
-      "answer": "Es un servicio donde puedes recibir una selección de productos farmacéuticos de manera periódica (mensual), eligiendo el plan que mejor se ajuste a tus necesidades: 3, 6 o 12 meses. De esta forma, aseguras la continuidad de tus tratamientos sin preocuparte por reabastecerte."
-    },
-    {
-      "question": "¿Cómo funciona la suscripción mensual?",
-      "answer": "Cada mes recibirás los productos que has seleccionado según el plan que elijas. Dependiendo de la duración de tu suscripción (3, 6 o 12 meses), te enviaremos los productos el primer día de cada mes, garantizando que siempre tengas lo necesario para tu tratamiento."
-    },
-    {
-      "question": "¿Cómo puedo realizar un pedido?",
-      "answer": "Para realizar un pedido, simplemente navega por nuestra tienda, agrega los productos al kit y sigue las instrucciones en el proceso de pago. <strong>No olvides subir tu receta si el medicamento lo requiere.</strong>"
-    },
-    {
-      "question": "¿Cuánto tiempo tarda el envío?",
-      "answer": "El tiempo de envío depende de la ubicación, pero generalmente tarda entre 1 y 2 días hábiles."
-    },
-    {
-      "question": "¿Puedo devolver un producto?",
-      "answer": "Sí, ofrecemos devoluciones dentro de los 30 días después de recibir el producto. Por favor, consulta nuestra política de devoluciones para más detalles."
-    },
-    {
-      "question": "¿Cómo puedo cancelar la suscripción de mi kit?",
-      "answer": "La suscripción de su kit se puede cancelar desde <strong>Mi Perfil</strong>, entra a <strong>Mis suscripciones</strong> y da click en la opción de cancelar mi kit."
-    },
-    {
-      "question": "¿Puedo agregar o cambiar productos en mi kit durante la suscripción?",
-      "answer": "No es posible modificar el contenido de tu kit una vez que la suscripción está activa. Sin embargo, puedes cancelar tu suscripción en cualquier momento sin costo ni penalización, y crear un nuevo kit o suscribirte a uno diferente según tus necesidades."
-    },
-    {
-      "question": "¿Existen descuentos por suscribirme por más meses?",
-      "answer": "No ofrecemos descuentos directos por suscribirte a un plan más largo. Sin embargo, te ofrecemos envíos gratuitos en todas nuestras suscripciones, independientemente de la duración del plan que elijas."
-    },
-    {
-      "question": "¿Puedo cambiar mi dirección de entrega durante la suscripción?",
-      "answer": "No, no es posible cambiar la dirección de entrega una vez que la suscripción ha sido confirmada y el pago realizado. Sin embargo, puedes actualizar tu dirección <strong>antes</strong> de completar el proceso de suscripción, para que los productos lleguen al lugar correcto desde el inicio."
-    },
-    {
-      "question": "¿Es seguro comprar medicamentos a través de suscripción?",
-      "answer": "Sí, trabajamos con proveedores de confianza y cumplimos con todas las normativas de seguridad y salud. Todos nuestros productos están aprobados por las autoridades sanitarias y los enviamos en condiciones adecuadas para garantizar su eficacia y seguridad."
-    },
-    {
-      "question": "¿Puedo pausar mi suscripción temporalmente?",
-      "answer": "En este momento, no ofrecemos la opción de pausar la suscripción, pero puedes cancelarla en cualquier momento."
-    },
-    {
-      "question": "¿Qué pasa si no recibo uno de los productos de mi suscripción?",
-      "answer": "Si algún producto no llega en el paquete de tu suscripción, por favor contáctanos de inmediato. Investigaremos el problema y, si es necesario, te enviaremos el producto faltante de manera urgente. Puedes contactarnos a: <strong>Teléfono:</strong> +1234567890, <strong>WhatsApp</strong> +1234567890, <strong>Correo electrónico:</strong> mediplan@mediplan.com"
-    },
-    {
-      "question": "¿Cómo se renueva mi suscripción automáticamente? ¿Puedo desactivar la renovación automática?",
-      "answer": "Tu suscripción se renueva automáticamente cada mes. Si no deseas que se renueve, puedes cancelar tu suscrpci[on desde tu perfil antes de la fecha de renovación."
-    },
-    {
-      "question": "¿Puedo pagar por mi suscripción con tarjeta de crédito/débito?",
-      "answer": "Sí, aceptamos pagos con tarjeta de crédito y débito de los bancos BCP, Interbank, Scotiabank y BBVA tanto VISA como Mastercard"
-    },
-    {
-      "question": "¿Puedo realizar un pedido sin suscribirme a un kit?",
-      "answer": "No, pero puedes elegir la opción de suscripción por un mes, lo que te permitirá recibir tus medicamentos solo una vez durante ese mes. Esta opción es válida como una compra de medicamentos, pero sin el compromiso de renovación."
-    },
-    {
-      "question": "¿Puedo cambiar la fecha de entrega de mi suscripción?",
-      "answer": "No es posible cambiar la fecha de entrega una vez que el pedido ha sido procesado. La primera entrega se realizará entre 1 y 2 días después de que se valide el pago, y las siguientes entregas se enviarán el primer día de cada mes."
-    },
-    {
-      "question": "¿Cómo puedo saber qué productos están incluidos en mi suscripción cada mes?",
-      "answer": "Recibirás un correo electrónico con el resumen de los productos que se enviarán antes de cada entrega. También puedes revisar tu suscripción en <strong>Mi Perfil</strong> para ver los productos de tu kit."
-    },
-    {
-      "question": "¿Dónde pueden enviarse los productos de la suscripción? ¿Hacen envíos internacionales?",
-      "answer": "Realizamos envíos dentro del país. Actualmente, no ofrecemos envíos internacionales, pero estamos trabajando para expandir nuestra cobertura."
-    },
-    {
-      "question": "¿Qué sucede si no estoy en casa cuando entregan mi pedido?",
-      "answer": "Si no estás en casa, el servicio de mensajería dejará un aviso para que puedas coordinar una nueva entrega."
-    },
-    {
-      "question": "¿El envío es gratuito? ¿Hay alguna condición?",
-      "answer": "Sí, ofrecemos envío gratuito en todas las suscripciones, independientemente de la duración del plan. Si realizas un pedido único sin suscripción, el envío tendrá un costo adicional."
-    },
-    {
-      "question": "¿Puedo devolver productos si no me gustan?",
-      "answer": "Solo aceptamos devoluciones de productos que no hayan sido abiertos o usados. Si tienes algún problema con un producto, por favor contacta con nuestro servicio de atención al cliente para discutir opciones de devolución."
-    }
-  ]
-  
+  {
+    "question": "¿Qué es el servicio de suscripción de medicamentos?",
+    "answer": "<p>Es un servicio donde puedes recibir una selección de productos farmacéuticos de manera periódica (mensual), eligiendo el plan que mejor se ajuste a tus necesidades: <strong style='color: #1b986e'>3, 6 o 12 meses</strong>. De esta forma, aseguras la continuidad de tus tratamientos sin preocuparte por reabastecerte.</p>"
+  },
+  {
+    "question": "¿Cómo funciona la suscripción mensual?",
+    "answer": "<p>Es muy simple:</p><ol><li><strong style='color: #1b986e'>Selecciona:</strong> Elige los productos que deseas recibir.</li><li><strong style='color: #1b986e'>Elige tu plan:</strong> Decide si deseas un plan de 3, 6 o 12 meses.</li><li><strong style='color: #1b986e'>Recibe:</strong> Cada mes, recibirás tus productos el primer día, asegurando que tengas todo lo necesario.</li></ol><p>Con esto, siempre estarás preparado para tu tratamiento.</p>"
+  },
+  {
+    "question": "¿Cómo puedo realizar un pedido?",
+    "answer": "<p>Para realizar un pedido, sigue estos pasos:</p><ol><li><strong style='color: #1b986e'>Navega:</strong> Visita nuestra tienda y selecciona los productos que deseas agregar a tu kit.</li><li><strong style='color: #1b986e'>Sigue las instrucciones:</strong> Completa el proceso de pago.</li><li><strong style='color: #1b986e'>Sube tu receta:</strong> Si el medicamento lo requiere, no olvides adjuntar tu receta.</li></ol><p>¡Así de fácil!</p>"
+  },
+  {
+    "question": "¿Cuánto tiempo tarda el envío?",
+    "answer": "<p>El tiempo de envío varía según la ubicación, pero generalmente tarda entre <strong style='color: #1b986e'>1 y 2 días hábiles</strong>. Te notificaremos en cuanto tu pedido sea enviado.</p>"
+  },
+  {
+    "question": "¿Puedo devolver un producto?",
+    "answer": "<p>Sí, ofrecemos devoluciones dentro de los <strong style='color: #1b986e'>30 días</strong> posteriores a la recepción del producto. Sin embargo, el producto debe estar en perfecto estado y sin uso. Consulta nuestra <a href='/politica-devoluciones'>política de devoluciones</a> para más detalles.</p>"
+  },
+  {
+    "question": "¿Cómo puedo cancelar la suscripción de mi kit?",
+    "answer": "<p>Puedes cancelar tu suscripción en cualquier momento desde tu perfil:</p><ol><li><strong style='color: #1b986e'>Ingresa a:</strong> <em>Mi Perfil</em>.</li><li><strong style='color: #1b986e'>Selecciona:</strong> <em>Mis suscripciones</em>.</li><li><strong style='color: #1b986e'>Haz clic en:</strong> <em>Cancelar mi kit</em>.</li></ol><p>Sin penalizaciones ni cargos adicionales.</p>"
+  },
+  {
+    "question": "¿Qué pasa si no recibo uno de los productos de mi suscripción?",
+    "answer": "<p>En caso de que falte algún producto, sigue estos pasos:</p><ol><li><strong style='color: #1b986e'>Contacta con soporte:</strong> <ul><li>📞 <strong>Teléfono:</strong> +1234567890</li><li>📱 <strong>WhatsApp:</strong> +1234567890</li><li>📧 <strong>Email:</strong> mediplan@mediplan.com</li><li>🗨️ <a href='/preguntenos'> Escríbenos</a></li></ul></li><li><strong style='color: #1b986e'>Proporciona:</strong> El producto faltante y el número de suscripción.</li><li>Recibirás una respuesta en menos de <strong style='color: #1b986e'>24 horas</strong>.</li></ol><p>Estamos comprometidos a solucionar cualquier inconveniente rápidamente.</p>"
+  },
+  {
+    "question": "¿Es seguro comprar medicamentos a través de suscripción?",
+    "answer": "<p>¡Sí, totalmente seguro! Trabajamos con proveedores certificados y cumplimos con todas las normativas sanitarias. Además, garantizamos que los medicamentos se transporten en las mejores condiciones para mantener su calidad y eficacia.</p>"
+  },
+  {
+    "question": "¿Existen descuentos por suscribirme por más meses?",
+    "answer": "No ofrecemos descuentos directos por suscribirte a un plan más largo. Sin embargo, te ofrecemos envíos gratuitos en todas nuestras suscripciones, independientemente de la duración del plan que elijas."
+  },
+  {
+    "question": "¿El envío es gratuito? ¿Hay alguna condición?",
+    "answer": "<p>Sí, el envío es completamente gratuito para todas las suscripciones. Si realizas un pedido único, se aplicará un costo adicional según tu ubicación.</p>"
+  },
+  {
+    "question": "¿Puedo agregar o cambiar productos en mi kit durante la suscripción?",
+    "answer": "<p>No, no es posible modificar el contenido de tu kit una vez que la suscripción está activa. Sin embargo, puedes cancelar tu suscripción <strong style='color: #1b986e'>en cualquier momento</strong> sin costo ni penalización. Luego, puedes crear un nuevo kit o suscribirte a uno diferente según tus necesidades.</p>"
+  },
+  {
+    "question": "¿Puedo cambiar mi dirección de entrega durante la suscripción?",
+    "answer": "<p>No, no es posible cambiar la dirección de entrega una vez que la suscripción ha sido confirmada y el pago realizado. Sin embargo, puedes actualizar tu dirección <strong style='color: #1b986e'>antes</strong> de completar el proceso de suscripción, para asegurarte de que los productos lleguen al lugar correcto desde el inicio.</p>"
+  },
+  {
+    "question": "¿Puedo pausar mi suscripción temporalmente?",
+    "answer": "<p>Actualmente no ofrecemos la opción de pausar la suscripción. Sin embargo, puedes cancelarla <strong style='color: #1b986e'>en cualquier momento</strong> desde tu perfil sin ningún costo adicional.</p>"
+  },
+  {
+    "question": "¿Cómo se renueva mi suscripción automáticamente? ¿Puedo desactivar la renovación automática?",
+    "answer": "<p>Tu suscripción se <strong style='color: #1b986e'>renueva automáticamente</strong> cada mes. Si no deseas que se renueve, puedes cancelar tu suscripción desde tu perfil <strong style='color: #1b986e'>antes de la fecha de renovación</strong> sin ningún inconveniente.</p>"
+  },
+  {
+    "question": "¿Puedo pagar por mi suscripción con tarjeta de crédito/débito?",
+    "answer": "<p>Sí, aceptamos pagos con tarjeta de crédito y débito de los principales bancos, incluyendo:</p><ul><li><strong style='color: #1b986e'>BCP</strong></li><li><strong>Interbank</strong></li><li><strong style='color: #1b986e'>Scotiabank</strong></li><li><strong>BBVA</strong></li></ul><p>Aceptamos tanto tarjetas <strong style='color: #1b986e'>VISA</strong> como <strong style='color: #1b986e'>MasterCard</strong>.</p>"
+  },
+  {
+    "question": "¿Puedo realizar un pedido sin suscribirme a un kit?",
+    "answer": "<p>No, pero puedes elegir la opción de <strong style='color: #1b986e'>suscripción por un mes</strong>. Esto te permitirá recibir tus medicamentos solo una vez durante ese mes, sin compromiso de renovación.</p>"
+  },
+  {
+    "question": "¿Puedo cambiar la fecha de entrega de mi suscripción?",
+    "answer": "<p>No, no es posible cambiar la fecha de entrega una vez que el pedido ha sido procesado. La primera entrega se realizará entre <strong style='color: #1b986e'>1 y 2 días</strong> después de validar el pago. Las siguientes entregas se enviarán <strong style='color: #1b986e'>el primer día de cada mes</strong>.</p>"
+  },
+  {
+    "question": "¿Cómo puedo saber qué productos están incluidos en mi suscripción cada mes?",
+    "answer": "<p>Antes de cada entrega, recibirás un correo electrónico con el <strong style='color: #1b986e'>resumen de los productos</strong> que se enviarán. También puedes revisar tu suscripción en la sección <strong style='color: #1b986e'>Mi Perfil</strong> de nuestra plataforma.</p>"
+  },
+  {
+    "question": "¿Dónde pueden enviarse los productos de la suscripción? ¿Hacen envíos internacionales?",
+    "answer": "<p>Actualmente realizamos envíos <strong style='color: #1b986e'>dentro del país</strong>. Por ahora, no ofrecemos envíos internacionales, pero estamos trabajando para expandir nuestra cobertura en el futuro.</p>"
+  },
+  {
+    "question": "¿Qué sucede si no estoy en casa cuando entregan mi pedido?",
+    "answer": "<p>Si no estás en casa, el servicio de mensajería dejará un aviso para que puedas coordinar una nueva entrega sin problemas.</p>"
+  },
+  {
+    "question": "¿El envío es gratuito? ¿Hay alguna condición?",
+    "answer": "<p>Sí, el <strong style='color: #1b986e'>envío es gratuito</strong> en todas las suscripciones, independientemente de la duración del plan. Si realizas un pedido único sin suscripción, se aplicará un costo adicional dependiendo de tu ubicación.</p>"
+  },
+  {
+    "question": "¿Puedo devolver productos si no me gustan?",
+    "answer": "<p>Solo aceptamos devoluciones de productos que no hayan sido abiertos o usados. Si tienes algún problema con un producto, por favor contacta con nuestro <strong style='color: #1b986e'>servicio de atención al cliente</strong> para discutir las opciones de devolución.</p>"
+  }
+]

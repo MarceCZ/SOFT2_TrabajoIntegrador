@@ -81,12 +81,14 @@ const PaymentDialog = ({ userId, isDialogOpen, handleCloseDialog, totalCartPrice
       userId,
       subsType: formData.tipoSuscripcion,
       totalCartPrice,
+      recetaLink: formData.recetaLink || null,
       cartProducts: cartProducts.map(product => ({
         productId: product.id,
         cantidad: product.cantidad,
-        recetaId: product.receta || null
       }))
     };
+
+    sessionStorage.setItem('payload', JSON.stringify(payload));
 
     try {
       const response = await suscripcionApi.create(payload);

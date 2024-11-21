@@ -11,10 +11,18 @@ import SelectComponent from './SelectComponent';
 const containerStyles = {
   padding: 2,
   marginLeft: { sm: '5vh', md: '10vh', lg: '30vh' },
-  maxWidth: '100%'
+  maxWidth: '100%',
 };
 
-const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isFormValid, handlePaymentClick, cartProducts }) => {
+const CheckoutForm = ({
+  userId,
+  formData,
+  setFormData,
+  handleInputChange,
+  isFormValid,
+  handlePaymentClick,
+  cartProducts,
+}) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -30,7 +38,7 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
     numeroDocumento,
     email,
     tipoSuscripcion,
-    recetaLink
+    recetaLink,
   } = formData;
 
   // Función para cargar datos del usuario si está logueado
@@ -54,6 +62,7 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
               distrito: userData.distrito,
               tipoDocumento: userData.dni.length === 8 ? 'dni' : 'carnet',
             }));
+            sessionStorage.setItem('formData', JSON.stringify(formData));
           }
         } catch (error) {
           console.error('Error al obtener los datos del usuario:', error);
@@ -63,45 +72,109 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
     } else {
       setIsLoggedIn(false);
     }
-  }, [userId, setFormData]);
+  }, [userId, setFormData,formData]);
+
+  // Función para validar enlaces
+  const isValidURL = (text) =>
+    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/.test(text);
 
   // Comprobar si al menos un producto requiere receta
-  const requiereReceta = cartProducts.some(product => product.receta);
+  const requiereReceta = cartProducts.some((product) => product.receta);
+
+  // Calcular si el botón "Pagar" debe estar habilitado
+  const isPaymentEnabled =
+    isFormValid && (!requiereReceta || (recetaLink && isValidURL(recetaLink)));
 
   return (
     <Grid item xs={12} md={8} lg={6.5}>
       <Box sx={containerStyles}>
-        <Button onClick={() => navigate('/cart')} sx={{ marginBottom: 2, top: 16, color: '#1b986e' }}>← Volver</Button>
-        <Typography variant="h5" gutterBottom>¡Estas muy cerca de tener tu kit!</Typography>
+        <Button onClick={() => navigate('/cart')} sx={{ marginBottom: 2, top: 16, color: '#1b986e' }}>
+          ← Volver
+        </Button>
+        <Typography variant="h5" gutterBottom>
+          ¡Estas muy cerca de tener tu kit!
+        </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
           <PersonPinIcon fontSize="large" />
           <Typography sx={{ ml: 1, fontWeight: 'bold' }}>Completa algunos de tus datos</Typography>
         </Box>
-        
+
         <Grid container spacing={2} sx={{ mt: 0.5 }}>
           <Grid item xs={12}>
-            <TextFieldComponent label="Nombre" name="nombre" value={nombre} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Nombre"
+              name="nombre"
+              value={nombre}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextFieldComponent label="Apellido Paterno" name="apellidoPaterno" value={apellidoPaterno} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Apellido Paterno"
+              name="apellidoPaterno"
+              value={apellidoPaterno}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextFieldComponent label="Apellido Materno" name="apellidoMaterno" value={apellidoMaterno} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Apellido Materno"
+              name="apellidoMaterno"
+              value={apellidoMaterno}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextFieldComponent label="Dirección" name="direccion" value={direccion} onChange={handleInputChange} required />
+            <TextFieldComponent
+              label="Dirección"
+              name="direccion"
+              value={direccion}
+              onChange={handleInputChange}
+              required
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextFieldComponent label="Nro. departamento, Mz., referencias, etc (opcional)" name="departamentoMzReferencia" value={departamentoMzReferencia} onChange={handleInputChange} />
+            <TextFieldComponent
+              label="Nro. departamento, Mz., referencias, etc (opcional)"
+              name="departamentoMzReferencia"
+              value={departamentoMzReferencia}
+              onChange={handleInputChange}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextFieldComponent label="Distrito" name="distrito" value={distrito} onChange={handleInputChange} required />
+            <TextFieldComponent
+              label="Distrito"
+              name="distrito"
+              value={distrito}
+              onChange={handleInputChange}
+              required
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextFieldComponent label="Celular" name="celular" value={celular} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Celular"
+              name="celular"
+              value={celular}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextFieldComponent label="Correo electrónico" name="email" value={email} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Correo electrónico"
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SelectComponent
@@ -109,12 +182,22 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
               name="tipoDocumento"
               value={tipoDocumento}
               onChange={handleInputChange}
-              options={[{ label: 'DNI', value: 'dni' }, { label: 'Carnet de Extranjería', value: 'carnet' }]}
+              options={[
+                { label: 'DNI', value: 'dni' },
+                { label: 'Carnet de Extranjería', value: 'carnet' },
+              ]}
               disabled={isLoggedIn}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextFieldComponent label="Número de documento" name="numeroDocumento" value={numeroDocumento} onChange={handleInputChange} required disabled={isLoggedIn} />
+            <TextFieldComponent
+              label="Número de documento"
+              name="numeroDocumento"
+              value={numeroDocumento}
+              onChange={handleInputChange}
+              required
+              disabled={isLoggedIn}
+            />
           </Grid>
 
           <Grid item xs={12} sx={{ mt: 2, ml: 1 }}>
@@ -131,11 +214,14 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
               name="tipoSuscripcion"
               value={tipoSuscripcion}
               onChange={handleInputChange}
-              options={[{ label: '3 meses', value: '3meses' }, { label: '6 meses', value: '6meses' }, { label: '1 año', value: '1anio' }]}
+              options={[
+                { label: '3 meses', value: '3meses' },
+                { label: '6 meses', value: '6meses' },
+                { label: '1 año', value: '1anio' },
+              ]}
             />
           </Grid>
 
-          {/* Si algún producto requiere receta, mostramos el campo de receta */}
           {requiereReceta && (
             <Grid item xs={12} sx={{ mt: 2, ml: 1 }}>
               <Typography sx={{ ml: 1, fontWeight: 'bold' }}>Por favor, adjunte su receta</Typography>
@@ -156,7 +242,7 @@ const CheckoutForm = ({ userId, formData, setFormData, handleInputChange, isForm
             color="success"
             size="large"
             sx={{ borderRadius: '25px', padding: '14px 40px', fontSize: '16px', fontWeight: 'bold' }}
-            disabled={!isFormValid}
+            disabled={!isPaymentEnabled} // Habilita el botón solo si el formulario es válido
             onClick={handlePaymentClick}
           >
             Pagar

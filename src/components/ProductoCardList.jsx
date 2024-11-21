@@ -33,8 +33,8 @@ const ProductoCardList = () => {
   }, []);
 
   useEffect(() => {
-    // Filtrar productos por rango de precios, botica y marca
-    const newFilteredList = productList.filter((product) => {
+    // Filtrar productos por rafilteredListngo de precios, botica y marca
+    const newFilteredList = filteredList.filter((product) => {
       const withinPriceRange = product.precio >= priceRange[0] && product.precio <= priceRange[1];
       const matchesBoticaName =
         boticaName.length === 0 ||
