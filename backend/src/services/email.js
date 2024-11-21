@@ -38,4 +38,17 @@ const sendNotificationEmail = async (email, nombre, productos, idPedido,fecha, v
     });
 };
 
+const sendQuestionEmail = async (email, consulta, nombre) => {
+    await client.sendEmailWithTemplate({
+      From: "20210630@aloe.ulima.edu.pe", // Reemplaza con tu correo autorizado en Postmark
+      To: "20214302@aloe.ulima.edu.pe",
+      TemplateId: 38094869,
+      TemplateModel: {
+        correo: email,
+        name: nombre,
+        question: consulta
+      },
+    });
+};
+
 export default { sendVerificationCodeEmail , sendNotificationEmail};
