@@ -47,7 +47,7 @@ const MiPerfil = () => {
             console.log("userId desde localStorage:", userId);
             console.log("id del cliente:", userData.id)
             await clienteApi.update(updatedData.id, updatedData); 
-            const refreshedData = await usuarioApi.findOneComplete(updatedData.id);
+            const refreshedData = await usuarioApi.findOneComplete(userId);
             console.log("Datos actualizados desde el backend:", refreshedData);
             setUserData(refreshedData);
             setIsEditing(false);
