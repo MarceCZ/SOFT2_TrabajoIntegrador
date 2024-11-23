@@ -151,23 +151,7 @@ const MiPerfil = () => {
                     <UserInfo userData={userData} />
                 )}
                 
-                {/* Botón para ver el kit */}
-                <Box sx={{ mt: 4, textAlign: "center" }}>
-                    <Button
-                        variant="contained"
-                        sx={{
-                            backgroundColor: "#1b986e",
-                            color: "white",
-                            fontWeight: "bold",
-                            "&:hover": {
-                                backgroundColor: "#179c62",  // Tono más oscuro en hover
-                            },
-                        }}
-                        onClick={() => navigate(`/kitinfo/${userId}`)}  // Redirige al perfil del kit
-                    >
-                        Ver mi Kit
-                    </Button>
-                </Box>
+                
             </Container>
         </>
     );

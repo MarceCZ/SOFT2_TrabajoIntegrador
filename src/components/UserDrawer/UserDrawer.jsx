@@ -3,10 +3,14 @@ import { Drawer, Box, List, ListItem, ListItemText, Divider } from '@mui/materia
 import { useNavigate } from 'react-router-dom';
 import { useAuth  } from '../AuthContext';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded';
 
 const UserDrawer = ({ isOpen, toggleDrawer}) => {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+
+  const userId = localStorage.getItem("userId");
+  console.log(userId);
 
   const handleMenuClose = () => {
     toggleDrawer(false)();
@@ -33,6 +37,10 @@ const UserDrawer = ({ isOpen, toggleDrawer}) => {
                 <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
                 <ListItemText primary="Mi perfil" />
               </ListItem>
+              <ListItem button onClick={() => navigate('/kitinfo/' + userId)}>
+                  <MedicalServicesRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
+                  <ListItemText primary="Mi kit" sx={{ color: '#000' }} />
+                </ListItem>
               <ListItem button onClick={handleLogout}>
                 <ListItemText primary="Cerrar sesión" />
               </ListItem>
