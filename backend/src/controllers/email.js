@@ -64,4 +64,24 @@ const verificarCodeCambiarPassword = async (req, res) => {
     }
 };
 
-export default { resetPassword, verificarCodeCambiarPassword };
+const enviarConsulta = async (req, res) => {
+    const { email, nombre, consulta } = req.body;
+
+    console.log("Contenido de req.session antes de validar:", req.session);
+
+    console.log("Correo recibido:", email);
+    console.log("Nombre recibido", nombre);
+    console.log("Consulta:", consulta);
+
+    try {
+        await EmailService.sendQuestionEmail(email, nombre, consulta);
+
+        return res.status(200).json({ status: 200, message: "Correo enviado exitosamente" });
+    } catch (error) {
+        console.error("Error al enviar correo:", error);
+        return res.status(500).json({ status: 500, message: "Error al enviar correo" });
+    }
+};
+
+
+export default { resetPassword, verificarCodeCambiarPassword, enviarConsulta};

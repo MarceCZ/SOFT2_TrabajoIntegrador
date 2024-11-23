@@ -2,27 +2,61 @@ import React, { useState } from 'react';
 import { Box, Typography, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
+import correoApi from '../api/email.js';
+import userApi from '../api/usuario.js';
 
 const EscribenosPage = () => {
-  const [pregunta, setPregunta] = useState('');
+  const [consulta, setPregunta] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false); 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleEnviar = () => {
-    if (!pregunta.trim()) {
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const userId = sessionStorage.getItem('userId');
+      if (!userId) {
+        console.error('No se encontró información del usuario. Por favor, inicia sesión.');
+        return;
+      }
+  
+      try {
+        const response = await userApi.findOneComplete(userId); // Llamada a la API
+        const { nombre, apellido1, apellido2, email } = response.data;
+        setNombre(`${nombre} ${apellido1} ${apellido2}`);
+        setEmail(email);
+      } catch (error) {
+        console.error('Error al obtener los datos del usuario:', error);
+      }
+    };
+  
+    fetchUserDetails();
+  }, []);
+
+  const handleEnviar = async () => {
+    if (!consulta.trim()) {
       setError(true);
       return;
     }
-    console.log('Pregunta enviada:', pregunta);
-    setPregunta('');
-    setError(false);
-    setOpen(true); 
+
+    try {
+      const response = await correoApi.enviarConsulta(email, nombre, consulta);
+      if (response.status === 200) {
+        setOpen(true);
+        setPregunta('');
+        setError(false);
+      } else {
+        console.error('Ocurrió un problema al enviar la consulta.');
+      }
+    } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+    }
   };
 
   const handleClose = () => {
     setOpen(false);
-    navigate('/'); 
+    navigate('/');
   };
 
   return (
@@ -75,7 +109,7 @@ const EscribenosPage = () => {
             variant="outlined"
             multiline
             rows={4}
-            value={pregunta}
+            value={consulta}
             onChange={(e) => {
               setPregunta(e.target.value);
               if (error) setError(false);
