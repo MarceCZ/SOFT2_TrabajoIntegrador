@@ -15,7 +15,7 @@ const EscribenosPage = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const userId = sessionStorage.getItem('userId');
+      const userId = localStorage.getItem('userId');
       if (!userId) {
         console.error('No se encontró información del usuario. Por favor, inicia sesión.');
         return;
