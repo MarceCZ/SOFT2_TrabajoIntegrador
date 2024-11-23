@@ -12,7 +12,7 @@ const FAQPageBody = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const navigate = useNavigate();
 
-  const handleRedirect = () => navigate('/preguntenos');
+  const handleRedirect = () => navigate('/escribenos');
 
   const handleListItemClick = (index) =>
     setSelectedIndex(selectedIndex === index ? null : index);

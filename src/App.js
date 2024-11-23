@@ -24,6 +24,7 @@ import { AuthProvider } from './components/AuthContext';
 import FAQPage from './pages/FAQPage';
 import MiPerfilPage from './pages/MiPerfilPage';
 import BusinessRecetasPage from './pages/BusinessRecetasPage';
+import EscribenosPage from './pages/EscribenosPage';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
               <Route path="/boticainfo/:botica" element={<RutaProtegidaCliente><BoticaProductsPage /></RutaProtegidaCliente>} />
               <Route path="/faq" element={<RutaProtegidaCliente><FAQPage/></RutaProtegidaCliente>}/>
               <Route path="/mi-perfil" element={<MiPerfilPage/>}/>
+              <Route path="/escribenos" element={<RutaProtegidaCliente><EscribenosPage/></RutaProtegidaCliente>} />
             </Routes>
           </FilterProvider>
         </CartProvider>
