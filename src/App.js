@@ -23,6 +23,7 @@ import SignInPage from './pages/SignInPage';
 import { AuthProvider } from './components/AuthContext';
 import FAQPage from './pages/FAQPage';
 import MiPerfilPage from './pages/MiPerfilPage';
+import BusinessRecetasPage from './pages/BusinessRecetasPage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/" element={<RutaProtegidaCliente><ClientMainPage /></RutaProtegidaCliente>} />
               <Route path='/productsbusiness' element={<RutaProtegida><BusinessProductsPage /></RutaProtegida>} />
               <Route path='/metricsbusiness' element={<RutaProtegida><BusinessMetricsPage /></RutaProtegida>} />
+              <Route path='/recetasbusiness' element={<RutaProtegida><BusinessRecetasPage /></RutaProtegida>} />
               <Route path='/productinfo/:id' element={<RutaProtegidaCliente><ProductInfoPage /></RutaProtegidaCliente>} />
               <Route path='/cart' element={<RutaProtegidaCliente><CartPage /></RutaProtegidaCliente>} />
               <Route path='/checkout' element={<RutaProtegidaCliente><CheckoutPage /></RutaProtegidaCliente>} />

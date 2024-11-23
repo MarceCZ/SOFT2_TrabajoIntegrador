@@ -1,5 +1,6 @@
 import model from '../models/receta.js'
 import RepositoryBase from '../repositories/base.js';
+import service from '../services/receta.js';
 
 const repository = new RepositoryBase(model);
 
@@ -9,6 +10,22 @@ const findAll = async (req, res) => {
 
     return sendResult(result, res);
 }
+
+const findAllComplete = async (req, res) => {
+    
+    const result = await service.findAllComplete();
+
+    return sendResult(result, res);
+}
+
+const findAllCompleteXBotica = async (req, res) => {
+    const id = req.params.id;
+
+    const result = await service.findAllCompleteXBotica(id);
+
+    return sendResult(result, res);
+}
+
 
 const create = async (req, res) => {
     const payload = req.body;
@@ -50,6 +67,6 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'No encontrado.'});
 }
 
-const controller = { findAll, create, findOne, remove, update }
+const controller = { findAll, create, findOne, remove, update,findAllComplete, findAllCompleteXBotica }
 
 export default controller;

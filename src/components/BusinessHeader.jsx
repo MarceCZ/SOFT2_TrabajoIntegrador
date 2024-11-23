@@ -60,6 +60,9 @@ const BusinessHeader = () => {
             <Button color="inherit" component={Link} to="/metricsbusiness" sx={{ color: '#000' }}>
               MÉTRICAS
             </Button>
+            <Button color="inherit" component={Link} to="/recetasbusiness" sx={{ color: '#000' }}>
+              RECETAS
+            </Button>
           </Box>
 
           {/* Iconos responsive */}
@@ -85,6 +88,9 @@ const BusinessHeader = () => {
             </ListItem>
             <ListItem button component={Link} to="/metricsbusiness">
               <ListItemText primary="MÉTRICAS" sx={{ color: '#000' }} />
+            </ListItem>
+            <ListItem button component={Link} to="/recetasbusiness">
+              <ListItemText primary="RECETAS" sx={{ color: '#000' }} />
             </ListItem>
           </List>
           <Divider />
