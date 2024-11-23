@@ -5,6 +5,8 @@ import Cliente from '../models/cliente.js'
 import Suscripcion from '../models/suscripcion.js'
 import Kit from '../models/kit.js'
 import KitProducto from '../models/kit_producto.js'
+import { where } from 'sequelize'
+import Botica from '../models/botica.js'
 
 const findAllComplete = async () => {
     
@@ -92,7 +94,70 @@ const findAllComplete = async () => {
     return usuariosKits*/
 }
 
+const findOneCompleteCliente = async (id) => {
 
-const service = {  findAllComplete }
+    try {
+        // Busca el usuario con todos los kits y productos relacionados
+        const usuario = await Usuario.findOne({
+            where: { id },
+            include: [
+                {
+                    model: Cliente,
+                    required: true,
+                    include: [
+                        {
+                            model: Suscripcion,
+                            required: true,
+                            where: { estado: true }, // Filtra solo suscripciones activas
+                            include: [
+                                {
+                                    model: Kit,
+                                    required: true,
+                                    include: [
+                                        {
+                                            model: KitProducto,
+                                            required: true,
+                                            include: [
+                                                {
+                                                    model: Producto,
+                                                    required: true, // Relación con Producto
+                                                    include: [Botica], // Incluye Botica si es necesario
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
+
+        // Procesa los kits para calcular totales
+        usuario.cliente.suscripcions.forEach((suscripcion) => {
+            suscripcion.kits.forEach((kit) => {
+                let totalKit = 0;
+                kit.kit_productos.forEach((kitProducto) => {
+                    const producto = kitProducto.producto;
+                    if (producto && kitProducto.cantProducto) {
+                        const subtotal = parseFloat(producto.precio) * kitProducto.cantProducto;
+                        kitProducto.dataValues.subtotal = subtotal.toFixed(2);
+                        totalKit += subtotal;
+                    }
+                });
+                kit.dataValues.totalKit = totalKit.toFixed(2); // Agrega el total del kit
+            });
+        });
+
+        return usuario; // Devuelve toda la información del usuario
+    } catch (error) {
+        console.error("Error en findUserAndKitDetails:", error.message);
+        throw error;
+    }
+};
+
+
+const service = {  findAllComplete, findOneCompleteCliente }
 
 export default service

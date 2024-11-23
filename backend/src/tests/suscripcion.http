@@ -30,3 +30,6 @@ GET http://localhost:3001/kit
 ###
 
 GET http://localhost:3001/kit_producto
+
+###
+GET http://localhost:3001/kit_producto/complete/23

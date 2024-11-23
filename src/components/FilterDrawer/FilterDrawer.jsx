@@ -7,9 +7,13 @@ import BoticaFilter from './BoticaFilter';
 import MarcaFilter from './MarcaFilter';
 import ResetFilters from './ResetFilter';
 
-const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
+const FilterDrawer = () => {
     const {
+        boticaName,
+        marcaName,
         medicamentoName,
+        updateMarcaName,
+        updateBoticaName,
         updateMedicamentoName,
         resetFilters,
         decodedBotica,
@@ -35,12 +39,14 @@ const FilterDrawer = ({ boticasDisponibles, marcasDisponibles }) => {
 
                     {!decodedBotica && (
                         <BoticaFilter
-                            boticasDisponibles={boticasDisponibles}
+                            boticaName={boticaName} 
+                            updateBoticaName={updateBoticaName}
                         />
                     )}
 
-                    <MarcaFilter
-                        marcasDisponibles={marcasDisponibles}
+                    <MarcaFilter 
+                        marcaName={marcaName}
+                        updateMarcaName={updateMarcaName}
                     />
 
                     <ResetFilters resetFilters={resetFilters} />

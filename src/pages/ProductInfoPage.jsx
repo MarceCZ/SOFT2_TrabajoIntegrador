@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CardMedia, Typography, Box, Button, Chip, Divider, Container, Grid, Paper, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import data from '../data/data.json';
 import Header from '../components/Header';
 import { CartContext } from '../components/CartContext';
 import QuantityControls from '../components/QuantityControls';
@@ -16,21 +15,16 @@ const ProductInfoPage = () => {
     
     const [producto, setProducto] = useState(null);  // Estado para almacenar el producto
     const [loading, setLoading] = useState(true);    // Estado de carga
-    const [error, setError] = useState(null);        // Estado de error
-
 
     const { cartProducts } = useContext(CartContext);
     const [cantidad, setCantidad] = useState(0);
 
     const fetchProduct = async () => {
-        setLoading(true);
-        setError(null);
         try {
             const fetchedProduct = await apiProd.findOneComplete(id); // Usamos la función findOneComplete
             setProducto(fetchedProduct); // Guardamos el producto en el estado
         } catch (err) {
             console.error("Error al cargar el producto:", err);
-            setError("No se encontró el producto.");
         } finally {
             setLoading(false);
         }
@@ -58,6 +52,10 @@ const ProductInfoPage = () => {
             navigate(`/boticainfo/${encodeURIComponent(formattedBotica)}`);
         }
     };
+
+    if (loading) {
+        return <Typography variant="h5">Cargando producto...</Typography>;
+    }
 
     if (!producto) {
         return <Typography variant="h5">Producto no encontrado</Typography>;

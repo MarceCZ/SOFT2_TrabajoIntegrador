@@ -23,6 +23,7 @@ import SignInPage from './pages/SignInPage';
 import { AuthProvider } from './components/AuthContext';
 import FAQPage from './pages/FAQPage';
 import MiPerfilPage from './pages/MiPerfilPage';
+import InfoKitPage from './pages/InfoKitPage';
 import BusinessRecetasPage from './pages/BusinessRecetasPage';
 import EscribenosPage from './pages/EscribenosPage';
 
@@ -49,6 +50,8 @@ function App() {
               <Route path="/boticainfo/:botica" element={<RutaProtegidaCliente><BoticaProductsPage /></RutaProtegidaCliente>} />
               <Route path="/faq" element={<RutaProtegidaCliente><FAQPage/></RutaProtegidaCliente>}/>
               <Route path="/mi-perfil" element={<MiPerfilPage/>}/>
+              <Route path="/kitinfo/:id" element={<RutaProtegidaCliente><InfoKitPage /></RutaProtegidaCliente>} />
+              <Route path="/faq" element={<RutaPublica><FAQPage/></RutaPublica>}/>
               <Route path="/escribenos" element={<RutaProtegidaCliente><EscribenosPage/></RutaProtegidaCliente>} />
             </Routes>
           </FilterProvider>

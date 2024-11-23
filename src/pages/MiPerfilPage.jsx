@@ -6,6 +6,7 @@ import clienteApi from "../api/cliente";
 import { useAuth } from "../components/AuthContext";
 import UserInfo from "../components/MiPerfilPage/UserInfo";
 import EditUserInfo from "../components/MiPerfilPage/EditUserInfo";
+import { useNavigate } from "react-router-dom";
 
 const MiPerfil = () => {
     const { isAuthenticated } = useAuth();
@@ -15,6 +16,7 @@ const MiPerfil = () => {
     const [error, setError] = useState(null);
 
     const userId = localStorage.getItem("userId");
+    const navigate = useNavigate(); // Hook de navegación
     console.log("userId desde localStorage:", userId);
 
     useEffect(() => {
@@ -148,14 +150,27 @@ const MiPerfil = () => {
                 ) : (
                     <UserInfo userData={userData} />
                 )}
+                
+                {/* Botón para ver el kit */}
+                <Box sx={{ mt: 4, textAlign: "center" }}>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: "#1b986e",
+                            color: "white",
+                            fontWeight: "bold",
+                            "&:hover": {
+                                backgroundColor: "#179c62",  // Tono más oscuro en hover
+                            },
+                        }}
+                        onClick={() => navigate(`/kitinfo/${userId}`)}  // Redirige al perfil del kit
+                    >
+                        Ver mi Kit
+                    </Button>
+                </Box>
             </Container>
         </>
     );
 };
 
 export default MiPerfil;
-
-
-
-
-

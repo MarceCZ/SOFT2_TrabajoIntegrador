@@ -1,5 +1,7 @@
 import model from '../models/kit_producto.js'
 import RepositoryBase from '../repositories/base.js';
+import service from '../services/usuario_kits.js';
+
 
 const repository = new RepositoryBase(model);
 
@@ -27,6 +29,15 @@ const findOne = async (req, res) => {
     return sendResult(result, res);
 }
 
+const findOneCompleteCliente = async (req, res) => {
+
+    const id = req.params.id;
+
+    const result = await service.findOneCompleteCliente(id);
+
+    return sendResult(result, res);
+}
+
 const remove = async (req, res) => {
     const id = req.params.id;
 
@@ -50,6 +61,6 @@ const sendResult = (result, res) => {
         return res.status(500).json({ message: 'No encontrado.'});
 }
 
-const controller = { findAll, create, findOne, remove, update }
+const controller = { findAll, create, findOne, remove, update, findOneCompleteCliente }
 
 export default controller;

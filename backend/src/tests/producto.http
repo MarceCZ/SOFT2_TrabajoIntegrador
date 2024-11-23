@@ -189,8 +189,24 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3001/producto
+Content-Type: application/json
 
-###
+{
+    "imagen": "https://example.com/image15.jpg",
+    "nombre": "Diclofenaco",
+    "marca": "Voltaren",
+    "presentacion": "Caja con 20 tabletas de 50 mg",
+    "descripcion": "Uso para el alivio del dolor e inflamación.",
+    "precio": 18.00,
+    "stock": 140,
+    "contraindicaciones": "No usar en caso de úlceras gástricas activas.",
+    "advertencias": "Consultar al médico si el dolor persiste.",
+    "receta": false,
+    "idBotica": 2
+}
+
+
 
 ###
 

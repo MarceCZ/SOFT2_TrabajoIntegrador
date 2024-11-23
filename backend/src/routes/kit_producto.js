@@ -4,6 +4,7 @@ import controller from '../controllers/kit_producto.js';
 const router = express.Router();
 
 router.get('/', controller.findAll);
+router.get('/complete/:id', controller.findOneCompleteCliente);
 router.get('/:id', controller.findOne);
 router.post('/', controller.create);
 router.delete('/:id', controller.remove);

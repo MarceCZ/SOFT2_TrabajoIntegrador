@@ -10,9 +10,7 @@ const ProductoCard = (props) => {
     const [cantidad, setCantidad] = useState(0);
 
     const CardOnClick = () => {
-        const formattedNombre = props.nombre.replace(/\s+/g, '-').toLowerCase();
-        const formattedBotica = props.botica.replace(/\s+/g, '-').toLowerCase();
-        navigate(`/productinfo/${encodeURIComponent(formattedNombre)}/${encodeURIComponent(formattedBotica)}`, { state: { product: props } });
+        navigate(`/productinfo/${props.id}`);
     };
 
     const handleBoticaClick = (event) => {
