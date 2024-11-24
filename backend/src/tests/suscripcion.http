@@ -21,7 +21,7 @@ DELETE http://localhost:3001/suscripcion
 
 ###
 
-POST http://localhost:3001/suscripcion/cancel/1
+POST http://localhost:3001/suscripcion/cancel/14
 
 ###
 
@@ -32,4 +32,4 @@ GET http://localhost:3001/kit
 GET http://localhost:3001/kit_producto
 
 ###
-GET http://localhost:3001/kit_producto/complete/23
+GET http://localhost:3001/kit_producto

@@ -92,7 +92,7 @@ const cancelSubscription = async (subscriptionId) => {
 
         // Cambiar el estado a false
         await newSuscripcion.update(
-            { estado: false },
+            { estado: true },
             { where: { id: subscriptionId } }
         );
 

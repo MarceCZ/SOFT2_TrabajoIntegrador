@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Typography, Grid, Paper, Box, Button, CircularProgress, Alert, Link, CardMedia } from '@mui/material';
 import Header from '../components/Header';
+import suscripcionApi from '../api/suscripcion';
 import apiKit from '../api/kitProd';
 
 const InfoKitPage = () => {
@@ -10,14 +11,22 @@ const InfoKitPage = () => {
     const [kitProducto, setKitProducto] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isCancelled, setIsCancelled] = useState(false); // Estado local para la cancelación
 
     useEffect(() => {
         const fetchProductKit = async () => {
             try {
                 setLoading(true);
+                // Simulación de la obtención de datos (por ejemplo, desde un API)
                 const fetchedKit = await apiKit.findOneCompleteCliente(id);
                 console.log("Datos recibidos:", fetchedKit);
                 setKitProducto(fetchedKit);
+
+                // Revisar si la suscripción está cancelada
+                const suscripcion = fetchedKit.cliente?.suscripcions?.[0];
+                if (suscripcion?.estado === 'Cancelado') {
+                    setIsCancelled(true);
+                }
             } catch (err) {
                 console.error("Error al cargar los datos:", err.message);
                 setError("No se pudieron cargar los datos o usted no tiene un kit activo.");
@@ -28,6 +37,21 @@ const InfoKitPage = () => {
 
         fetchProductKit();
     }, [id]);
+
+    const handleCancelKit = async () => {
+        try {
+            if (kitProducto?.cliente?.suscripcions?.[0]?.id) {
+                // Llamada al API para cancelar la suscripción
+                const suscripcionId = kitProducto.cliente.suscripcions[0].id;
+                await suscripcionApi.cancel(suscripcionId);
+                setIsCancelled(true);  // Actualizamos el estado local
+                setError(null);  // Limpiamos posibles mensajes de error
+            }
+        } catch (err) {
+            console.error("Error al cancelar la suscripción:", err);
+            setError("No se pudo cancelar la suscripción. Intente más tarde.");
+        }
+    };
 
     if (loading) {
         return (
@@ -112,7 +136,16 @@ const InfoKitPage = () => {
                                     Detalles del Kit
                                 </Typography>
                                 <Typography variant="body1" sx={{ marginBottom: 1 }}>
-                                    <strong>Estado de Suscripción:</strong> {kitProducto.cliente?.suscripcions?.[0]?.estado ? "Por Entregar" : "Entregado"}
+                                    <strong>Estado de Suscripción:</strong>
+                                    <span
+                                        style={{
+                                            fontWeight: 'bold',
+                                            color: isCancelled ? 'red' : 'green',
+                                            fontSize: '22px', // Tamaño de fuente aumentado
+                                        }}
+                                    >
+                                        {isCancelled ? ' Cancelado' : ' Entregado'}
+                                    </span>
                                 </Typography>
                                 <Typography variant="body1" sx={{ marginBottom: 1 }}>
                                     <strong>Fecha de Entrega:</strong> {new Date(kitProducto.cliente?.suscripcions?.[0]?.kits?.[0]?.fecha).toLocaleDateString('es-ES')}
@@ -120,6 +153,20 @@ const InfoKitPage = () => {
                                 <Typography variant="body1" sx={{ marginBottom: 1 }}>
                                     <strong>Total del Kit:</strong> S/ {kitProducto.cliente?.suscripcions?.[0]?.kits?.[0]?.totalKit}
                                 </Typography>
+
+                                {/* Botón para cancelar el kit solo si la suscripción no está cancelada */}
+                                {!isCancelled && (
+                                    <Box sx={{ marginTop: 2, textAlign: 'center' }}>
+                                        <Button
+                                            variant="contained"
+                                            color="error"
+                                            sx={{ fontWeight: 'bold', textTransform: 'none' }}
+                                            onClick={handleCancelKit} // Cancelar kit
+                                        >
+                                            Cancelar Kit
+                                        </Button>
+                                    </Box>
+                                )}
                             </Paper>
                         </Grid>
                     </Grid>
