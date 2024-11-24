@@ -94,7 +94,7 @@ const login = async (req, res) => {
         if (user) {
             return sendResult(user, res);
         } else {
-            return sendResult(null, res);;
+            return res.status(500).json({ message: 'Usuario o contraseña incorrectos.'});
         }
     } catch (error) {
         console.error("Error en la función login:", error);
@@ -108,7 +108,7 @@ const sendResult = (result, res) => {
     if (result)
         return res.status(200).json(result);
     else
-        return res.status(500).json({ message: 'Usuario o contraseña incorrectos.'});
+        return res.status(500).json({ message: 'Error'});
 }
 
 //registrar usuario con su cliente asociado
