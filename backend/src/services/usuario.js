@@ -64,7 +64,18 @@ const crearUsuarioCliente = async (payload) => {
     }
 };
 
+const authenticateUser = async (email, password) => {
+    try {
+        const user = await Usuario.findOne({ where: { email } });
+        if (!user || user.password !== password) {
+            return null;
+        }
+        return user;
+    } catch (error) {
+        throw new Error("Error al autenticar el usuario");
+    }
+};
 
- const service = {findOneEmail, updatePassword, crearUsuarioCliente}
+ const service = {findOneEmail, updatePassword, crearUsuarioCliente, authenticateUser}
 
  export default service
