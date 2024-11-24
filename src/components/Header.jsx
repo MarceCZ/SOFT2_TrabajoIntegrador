@@ -20,6 +20,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { isAuthenticated, logout } = useAuth();
 
+  const userId = localStorage.getItem("userId");
   const location = useLocation();
   const isCartPage = location.pathname === '/cart' || location.pathname === '/checkout';
 
@@ -121,6 +122,10 @@ const Header = () => {
                 <ListItem button component={Link} to="/mi-perfil">
                   <PersonRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
                   <ListItemText primary="Mi perfil" sx={{ color: '#000' }} />
+                </ListItem>
+                <ListItem button component={Link} to={`/kitinfo`}>
+                  <MedicalServicesRoundedIcon sx={{ marginRight: 1, color: '#000' }} />
+                  <ListItemText primary="Mi kit" sx={{ color: '#000' }} />
                 </ListItem>
                 <ListItem button onClick={handleLogout}>
                   <ListItemText primary="Cerrar sesión" sx={{ color: '#000' }} />

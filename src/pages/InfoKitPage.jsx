@@ -16,7 +16,7 @@ const InfoKitPage = () => {
             try {
                 setLoading(true);
                 const fetchedKit = await apiKit.findOneCompleteCliente(id);
-                console.log("Datos recibidos:", fetchedKit); // Verifica aquí
+                console.log("Datos recibidos:", fetchedKit);
                 setKitProducto(fetchedKit);
             } catch (err) {
                 console.error("Error al cargar los datos:", err.message);
@@ -32,9 +32,12 @@ const InfoKitPage = () => {
     if (loading) {
         return (
             <Container sx={{ marginTop: 4 }}>
-                <Typography variant="h5" align="center">
-                    <CircularProgress /> Cargando kit...
-                </Typography>
+                <Header />
+                <div style={{ margin: '70px auto 0' }}>
+                    <Typography variant="h5" align="center">
+                        <CircularProgress /> Cargando kit...
+                    </Typography>
+                </div>
             </Container>
         );
     }
@@ -42,15 +45,18 @@ const InfoKitPage = () => {
     if (error) {
         return (
             <Container sx={{ marginTop: 4 }}>
-                <Alert severity="error">{error}</Alert>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    sx={{ marginTop: 4 }}
-                    onClick={() => navigate(-1)}
-                >
-                    Volver
-                </Button>
+                <Header />
+                <div style={{ margin: '70px auto 0' }}>
+                    <Alert severity="error">{error}</Alert>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        sx={{ marginTop: 4 }}
+                        onClick={() => navigate(-1)}
+                    >
+                        Volver
+                    </Button>
+                </div>
             </Container>
         );
     }
@@ -59,7 +65,7 @@ const InfoKitPage = () => {
         <div style={{ margin: '50px auto 0' }}>
             <Header />
             <Box sx={{ padding: 4, maxWidth: '100%', backgroundColor: '#f2f2f2', minHeight: '84.5vh', margin: 'auto', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-                
+
                 {/* Botón para volver */}
                 <Box sx={{ marginBottom: 2, textAlign: 'left', ml: { md: '3%' } }}>
                     <Button
@@ -75,7 +81,7 @@ const InfoKitPage = () => {
                         ← Volver a los Kits
                     </Button>
                 </Box>
-    
+
                 <Box sx={{ maxWidth: '1400px', margin: 'auto' }}>
                     <Grid container spacing={4}>
                         {/* Sección izquierda: Datos del Cliente */}
@@ -98,7 +104,7 @@ const InfoKitPage = () => {
                                 </Typography>
                             </Paper>
                         </Grid>
-    
+
                         {/* Sección derecha: Detalles del Kit */}
                         <Grid item xs={12} md={6}>
                             <Paper elevation={3} sx={{ padding: 4, borderRadius: '35px', backgroundColor: '#fff' }}>
@@ -117,7 +123,7 @@ const InfoKitPage = () => {
                             </Paper>
                         </Grid>
                     </Grid>
-    
+
                     {/* Productos del Kit */}
                     <Typography variant="h4" sx={{ fontWeight: 'bold', marginBottom: 2, fontSize: '26px', marginTop: 4 }}>
                         Productos del Kit
