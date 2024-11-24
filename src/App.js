@@ -49,7 +49,7 @@ function App() {
               <Route path="/arma-tu-kit" element={<RutaProtegidaCliente><ArmaTuKitPage /></RutaProtegidaCliente>} />
               <Route path="/boticainfo/:botica" element={<RutaProtegidaCliente><BoticaProductsPage /></RutaProtegidaCliente>} />
               <Route path="/faq" element={<RutaProtegidaCliente><FAQPage/></RutaProtegidaCliente>}/>
-              <Route path="/mi-perfil" element={<MiPerfilPage/>}/>
+              <Route path="/mi-perfil" element={<RutaProtegidaCliente><MiPerfilPage/></RutaProtegidaCliente>}/>
               <Route path="/kitinfo/:id" element={<InfoKitPage />} />
               <Route path="/faq" element={<RutaPublica><FAQPage/></RutaPublica>}/>
               <Route path="/escribenos" element={<RutaProtegidaCliente><EscribenosPage/></RutaProtegidaCliente>} />
