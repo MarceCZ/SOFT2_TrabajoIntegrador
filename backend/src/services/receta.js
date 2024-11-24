@@ -1,58 +1,72 @@
-
-import Producto from '../models/producto.js'
-import Usuario from '../models/usuario.js'
-import Cliente from '../models/cliente.js'
-import Suscripcion from '../models/suscripcion.js'
-import Kit from '../models/kit.js'
-import KitProducto from '../models/kit_producto.js'
-import Botica from '../models/botica.js'
-import Receta from '../models/receta.js'
-import { where } from 'sequelize'
+const Cliente = require('../models/cliente');
+const Producto = require('../models/producto');
+const Suscripcion = require('../models/suscripcion');
+const Kit = require('../models/kit');
+const KitProducto = require('../models/kit_producto');
+const Botica = require('../models/botica');
+const Receta = require('../models/receta');
 
 const findAllComplete = async () => {
-    const recetas = await Receta.findAll({
-        include: [
-            {
-                model: KitProducto,
-                required: true,
-                include: [
-                    {
-                        model: Producto,
-                        required: true,
-                        include: [Botica]
-                    }
+    try {
+        const recetas = await Receta.findAll({
+            include: [
+                {
+                    model: KitProducto,
+                    as: 'KitProductos', 
+                    required: true,
+                    include: [
+                        {
+                            model: Producto,
+                            as: 'Producto', 
+                            required: true,
+                            include: [
+                                {
+                                    model: Botica,
+                                    as: 'Botica',
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        });
 
-                ]
-            }
-        ]
-    });
-
-    return recetas;
-}
-
+        return recetas;
+    } catch (error) {
+        console.error('Error al obtener todas las recetas completas:', error);
+        throw error;
+    }
+};
 
 const findAllCompleteXBotica = async (id) => {
-    const recetas = await Receta.findAll({
-        include: [Cliente,
-            {
-                model: KitProducto,
-                required: true,
-                include: [
-                    {
-                        model: Producto,
-                        required: true,
-                        where: { idBotica: id },
-                    }
+    try {
+        const recetas = await Receta.findAll({
+            include: [
+                {
+                    model: Cliente,
+                    as: 'Cliente', 
+                },
+                {
+                    model: KitProducto,
+                    as: 'KitProductos', 
+                    required: true,
+                    include: [
+                        {
+                            model: Producto,
+                            as: 'Producto', 
+                            required: true,
+                            where: { idBotica: id },
+                        }
+                    ]
+                }
+            ]
+        });
 
-                ]
-            }
-        ]
-    });
+        return recetas;
+    } catch (error) {
+        console.error(`Error al obtener recetas completas para la botica con ID ${id}:`, error);
+        throw error;
+    }
+};
 
-    return recetas;
-}
-
-
-const service = {  findAllComplete, findAllCompleteXBotica }
-
-export default service
+module.exports = { findAllComplete, findAllCompleteXBotica };

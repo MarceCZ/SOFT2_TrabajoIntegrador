@@ -1,8 +1,6 @@
-import sequelize from '../config/database.js'
-import { DataTypes } from 'sequelize'
-import Botica from './botica.js'
-
-//import Serie from './serie.js';
+const sequelize = require('../config/database');
+const { DataTypes } = require('sequelize');
+const Cliente = require('./cliente');
 
 const Producto = sequelize.define('producto', {
     id: {
@@ -55,10 +53,6 @@ const Producto = sequelize.define('producto', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-})
+});
 
-Producto.belongsTo(Botica, { foreignKey: 'idBotica', targetId: 'id' })
-
-Botica.hasMany(Producto, { foreignKey: 'idBotica'});
-
-export default Producto;
+module.exports = Producto;

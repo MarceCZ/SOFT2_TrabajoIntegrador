@@ -1,6 +1,6 @@
-import sequelize from '../config/database.js';
-import Usuario from '../models/usuario.js';
-import Cliente from '../models/cliente.js';
+const sequelize = require('../config/database.js');
+const Usuario = require('../models/usuario');
+const Cliente = require('../models/cliente');
 
 const findOneEmail = async (email) => {
     return await Usuario.findOne({
@@ -76,6 +76,9 @@ const authenticateUser = async (email, password) => {
     }
 };
 
- const service = {findOneEmail, updatePassword, crearUsuarioCliente, authenticateUser}
-
- export default service
+module.exports = {
+    findOneEmail,
+    updatePassword,
+    crearUsuarioCliente,
+    authenticateUser,
+};

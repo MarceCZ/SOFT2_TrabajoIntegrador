@@ -1,5 +1,5 @@
-import express from 'express';
-import controller from '../controllers/administrador.js';
+const express = require('express');
+const controller = require('../controllers/administrador');
 
 const router = express.Router();
 
@@ -9,5 +9,4 @@ router.post('/', controller.create);
 router.delete('/:id', controller.remove);
 router.put('/', controller.update);
 
-
-export default router;
+module.exports = router;

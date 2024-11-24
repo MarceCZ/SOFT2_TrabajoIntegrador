@@ -1,28 +1,31 @@
-import Botica from '../models/botica.js'
-import Producto from '../models/producto.js'
-
-import RepositoryBase from '../repositories/base.js'
-
+const Botica = require('../models/botica');
+const Producto = require('../models/producto');
 
 const findAllComplete = async () => {
-    
-    const productos = await Producto.findAll({
-        include: [Botica]
-    })
-    return productos
-}
+    try {
+        const productos = await Producto.findAll({
+            include: [{ model: Botica, as: 'Botica', required: true }], 
+        });
+
+        return productos;
+    } catch (error) {
+        console.error('Error al obtener los productos con boticas:', error);
+        throw error;
+    }
+};
 
 const findOneComplete = async (id) => {
-    
-    const producto = await Producto.findOne({
-        where: { id },
-        include: [Botica]
-    })
+    try {
+        const producto = await Producto.findOne({
+            where: { id },
+            include: [{ model: Botica, as: 'Botica', required: true }], 
+        });
 
-   
-    return producto
-}
+        return producto;
+    } catch (error) {
+        console.error(`Error al obtener el producto con ID ${id}:`, error);
+        throw error;
+    }
+};
 
-const service = {  findAllComplete,findOneComplete }
-
-export default service
+module.exports = { findAllComplete, findOneComplete };

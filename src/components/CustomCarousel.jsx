@@ -63,7 +63,7 @@ const CustomCarousel = (props) => {
               contraindicaciones={e.contraindicaciones}
               advertencias={e.advertencias}
               imagen={e.imagen}
-              botica={e.botica.nombre}
+              botica={e.botica ? e.botica.nombre : "Sin información"}
               precio={e.precio}
             />
           </div>

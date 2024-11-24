@@ -1,5 +1,5 @@
-import EmailService from '../services/email.js';
-import UsuarioService from '../services/usuario.js';
+const EmailService = require('../services/email');
+const UsuarioService = require('../services/usuario');
 
 const generarVerificationCode = () => {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -10,7 +10,6 @@ const resetPassword = async (req, res) => {
     const { email } = req.body;
 
     try {
-        // validar si el correo existe
         const user = await UsuarioService.findOneEmail(email);
         console.log("Respuesta del backend:", user);
 
@@ -25,7 +24,6 @@ const resetPassword = async (req, res) => {
         console.log("Código guardado en sesión:", req.session.verificationCode); 
         console.log("Email guardado en sesión:", req.session.email);  
 
-        //enviar correo
         await EmailService.sendVerificationCodeEmail(email, verificationCode, user.name);
 
         console.log("Código de verificación enviado a:", email);
@@ -34,18 +32,16 @@ const resetPassword = async (req, res) => {
         console.error("Error al procesar la solicitud:", error);
         return res.status(500).json({ status: 500, message: "Error al procesar la solicitud. Intente nuevamente más tarde." });
     }
- };
+};
 
 const verificarCodeCambiarPassword = async (req, res) => {
     const { email, verificationCode, newPassword } = req.body;
 
     console.log("Contenido de req.session antes de validar:", req.session);
-
     console.log("Correo recibido:", email);
     console.log("Código de verificación recibido:", verificationCode);
     console.log("Código de verificación en sesión:", req.session.verificationCode);
     console.log("Correo en sesión:", req.session.email);
-
 
     if (req.session.verificationCode !== verificationCode || req.session.email !== email) {
         return res.status(400).json({ status: 400, message: "Código de verificación o correo incorrecto" });
@@ -68,7 +64,6 @@ const enviarConsulta = async (req, res) => {
     const { email, nombre, consulta } = req.body;
 
     console.log("Contenido de req.session antes de validar:", req.session);
-
     console.log("Correo recibido:", email);
     console.log("Nombre recibido", nombre);
     console.log("Consulta:", consulta);
@@ -83,5 +78,4 @@ const enviarConsulta = async (req, res) => {
     }
 };
 
-
-export default { resetPassword, verificarCodeCambiarPassword, enviarConsulta};
+module.exports = { resetPassword, verificarCodeCambiarPassword, enviarConsulta };

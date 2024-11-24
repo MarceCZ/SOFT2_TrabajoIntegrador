@@ -1,28 +1,31 @@
-
-import Usuario from '../models/usuario.js'
-import Cliente from '../models/cliente.js'
-
-
+const Usuario = require('../models/usuario');
+const Cliente = require('../models/cliente');
 
 const findAllComplete = async () => {
-    
-    const usuarios = await Usuario.findAll({
-        include: [{ model: Cliente, required: true}]
-    })
+    try {
+        const usuarios = await Usuario.findAll({
+            include: [{ model: Cliente, as: 'Cliente', required: true }], 
+        });
 
-    return usuarios
-}
+        return usuarios;
+    } catch (error) {
+        console.error('Error al obtener los usuarios con clientes:', error);
+        throw error;
+    }
+};
 
 const findOneComplete = async (id) => {
-    
-    const usuario = await Usuario.findOne({
-        where: { id },
-        include: [{ model: Cliente, required: true}]
-    })
+    try {
+        const usuario = await Usuario.findOne({
+            where: { id },
+            include: [{ model: Cliente, as: 'Cliente', required: true }],
+        });
 
-    return usuario
-}
+        return usuario;
+    } catch (error) {
+        console.error(`Error al obtener el usuario con ID ${id}:`, error);
+        throw error;
+    }
+};
 
- const service = {  findAllComplete,findOneComplete }
-
- export default service
+module.exports = { findAllComplete, findOneComplete };

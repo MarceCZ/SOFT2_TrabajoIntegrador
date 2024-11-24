@@ -1,56 +1,30 @@
-
-import Botica from '../models/botica.js'
-import Producto from '../models/producto.js'
-
-import RepositoryBase from '../repositories/base.js'
-
+const Botica = require('../models/botica');
+const Producto = require('../models/producto');
 
 const findAllComplete = async () => {
-    
-    const boticas = await Botica.findAll({
-        include: [{ model: Producto, required: true}]
-    })
-
-    return boticas
-}
+    try {
+        const boticas = await Botica.findAll({
+            include: [{ model: Producto, as: 'Productos', required: true }], 
+        });
+        return boticas;
+    } catch (error) {
+        console.error('Error al obtener las boticas con productos:', error);
+        throw error;
+    }
+};
 
 const findOneComplete = async (id) => {
-    
-    const orden = await Botica.findOne({
-        where: { id },
-        include: [{ model: Producto, required: true}]
-    })
-
-   
-    return orden
-}
-
-
-/*
-const create = async (payload) => {
-
-    const { productos } = payload;
-
-    if (!productos) return null;
-
-    const result = await ordenRepository.create(payload)
-
-    result.productos = []
-
-    if (result) {
-
-        productos.forEach(async producto => {
-            const objDetalOrden = { idCurso: producto.idCurso, idMatricula: result.id }
-            const resultDetalOrden= await detalleOrdenRepository.create(objDetalOrden);
-
-            if (resultDetalOrden)
-                result.cursos.push(resultDetalOrden);
-
+    try {
+        const botica = await Botica.findOne({
+            where: { id },
+            include: [{ model: Producto, as: 'Productos', required: true }], 
         });
+        return botica;
+    } catch (error) {
+        console.error(`Error al obtener la botica con ID ${id}:`, error);
+        throw error;
     }
-    
-    return result
-}*/
- const service = {  findAllComplete,findOneComplete }
+};
 
- export default service
+module.exports = { findAllComplete, findOneComplete };
+

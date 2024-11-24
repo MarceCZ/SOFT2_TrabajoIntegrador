@@ -1,5 +1,5 @@
-import express from 'express';
-import controller from '../controllers/suscripcion.js';
+const express = require('express');
+const controller = require('../controllers/suscripcion');
 
 const router = express.Router();
 
@@ -11,5 +11,4 @@ router.put('/', controller.update);
 router.post('/create', controller.create);
 router.post('/cancel/:id', controller.cancelSuscripcion);
 
-
-export default router;
+module.exports = router;

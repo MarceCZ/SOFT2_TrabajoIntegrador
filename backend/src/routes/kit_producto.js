@@ -1,5 +1,5 @@
-import express from 'express';
-import controller from '../controllers/kit_producto.js';
+const express = require('express');
+const controller = require('../controllers/kit_producto');
 
 const router = express.Router();
 
@@ -10,5 +10,4 @@ router.post('/', controller.create);
 router.delete('/:id', controller.remove);
 router.put('/', controller.update);
 
-
-export default router;
+module.exports = router;

@@ -1,31 +1,26 @@
-import sequelize from '../config/database.js'
-import { DataTypes } from 'sequelize'
-import Usuario from './usuario.js'
+const sequelize = require('../config/database');
+const { DataTypes } = require('sequelize');
+const Usuario = require('./usuario');
 
 const Botica = sequelize.define('botica', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
     },
     nombre: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     imagen: {
         type: DataTypes.STRING,
-        allowNull: false
-    },    
+        allowNull: false,
+    },
     idUsuario: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
-})
+});
 
-Botica.belongsTo(Usuario,     { foreignKey: 'idUsuario', targetId: 'id' })
-
-
-
-
-export default Botica;
+module.exports = Botica;

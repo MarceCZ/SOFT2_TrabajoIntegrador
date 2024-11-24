@@ -1,27 +1,30 @@
-import app from './app.js';
-import sequelize from './src/config/database.js';
-import './src/services/crono.js'; 
+const app = require('./app');
+const sequelize = require('./src/config/database');
+
+require('./src/models/associations');
+
+require('./src/services/crono');
 
 async function main() {
     try {
-        
         const init = process.argv[2];
 
-        if (init)
+        if (init) {
             await sequelize.sync({ force: true });
-        else 
+        } else {
             await sequelize.sync({ force: false });
-        
+        }
+
         console.log('Database synchronized');
 
         const port = process.env.PORT || 3001;
-        
+
         app.listen(port, () => {
-            console.log('Server running on port 3001');
+            console.log(`Server running on port ${port}`);
         });
 
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 }
 

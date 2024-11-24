@@ -1,13 +1,12 @@
-import express from 'express';
-import controller from '../controllers/usuario.js';
+const express = require('express');
+const controller = require('../controllers/usuario');
 
 const router = express.Router();
 
-//Ruta principales para el Usuario
-
+// Ruta principales para el Usuario
 router.get('/', controller.findAll);
 
-//Ruta para Usuarios que son clientes
+// Ruta para Usuarios que son clientes
 router.get('/complete', controller.findAllComplete);
 router.get('/complete/:id', controller.findOneComplete);
 
@@ -16,18 +15,17 @@ router.post('/', controller.create);
 router.delete('/:id', controller.remove);
 router.put('/', controller.update);
 
-
-//Ruta para los usuarios clientes con sus suscripciones y kits
+// Ruta para los usuarios clientes con sus suscripciones y kits
 router.get('/usuariokits', controller.findAllCompleteUsuarioKits);
 
-//Ruta para Usuarios que son clientes
+// Ruta para Usuarios que son clientes
 router.get('/complete', controller.findAllComplete);
 router.get('/complete/:id', controller.findOneComplete);
 
-//Ruta para login
+// Ruta para login
 router.post('/login', controller.login);
 
-//Ruta apra registrar
+// Ruta para registrar
 router.post('/signin', controller.signin);
 
-export default router;
+module.exports = router;
