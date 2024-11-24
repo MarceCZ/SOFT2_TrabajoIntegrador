@@ -65,16 +65,14 @@ const verificarCodeCambiarPassword = async (req, res) => {
 };
 
 const enviarConsulta = async (req, res) => {
-    const { email, nombre, consulta } = req.body;
+    const {consulta } = req.body;
 
     console.log("Contenido de req.session antes de validar:", req.session);
 
-    console.log("Correo recibido:", email);
-    console.log("Nombre recibido", nombre);
     console.log("Consulta:", consulta);
 
     try {
-        await EmailService.sendQuestionEmail(email, nombre, consulta);
+        await EmailService.sendQuestionEmail(consulta);
 
         return res.status(200).json({ status: 200, message: "Correo enviado exitosamente" });
     } catch (error) {

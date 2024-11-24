@@ -38,14 +38,12 @@ const sendNotificationEmail = async (email, nombre, productos, idPedido,fecha, v
     });
 };
 
-const sendQuestionEmail = async (email, nombre, consulta) => {
+const sendQuestionEmail = async (consulta) => {
     await client.sendEmailWithTemplate({
       From: "20210630@aloe.ulima.edu.pe",
       To: "20214302@aloe.ulima.edu.pe",
       TemplateId: 38094869,
       TemplateModel: {
-        correo: email,
-        name: nombre,
         question: consulta
       },
     });

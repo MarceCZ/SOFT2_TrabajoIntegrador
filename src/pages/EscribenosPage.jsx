@@ -3,36 +3,12 @@ import { Box, Typography, Button, TextField, Dialog, DialogActions, DialogConten
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import correoApi from '../api/email.js';
-import userApi from '../api/usuario.js';
 
 const EscribenosPage = () => {
   const [consulta, setPregunta] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const userId = localStorage.getItem('userId');
-      if (!userId) {
-        console.error('No se encontró información del usuario. Por favor, inicia sesión.');
-        return;
-      }
-  
-      try {
-        const response = await userApi.findOneComplete(userId); // Llamada a la API
-        const { nombre, apellido1, apellido2, email } = response.data;
-        setNombre(`${nombre} ${apellido1} ${apellido2}`);
-        setEmail(email);
-      } catch (error) {
-        console.error('Error al obtener los datos del usuario:', error);
-      }
-    };
-  
-    fetchUserDetails();
-  }, []);
 
   const handleEnviar = async () => {
     if (!consulta.trim()) {
@@ -41,7 +17,7 @@ const EscribenosPage = () => {
     }
 
     try {
-      const response = await correoApi.enviarConsulta(email, nombre, consulta);
+      const response = await correoApi.enviarConsulta(consulta);
       if (response.status === 200) {
         setOpen(true);
         setPregunta('');
@@ -86,14 +62,14 @@ const EscribenosPage = () => {
         </Typography>
 
         <Typography
-          variant="body1"
+          variant="body2"
           sx={{
             marginBottom: 4,
-            fontSize: { lg: '1.3rem' },
+            fontSize: { lg: '1.1rem' },
             color: '#666',
           }}
         >
-          Escribe en el campo de abajo tu consulta o duda.
+          Escribe en el campo de abajo tu consulta o duda. No olvides poner tu correo electrónico para contactarnos contigo.
         </Typography>
         <Box
           sx={{
